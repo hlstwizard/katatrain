@@ -14,6 +14,11 @@
 		80CC5951271476C2009A24AC /* katatrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5950271476C2009A24AC /* katatrainTests.swift */; };
 		80CC595B271476C2009A24AC /* katatrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC595A271476C2009A24AC /* katatrainUITests.swift */; };
 		80CC595D271476C2009A24AC /* katatrainUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC595C271476C2009A24AC /* katatrainUITestsLaunchTests.swift */; };
+		80CC596B27147770009A24AC /* katagob40.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596A27147770009A24AC /* katagob40.mlmodel */; };
+		80CC596D271477A9009A24AC /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596C271477A9009A24AC /* Katago.swift */; };
+		80CC596F27147AFA009A24AC /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596E27147AFA009A24AC /* Board.swift */; };
+		80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597127148E52009A24AC /* Int+NSNumber.swift */; };
+		80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597327148ECB009A24AC /* NSNumber+Int.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		80CC5956271476C2009A24AC /* katatrainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = katatrainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CC595A271476C2009A24AC /* katatrainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = katatrainUITests.swift; sourceTree = "<group>"; };
 		80CC595C271476C2009A24AC /* katatrainUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = katatrainUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		80CC596A27147770009A24AC /* katagob40.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = katagob40.mlmodel; sourceTree = "<group>"; };
+		80CC596C271477A9009A24AC /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
+		80CC596E27147AFA009A24AC /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		80CC597127148E52009A24AC /* Int+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+NSNumber.swift"; sourceTree = "<group>"; };
+		80CC597327148ECB009A24AC /* NSNumber+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Int.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,8 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				80CC597027148E3F009A24AC /* Extensions */,
+				80CC596927147753009A24AC /* Models */,
 				80CC593F271476BF009A24AC /* katatrainApp.swift */,
 				80CC5941271476BF009A24AC /* ContentView.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
@@ -125,6 +137,25 @@
 				80CC595C271476C2009A24AC /* katatrainUITestsLaunchTests.swift */,
 			);
 			path = katatrainUITests;
+			sourceTree = "<group>";
+		};
+		80CC596927147753009A24AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80CC596A27147770009A24AC /* katagob40.mlmodel */,
+				80CC596C271477A9009A24AC /* Katago.swift */,
+				80CC596E27147AFA009A24AC /* Board.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		80CC597027148E3F009A24AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				80CC597127148E52009A24AC /* Int+NSNumber.swift */,
+				80CC597327148ECB009A24AC /* NSNumber+Int.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
+				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				80CC5940271476BF009A24AC /* katatrainApp.swift in Sources */,
+				80CC596F27147AFA009A24AC /* Board.swift in Sources */,
+				80CC596D271477A9009A24AC /* Katago.swift in Sources */,
+				80CC596B27147770009A24AC /* katagob40.mlmodel in Sources */,
+				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
