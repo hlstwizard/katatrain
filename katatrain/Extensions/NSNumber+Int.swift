@@ -7,7 +7,11 @@
 
 import Foundation
 
-extension NSNumber {
+extension NSNumber: Comparable {
+    public static func < (lhs: NSNumber, rhs: NSNumber) -> Bool {
+        return lhs.intValue < rhs.intValue
+    }
+    
     static func == (lhs: NSNumber, rhs: Int) -> Bool {
         return lhs.intValue == rhs
     }
@@ -22,5 +26,13 @@ extension NSNumber {
 
     static func <= (lhs: NSNumber, rhs: Int) -> Bool {
         return lhs.intValue <= rhs
+    }
+    
+    static func -= (lhs: inout NSNumber, rhs: Int) {
+        lhs = NSNumber(value: lhs.intValue - rhs)
+    }
+    
+    static func += (lhs: inout NSNumber, rhs: Int) {
+        lhs = NSNumber(value: lhs.intValue + rhs)
     }
 }

@@ -14,6 +14,14 @@ class Board {
     static let WHITE = 2
     static let WALL = 3
     
+    struct Record {
+        let pla: Int
+        let loc: Int
+        let old_simple_ko_point: Int?
+        let capDirs: [Int]
+        let selfCap: Bool
+    }
+    
     static var ZOBRIST_STONE: [Int: [Int]] = [
         Board.EMPTY: [],
         Board.BLACK: [],
@@ -47,6 +55,7 @@ class Board {
     var group_next: MLMultiArray! = nil
     var group_prev: MLMultiArray! = nil
     var zobrist = 0
+    var simple_ko_point: Int?
     
     init() {
         for _ in 0..<(19+1)*(19+2)+1 {
@@ -78,6 +87,7 @@ class Board {
     }
     
     static func get_opp(_ pla: Int) -> Int { return 3 - pla }
+    static func get_opp(_ pla: NSNumber) -> Int { return 3 - pla.intValue }
     static func loc_static(x: Int, y: Int, size: Int) -> Int { return (x+1) + (size+1)*(y+1) }
     
     func loc(_ x: Int, _ y: Int) -> Int {
@@ -173,7 +183,7 @@ class Board {
         if loc == Board.PASS_LOC {
             return true
         }
-        if !self.is_on_board(loc: loc) {
+        if !self.is_on_board(loc) {
             return false
         }
         if self.board[loc] != Board.EMPTY {
@@ -182,10 +192,9 @@ class Board {
         if self.would_be_single_stone_suicide(pla, loc) {
             return false
         }
-        // TODO: - simple ko point
-        //        if (loc == self.simple_ko_point) {
-        //          return false
-        //        }
+        if loc == self.simple_ko_point {
+            return false
+        }
         return true
     }
     
@@ -368,8 +377,483 @@ class Board {
         self.pla = pla
     }
     
-    func is_on_board(loc: Int) -> Bool {
+    func is_on_board(_ loc: Int) -> Bool {
         return loc >= 0 && loc < self.arrsize && self.board[loc] != Board.WALL
     }
     
+    // Set a given location with error checking. Suicide setting allowed.
+    func set_stone(pla: Int, loc: Int) throws {
+        if pla != Board.EMPTY && pla != Board.BLACK && pla != Board.WHITE {
+            throw BoardError.IllegalMoveError("Invalid pla for board.set")
+        }
+        if !self.is_on_board(loc) {
+            throw BoardError.IllegalMoveError("Invalid loc for board.set")
+        }
+        
+        if self.board[loc] == pla {
+            
+        } else if self.board[loc] == Board.EMPTY {
+            self.add_unsafe(pla, loc)
+        } else if pla == Board.EMPTY {
+            self.remove_single_stone_unsafe(loc)
+        } else {
+            self.remove_single_stone_unsafe(loc)
+            self.add_unsafe(pla, loc)
+        }
+        
+        // Clear any ko restrictions
+        self.simple_ko_point = nil
+    }
+    
+    // Play a stone at the given location, with non-superko legality checking and updating the pla and simple ko point
+    // Single stone suicide is disallowed but suicide is allowed, to support rule sets and sgfs that have suicide
+    func play(_ pla: Int, _ loc: Int) throws {
+        if pla != Board.BLACK && pla != Board.WHITE {
+            throw BoardError.IllegalMoveError("Invalid pla for board.play")
+        }
+        
+        if loc != Board.PASS_LOC {
+            if !self.is_on_board(loc) {
+                throw BoardError.IllegalMoveError("Invalid loc for board.set")
+            }
+            if self.board[loc] != Board.EMPTY {
+                throw BoardError.IllegalMoveError("Location is nonempty")
+            }
+            if self.would_be_single_stone_suicide(pla, loc) {
+                throw BoardError.IllegalMoveError("Move would be illegal single stone suicide")
+            }
+            if loc == self.simple_ko_point {
+                throw BoardError.IllegalMoveError("Move would be illegal simple ko recapture")
+            }
+        }
+        
+        self.playUnsafe(pla, loc)
+    }
+    
+    func playUnsafe(_ pla: Int, _ loc: Int) {
+        if loc == Board.PASS_LOC {
+            self.simple_ko_point = nil
+            self.pla = Board.get_opp(pla)
+        } else {
+            self.add_unsafe(pla, loc)
+            self.pla = Board.get_opp(pla)
+        }
+    }
+    
+    func playRecordedUnsafe(_ pla: Int, _ loc: Int) -> Record {
+        var capDirs: [Int] = []
+        let opp = Board.get_opp(pla)
+        let old_simple_ko_point = self.simple_ko_point
+        for i in 0..<4 {
+            let adj = loc + self.adj[i]
+            if self.board[adj] == opp && self.group_liberty_count[self.group_head[adj]] == 1 {
+                capDirs.append(i)
+            }
+        }
+        
+        self.playUnsafe(pla, loc)
+        
+        // Suicide
+        var selfCap = false
+        if self.board[loc] == Board.EMPTY {
+            selfCap = true
+        }
+        return Record(pla: pla, loc: loc, old_simple_ko_point: old_simple_ko_point, capDirs: capDirs, selfCap: selfCap)
+    }
+    
+    // Add a stone, assumes that the location is empty without checking
+    func add_unsafe(_ pla: Int, _ loc: Int) {
+        let opp = Board.get_opp(pla)
+        
+        // Put the stone down
+        self.board[loc] = NSNumber(value: pla)
+        self.zobrist ^= Board.ZOBRIST_STONE[pla]![loc]
+        
+        // Initialize the group for that stone
+        self.group_head[loc] = NSNumber(value: loc)
+        self.group_stone_count[loc] = 1
+        var liberties = 0
+        self.adj.forEach { dloc in
+            if self.board[loc+dloc] == Board.EMPTY {
+                liberties += 1
+            }
+        }
+        
+        self.group_liberty_count[loc] = NSNumber(value: liberties)
+        self.group_next[loc] = NSNumber(value: loc)
+        self.group_prev[loc] = NSNumber(value: loc)
+        
+        // Fill surrounding liberties of all adjacent groups
+        // Carefully avoid doublecounting
+        let adj0 = loc + self.adj[0]
+        let adj1 = loc + self.adj[1]
+        let adj2 = loc + self.adj[2]
+        let adj3 = loc + self.adj[3]
+        
+        if self.board[adj0] == Board.BLACK || self.board[adj0] == Board.WHITE {
+            self.group_liberty_count[self.group_head[adj0]] -= 1
+        }
+        if self.board[adj1] == Board.BLACK || self.board[adj1] == Board.WHITE {
+            if self.group_head[adj1] != self.group_head[adj0] {
+                self.group_liberty_count[self.group_head[adj1]] -= 1
+            }
+        }
+        if self.board[adj2] == Board.BLACK || self.board[adj2] == Board.WHITE {
+            if self.group_head[adj2] != self.group_head[adj0] &&
+                self.group_head[adj2] != self.group_head[adj1] {
+                self.group_liberty_count[self.group_head[adj2]] -= 1
+            }
+        }
+        if self.board[adj3] == Board.BLACK || self.board[adj3] == Board.WHITE {
+            if self.group_head[adj3] != self.group_head[adj0] &&
+                self.group_head[adj3] != self.group_head[adj1] &&
+                self.group_head[adj3] != self.group_head[adj2] {
+                self.group_liberty_count[self.group_head[adj3]] -= 1
+            }
+        }
+        
+        // Merge groups
+        if self.board[adj0] == pla {
+            self.merge_unsafe(loc, adj0)
+        }
+        if self.board[adj1] == pla {
+            self.merge_unsafe(loc, adj1)
+        }
+        if self.board[adj2] == pla {
+            self.merge_unsafe(loc, adj2)
+        }
+        if self.board[adj3] == pla {
+            self.merge_unsafe(loc, adj3)
+        }
+        
+        // Resolve captures
+        var opp_stones_captured = 0
+        var caploc = 0
+        if self.board[adj0] == opp && self.group_liberty_count[self.group_head[adj0]] == 0 {
+            opp_stones_captured += self.group_stone_count[self.group_head[adj0]]
+            caploc = adj0
+            self.remove_unsafe(adj0)
+        }
+        if self.board[adj1] == opp && self.group_liberty_count[self.group_head[adj1]] == 0 {
+            opp_stones_captured += self.group_stone_count[self.group_head[adj1]]
+            caploc = adj1
+            self.remove_unsafe(adj1)
+        }
+        if self.board[adj2] == opp && self.group_liberty_count[self.group_head[adj2]] == 0 {
+            opp_stones_captured += self.group_stone_count[self.group_head[adj2]]
+            caploc = adj2
+            self.remove_unsafe(adj2)
+        }
+        if self.board[adj3] == opp && self.group_liberty_count[self.group_head[adj3]] == 0 {
+            opp_stones_captured += self.group_stone_count[self.group_head[adj3]]
+            caploc = adj3
+            self.remove_unsafe(adj3)
+        }
+        
+        // Suicide
+        if self.group_liberty_count[self.group_head[loc]] == 0 {
+            self.remove_unsafe(loc)
+        }
+        
+        // Update ko point for legality checking
+        if opp_stones_captured == 1 &&
+            self.group_stone_count[self.group_head[loc]] == 1 &&
+            self.group_liberty_count[self.group_head[loc]] == 1 {
+            self.simple_ko_point = caploc
+        } else {
+            self.simple_ko_point = nil
+        }
+    }
+    
+    // Apply the specified delta to the liberties of all adjacent groups of the specified color
+    func changeSurroundingLiberties(_ loc: Int, _ pla: Int, _ delta: Int) {
+        // Carefully avoid doublecounting
+        let adj0 = loc + self.adj[0]
+        let adj1 = loc + self.adj[1]
+        let adj2 = loc + self.adj[2]
+        let adj3 = loc + self.adj[3]
+        if self.board[adj0] == pla {
+            self.group_liberty_count[self.group_head[adj0]] += delta
+        }
+        if self.board[adj1] == pla {
+            if self.group_head[adj1] != self.group_head[adj0] {
+                self.group_liberty_count[self.group_head[adj1]] += delta
+            }
+        }
+        if self.board[adj2] == pla {
+            if self.group_head[adj2] != self.group_head[adj0] &&
+                self.group_head[adj2] != self.group_head[adj1] {
+                self.group_liberty_count[self.group_head[adj2]] += delta
+            }
+        }
+        if self.board[adj3] == pla {
+            if self.group_head[adj3] != self.group_head[adj0] &&
+                self.group_head[adj3] != self.group_head[adj1] &&
+                self.group_head[adj3] != self.group_head[adj2] {
+                self.group_liberty_count[self.group_head[adj3]] += delta
+            }
+        }
+    }
+    
+    func countImmediateLiberties(_ loc: Int) -> Int {
+        let adj0 = loc + self.adj[0]
+        let adj1 = loc + self.adj[1]
+        let adj2 = loc + self.adj[2]
+        let adj3 = loc + self.adj[3]
+        var count = 0
+        if self.board[adj0] == Board.EMPTY {
+            count += 1
+        }
+        if self.board[adj1] == Board.EMPTY {
+            count += 1
+        }
+        if self.board[adj2] == Board.EMPTY {
+            count += 1
+        }
+        if self.board[adj3] == Board.EMPTY {
+            count += 1
+        }
+        return count
+    }
+    
+    func is_group_adjacent(_ head: NSNumber, _ loc: Int) -> Bool {
+        return (
+            self.group_head[loc+self.adj[0]] == head ||
+            self.group_head[loc+self.adj[1]] == head ||
+            self.group_head[loc+self.adj[2]] == head ||
+            self.group_head[loc+self.adj[3]] == head
+        )
+    }
+    
+    // Helper, merge two groups assuming they're owned by the same player and adjacent
+    func merge_unsafe(_ loc0: Int, _ loc1: Int) {
+        var parent: Int?
+        var child: Int?
+        if self.group_stone_count[self.group_head[loc0]] >= self.group_stone_count[self.group_head[loc1]] {
+            parent = loc0
+            child = loc1
+        } else {
+            child = loc0
+            parent = loc1
+        }
+        
+        let phead = self.group_head[parent!]
+        let chead = self.group_head[child!]
+        if phead == chead {
+            return
+        }
+        
+        // Walk the child group assigning the new head and simultaneously counting liberties
+        let new_stone_count = self.group_stone_count[phead].intValue + self.group_stone_count[chead].intValue
+        var new_liberties = self.group_liberty_count[phead]
+        var loc = child!
+        while true {
+            let adj0 = loc + self.adj[0]
+            let adj1 = loc + self.adj[1]
+            let adj2 = loc + self.adj[2]
+            let adj3 = loc + self.adj[3]
+            
+            // Any adjacent empty space is a new liberty as long as it isn't adjacent to the parent
+            if self.board[adj0] == Board.EMPTY && !self.is_group_adjacent(phead, adj0) {
+                new_liberties += 1
+            }
+            if self.board[adj1] == Board.EMPTY && !self.is_group_adjacent(phead, adj1) {
+                new_liberties += 1
+            }
+            
+            if self.board[adj2] == Board.EMPTY && !self.is_group_adjacent(phead, adj2) {
+                new_liberties += 1
+            }
+            if self.board[adj3] == Board.EMPTY && !self.is_group_adjacent(phead, adj3) {
+                new_liberties += 1
+            }
+            
+            // Now assign the new parent head to take over the child (this also
+            // prevents double-counting liberties)
+            self.group_head[loc] = phead
+            
+            // Advance around the linked list
+            loc = self.group_next[loc].intValue
+            if loc == child {
+                break
+            }
+        }
+        
+        // Zero out the old head
+        self.group_stone_count[chead] = 0
+        self.group_liberty_count[chead] = 0
+        
+        // Update the new head
+        self.group_stone_count[phead] = NSNumber(value: new_stone_count)
+        self.group_liberty_count[phead] = new_liberties
+        
+        // Combine the linked lists
+        let plast = self.group_prev[phead]
+        let clast = self.group_prev[chead]
+        self.group_next[clast] = phead
+        self.group_next[plast] = chead
+        self.group_prev[chead] = plast
+        self.group_prev[phead] = clast
+    }
+    
+    // Remove all stones in a group
+    func remove_unsafe(_ group: Int) {
+        let head = self.group_head[group]
+        let pla = self.board[group]
+        let opp = Board.get_opp(pla.intValue)
+        
+        // Walk all the stones in the group and delete them
+        var loc = group
+        while true {
+            // Add a liberty to all surrounding opposing groups, taking care to avoid double counting
+            let adj0 = loc + self.adj[0]
+            let adj1 = loc + self.adj[1]
+            let adj2 = loc + self.adj[2]
+            let adj3 = loc + self.adj[3]
+            if self.board[adj0] == opp {
+                self.group_liberty_count[self.group_head[adj0]] += 1
+            }
+            if self.board[adj1] == opp {
+                if self.group_head[adj1] != self.group_head[adj0] {
+                    self.group_liberty_count[self.group_head[adj1]] += 1
+                }
+            }
+            if self.board[adj2] == opp {
+                if self.group_head[adj2] != self.group_head[adj0] &&
+                    self.group_head[adj2] != self.group_head[adj1] {
+                    self.group_liberty_count[self.group_head[adj2]] += 1
+                }
+            }
+            if self.board[adj3] == opp {
+                if self.group_head[adj3] != self.group_head[adj0] &&
+                    self.group_head[adj3] != self.group_head[adj1] &&
+                    self.group_head[adj3] != self.group_head[adj2] {
+                    self.group_liberty_count[self.group_head[adj3]] += 1
+                }
+            }
+            
+            let next_loc = self.group_next[loc]
+            
+            // Zero out all the stuff
+            self.board[loc] = NSNumber(value: Board.EMPTY)
+            self.zobrist ^= Board.ZOBRIST_STONE[opp]![loc]
+            self.group_head[loc] = 0
+            self.group_next[loc] = 0
+            self.group_prev[loc] = 0
+            
+            // Advance around the linked list
+            loc = next_loc.intValue
+            if loc == group {
+                break
+            }
+        }
+        
+        // Zero out the head
+        self.group_stone_count[head] = 0
+        self.group_liberty_count[head] = 0
+    }
+    
+    // Remove a single stone
+    func remove_single_stone_unsafe(_ rloc: Int) {
+        let pla = self.board[rloc]
+        
+        // Record all the stones in the group
+        var stones: [Int] = []
+        var loc = rloc
+        while true {
+            stones.append(loc)
+            loc = self.group_next[loc].intValue
+            if loc == rloc {
+                break
+            }
+        }
+        
+        // Remove them all
+        self.remove_unsafe(rloc)
+        
+        // Then add them back one by one
+        stones.forEach { loc in
+            if loc != rloc {
+                self.add_unsafe(pla.intValue, loc)
+            }
+        }
+    }
+    
+    // Helper, find liberties of group at loc. Fills in buf.
+    func findLiberties(_ loc: Int, _ buf: inout [Int]) {
+        var cur = loc
+        while true {
+            for i in 0..<4 {
+                let lib = cur + self.adj[i]
+                if self.board[lib] == Board.EMPTY {
+                    if !buf.contains(lib) {
+                        buf.append(lib)
+                    }
+                }
+            }
+            
+            cur = self.group_next[cur].intValue
+            if cur == loc {
+                break
+            }
+        }
+    }
+    
+    // Helper, find captures that gain liberties for the group at loc. Fills in buf
+    func findLibertyGainingCaptures(_ loc: Int, buf: inout [Int]) {
+        let pla = self.board[loc]
+        let opp = Board.get_opp(pla)
+        
+        // For performance, avoid checking for captures on any chain twice
+        var chainHeadsChecked: [NSNumber] = []
+        
+        var cur = loc
+        while true {
+            for i in 0..<4 {
+                let adj = cur + self.adj[i]
+                if self.board[adj] == opp {
+                    let head = self.group_head[adj]
+                    
+                    if self.group_liberty_count[head] == 1 {
+                        if !chainHeadsChecked.contains(head) {
+                            // Capturing moves are precisely the liberties of the groups around us with 1 liberty.
+                            self.findLiberties(adj, &buf)
+                            chainHeadsChecked.append(head)
+                        }
+                    }
+                }
+            }
+            
+            cur = self.group_next[cur].intValue
+            if cur == loc {
+                break
+            }
+        }
+    }
+    
+    // Helper, does the group at loc have at least one opponent group adjacent to it in atari?
+    func hasLibertyGainingCaptures(_ loc: Int) -> Bool {
+        let pla = self.board[loc]
+        let opp = Board.get_opp(pla)
+        
+        var cur = loc
+        while true {
+            for i in 0..<4 {
+                let adj = cur + self.adj[i]
+                if self.board[adj] == opp {
+                    let head = self.group_head[adj]
+                    if self.group_liberty_count[head] == 1 {
+                        return true
+                    }
+                }
+            }
+            
+            cur = self.group_next[cur].intValue
+            if cur == loc {
+                break
+            }
+        }
+        
+        return false
+    }
 }

@@ -2,8 +2,12 @@ disabled_rules:
 - force_try
 - identifier_name
 - line_length
+- file_length
 - cyclomatic_complexity
 - type_body_length
+- function_body_length
+- trailing_whitespace
+
 
 excluded:
 - katatrainTests

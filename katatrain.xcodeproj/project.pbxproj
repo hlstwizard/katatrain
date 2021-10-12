@@ -21,6 +21,7 @@
 		80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597327148ECB009A24AC /* NSNumber+Int.swift */; };
 		80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597527152807009A24AC /* MLMultiArray+subscript.swift */; };
 		80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC59772715316F009A24AC /* String+NSNumber.swift */; };
+		80CC597B271553A2009A24AC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597A271553A2009A24AC /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		80CC597327148ECB009A24AC /* NSNumber+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Int.swift"; sourceTree = "<group>"; };
 		80CC597527152807009A24AC /* MLMultiArray+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+subscript.swift"; sourceTree = "<group>"; };
 		80CC59772715316F009A24AC /* String+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSNumber.swift"; sourceTree = "<group>"; };
+		80CC597A271553A2009A24AC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				80CC596A27147770009A24AC /* katagob40.mlmodel */,
 				80CC596C271477A9009A24AC /* Katago.swift */,
 				80CC596E27147AFA009A24AC /* Board.swift */,
+				80CC597A271553A2009A24AC /* Errors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				80CC596F27147AFA009A24AC /* Board.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
 				80CC596D271477A9009A24AC /* Katago.swift in Sources */,
+				80CC597B271553A2009A24AC /* Errors.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,

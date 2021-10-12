@@ -9,6 +9,11 @@ import CoreML
 
 extension MLMultiArray {
     subscript(index: NSNumber) -> NSNumber {
-        return self[index.intValue]
+        get {
+            return self[index.intValue]
+        }
+        set(newValue) {
+            self[index.intValue] = newValue
+        }
     }
 }
