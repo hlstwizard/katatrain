@@ -15,10 +15,10 @@ class Katago {
             self.model = katagob40()
         }
     }
-    
+
     func play() {
-        
+
     }
-    
+
     var model: katagob40
 }

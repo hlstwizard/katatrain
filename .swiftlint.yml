@@ -1,0 +1,10 @@
+disabled_rules:
+- force_try
+- identifier_name
+- line_length
+- cyclomatic_complexity
+- type_body_length
+
+excluded:
+- katatrainTests
+- katatrainUITests

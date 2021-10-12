@@ -8,11 +8,19 @@
 import Foundation
 
 extension NSNumber {
-    static func ==(lhs: NSNumber, rhs: Int) -> Bool {
+    static func == (lhs: NSNumber, rhs: Int) -> Bool {
         return lhs.intValue == rhs
     }
-    
-    static func !=(lhs: NSNumber, rhs: Int) -> Bool {
+
+    static func != (lhs: NSNumber, rhs: Int) -> Bool {
         return lhs.intValue != rhs
+    }
+
+    static func > (lhs: NSNumber, rhs: Int) -> Bool {
+        return lhs.intValue > rhs
+    }
+
+    static func <= (lhs: NSNumber, rhs: Int) -> Bool {
+        return lhs.intValue <= rhs
     }
 }

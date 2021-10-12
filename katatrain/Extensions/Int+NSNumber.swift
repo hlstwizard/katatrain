@@ -8,7 +8,7 @@
 import Foundation
 
 extension Int {
-    static func ==(lhs: Int, rhs: NSNumber) -> Bool {
+    static func == (lhs: Int, rhs: NSNumber) -> Bool {
         return lhs == rhs.intValue
     }
 }

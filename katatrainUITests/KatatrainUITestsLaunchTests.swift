@@ -7,7 +7,7 @@
 
 import XCTest
 
-class katatrainUITestsLaunchTests: XCTestCase {
+class KatatrainUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
