@@ -7,8 +7,9 @@
 
 import Foundation
 import CoreML
+import Combine
 
-class Board {
+class Board: ObservableObject {
     static let EMPTY = 0
     static let BLACK = 1
     static let WHITE = 2

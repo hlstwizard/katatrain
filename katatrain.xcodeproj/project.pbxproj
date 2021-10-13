@@ -22,6 +22,7 @@
 		80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597527152807009A24AC /* MLMultiArray+subscript.swift */; };
 		80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC59772715316F009A24AC /* String+NSNumber.swift */; };
 		80CC597B271553A2009A24AC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597A271553A2009A24AC /* Errors.swift */; };
+		80CC597E2715C396009A24AC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597D2715C396009A24AC /* BoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		80CC597527152807009A24AC /* MLMultiArray+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+subscript.swift"; sourceTree = "<group>"; };
 		80CC59772715316F009A24AC /* String+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSNumber.swift"; sourceTree = "<group>"; };
 		80CC597A271553A2009A24AC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		80CC597D2715C396009A24AC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +112,10 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				80CC597C2715C33C009A24AC /* Views */,
 				80CC597027148E3F009A24AC /* Extensions */,
 				80CC596927147753009A24AC /* Models */,
 				80CC593F271476BF009A24AC /* KatatrainApp.swift */,
-				80CC5941271476BF009A24AC /* ContentView.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
 				80CC5945271476C2009A24AC /* Preview Content */,
 			);
@@ -165,6 +167,15 @@
 				80CC59772715316F009A24AC /* String+NSNumber.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		80CC597C2715C33C009A24AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80CC5941271476BF009A24AC /* ContentView.swift */,
+				80CC597D2715C396009A24AC /* BoardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
+				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
 				80CC596F27147AFA009A24AC /* Board.swift in Sources */,
