@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
 		80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC593F271476BF009A24AC /* KatatrainApp.swift */; };
 		80CC5942271476BF009A24AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5941271476BF009A24AC /* ContentView.swift */; };
 		80CC5944271476C1009A24AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80C0E2F02717D406003377D7 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +197,9 @@
 			dependencies = (
 			);
 			name = katatrain;
+			packageProductDependencies = (
+				80C0E2EF2717D406003377D7 /* Logging */,
+			);
 			productName = katatrain;
 			productReference = 80CC593C271476BF009A24AC /* katatrain.app */;
 			productType = "com.apple.product-type.application";
@@ -267,6 +272,9 @@
 				Base,
 			);
 			mainGroup = 80CC5933271476BF009A24AC;
+			packageReferences = (
+				80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = 80CC593D271476BF009A24AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -503,6 +511,7 @@
 				DEVELOPMENT_TEAM = ZRL24X77U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = katatrain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -533,6 +542,7 @@
 				DEVELOPMENT_TEAM = ZRL24X77U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = katatrain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -688,6 +698,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		80C0E2EF2717D406003377D7 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 80CC5934271476BF009A24AC /* Project object */;
 }
