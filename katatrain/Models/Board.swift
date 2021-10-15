@@ -266,7 +266,7 @@ class Board: ObservableObject {
     }
     
     // Returns the number of liberties a new stone placed here would have, or maxLibs if it would be >= maxLibs.
-    func get_liberties_after_play(pla: Int, loc: Int, maxLibs: Int) -> Int {
+    func get_liberties_after_play(_ pla: Int, _ loc: Int, _ maxLibs: Int) -> Int {
         let opp = Board.get_opp(pla)
         var libs: [Int] = []
         var capturedGroupHeads: [NSNumber] = []
@@ -871,5 +871,291 @@ class Board: ObservableObject {
         }
         
         return false
+    }
+    
+    func wouldBeKoCapture(_ loc: Int, _ pla: Int) -> Bool {
+        if self.board[loc] == Board.EMPTY {
+            return false
+        }
+        // Check that surounding points are are all opponent owned and exactly one of them is capturable
+        let opp = Board.get_opp(pla)
+        var oppCapturableLoc: Int?
+        for i in 0..<4 {
+            let adj = loc + self.adj[i]
+            if self.board[adj] != Board.WALL && self.board[adj] != opp {
+                return false
+            }
+            
+            if self.board[adj] == opp && self.group_liberty_count[self.group_head[adj]] == 1 {
+                if oppCapturableLoc != nil {
+                    return false
+                }
+                oppCapturableLoc = adj
+            }
+        }
+        
+        if oppCapturableLoc == nil {
+            return false
+        }
+        
+        // Check that the capturable loc has exactly one stone
+        if self.group_stone_count[self.group_head[oppCapturableLoc!]] != 1 {
+            return false
+        }
+        return true
+    }
+    
+    func countHeuristicConnectionLiberties(_ loc: Int, _ pla: Int) -> Double {
+        let adj0 = loc + self.adj[0]
+        let adj1 = loc + self.adj[1]
+        let adj2 = loc + self.adj[2]
+        let adj3 = loc + self.adj[3]
+        var count = 0.0
+        if self.board[adj0] == pla {
+            count += max(0.0, Double(truncating: self.group_liberty_count[self.group_head[adj0]])-1.5)
+        }
+        if self.board[adj1] == pla {
+            count += max(0.0, Double(truncating: self.group_liberty_count[self.group_head[adj1]])-1.5)
+        }
+        if self.board[adj2] == pla {
+            count += max(0.0, Double(truncating: self.group_liberty_count[self.group_head[adj2]])-1.5)
+        }
+        if self.board[adj3] == pla {
+            count += max(0.0, Double(truncating: self.group_liberty_count[self.group_head[adj3]])-1.5)
+        }
+        return count
+    }
+    
+    func searchIsLadderCaptured(_ loc: Int, _ defenderFirst: Bool) -> Bool {
+        if !self.is_on_board(loc) {
+            return false
+        }
+        if self.board[loc] != Board.BLACK && self.board[loc] != Board.WHITE {
+            return false
+        }
+        
+        if self.group_liberty_count[self.group_head[loc]] > 2 || (defenderFirst && self.group_liberty_count[self.group_head[loc]] > 1) {
+            return false
+        }
+        
+        // Make it so that pla is always the defender
+        let pla = Int(self.board[loc])
+        let opp = Board.get_opp(pla)
+        
+        let arrSize = self.size * self.size * 2 // A bit bigger due to paranoia about recaptures making the sequence longer.
+        
+        // Stack for the search. These are lists of possible moves to search at each level of the stack
+        var moveLists = [[Int]](repeating: [], count: arrSize)
+        var moveListCur = [Int](repeating: 0, count: arrSize) // Current move list idx searched, equal to -1 if list has not been generated.
+        var records =  [Record?](repeating: nil, count: arrSize) // Records so that we can undo moves as we search back up.
+        var stackIdx = 0
+        
+        moveLists[0] = []
+        moveListCur[0] = -1
+        
+        var returnValue = false
+        var returnedFromDeeper = false
+        
+        // Clear the ko loc for the defender at the root node - assume all kos work for the defender
+        var saved_simple_ko_point = self.simple_ko_point
+        if defenderFirst {
+            self.simple_ko_point = nil
+        }
+        
+        //  debug = true
+        //  if debug:
+        //    print("SEARCHING " + str(self.loc_x(loc)) + " " + str(self.loc_y(loc)))
+        
+        while true {
+            //  if debug:
+            //    print(str(stackIdx) + " " + str(moveListCur[stackIdx]) + "/" + str(len(moveLists[stackIdx])) + " " + str(returnValue) + " " + str(returnedFromDeeper))
+            
+            // Returned from the root - so that's the answer
+            if stackIdx <= -1 {
+                assert(stackIdx == -1)
+                self.simple_ko_point = saved_simple_ko_point
+                return returnValue
+            }
+            
+            var isDefender = (defenderFirst && (stackIdx % 2) == 0) || (!defenderFirst && (stackIdx % 2) == 1)
+            
+            // We just entered this level?
+            if moveListCur[stackIdx] == -1 {
+                let libs = self.group_liberty_count[self.group_head[loc]]
+                
+                // Base cases.
+                // If we are the attacker and the group has only 1 liberty, we already win.
+                if !isDefender && libs <= 1 {
+                    returnValue = true
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // If we are the attacker and the group has 3 liberties, we already lose.
+                if !isDefender && libs >= 3 {
+                    returnValue = false
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // If we are the defender and the group has 2 liberties, we already win.
+                if isDefender && libs >= 2 {
+                    returnValue = false
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // If we are the defender and the attacker left a simple ko point, assume we already win
+                // because we don't want to say yes on ladders that depend on kos
+                // This should also hopefully prevent any possible infinite loops - I don't know of any infinite loop
+                // that would come up in a continuous atari sequence that doesn't ever leave a simple ko point.
+                if isDefender && self.simple_ko_point != nil {
+                    returnValue = false
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // Otherwise we need to keep searching.
+                // Generate the move list. Attacker and defender generate moves on the group's liberties, but only the defender
+                // generates moves on surrounding capturable opposing groups.
+                if isDefender {
+                    moveLists[stackIdx] = []
+                    self.findLibertyGainingCaptures(loc, buf: &moveLists[stackIdx])
+                    self.findLiberties(loc, &moveLists[stackIdx])
+                } else {
+                    moveLists[stackIdx] = []
+                    self.findLiberties(loc, &moveLists[stackIdx])
+                    assert(moveLists[stackIdx].count == 2)
+                    
+                    // Early quitouts if the liberties are not adjacent
+                    // (so that filling one doesn't fill an immediate liberty of the other)
+                    let move0 = moveLists[stackIdx][0]
+                    let move1 = moveLists[stackIdx][1]
+                    
+                    var libs0: Double = Double(self.countImmediateLiberties(move0))
+                    var libs1: Double = Double(self.countImmediateLiberties(move1))
+                    
+                    // If we are the attacker and we're in a double-ko death situation, then assume we win.
+                    // Both defender liberties must be ko mouths, connecting either ko mouth must not increase the defender's
+                    // liberties, and none of the attacker's surrounding stones can currently be in atari.
+                    // This is not complete - there are situations where the defender's connections increase liberties, or where
+                    // the attacker has stones in atari, but where the defender is still in inescapable atari even if they have
+                    // a large finite number of ko threats. But it's better than nothing.
+                    if libs0 == 0 && libs1 == 0 && self.wouldBeKoCapture(move0, opp) && self.wouldBeKoCapture(move1, opp) {
+                        if self.get_liberties_after_play(pla, move0, 3) <= 2 && self.get_liberties_after_play(pla, move1, 3) <= 2 {
+                            if self.hasLibertyGainingCaptures(loc) {
+                                returnValue = true
+                                returnedFromDeeper = true
+                                stackIdx -= 1
+                                continue
+                            }
+                        }
+                    }
+                    
+                    if !self.is_adjacent(loc1: move0, loc2: move1) {
+                        // We lose automatically if both escapes get the defender too many libs
+                        if libs0 >= 3 && libs1 >= 3 {
+                            returnValue = false
+                            returnedFromDeeper = true
+                            stackIdx -= 1
+                            continue
+                        }
+                        // Move 1 is not possible, so shrink the list
+                        else if libs0 >= 3 {
+                            moveLists[stackIdx] = [move0]
+                        }
+                        // Move 0 is not possible, so shrink the list
+                        else if libs1 >= 3 {
+                            moveLists[stackIdx] = [move1]
+                        }
+                    }
+                    
+                    // Order the two moves based on a simple heuristic - for each neighboring group with any liberties
+                    // count that the opponent could connect to, count liberties - 1.5.
+                    if moveLists[stackIdx].count > 1 {
+                        libs0 += self.countHeuristicConnectionLiberties(move0, pla)
+                        libs1 += self.countHeuristicConnectionLiberties(move1, pla)
+                        if libs1 > libs0 {
+                            moveLists[stackIdx][0] = move1
+                            moveLists[stackIdx][1] = move0
+                        }
+                    }
+                    
+                    // And indicate to begin search on the first move generated.
+                    moveListCur[stackIdx] = 0
+                }
+            } else {
+                // Else, we returned from a deeper level (or the same level, via illegal move)
+                assert(moveListCur[stackIdx] >= 0)
+                assert(moveListCur[stackIdx] < moveLists[stackIdx].count)
+                // If we returned from deeper we need to undo the move we made
+                if returnedFromDeeper {
+                    self.undo(records[stackIdx]!)
+                }
+                
+                // Defender has a move that is not ladder captured?
+                if isDefender && !returnValue {
+                    // Return! (returnValue is still false, as desired)
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // Attacker has a move that does ladder capture?
+                if !isDefender && returnValue {
+                    // Return! (returnValue is still true, as desired)
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // Move on to the next move to search
+                moveListCur[stackIdx] += 1
+                
+                // If there is no next move to search, then we lose.
+                if moveListCur[stackIdx] >= moveLists[stackIdx].count {
+                    // For a defender, that means a ladder capture.
+                    // For an attacker, that means no ladder capture found.
+                    returnValue = isDefender
+                    returnedFromDeeper = true
+                    stackIdx -= 1
+                    continue
+                }
+                
+                // Otherwise we do have an next move to search. Grab it.
+                let move = moveLists[stackIdx][moveListCur[stackIdx]]
+                // let p = (pla if isDefender else opp)
+                let p = isDefender ? pla : opp
+                
+                //  if debug:
+                //    print("play " + str(self.loc_x(move)) + " " + str(self.loc_y(move)) + " " + str(p))
+                //    print(self.to_string())
+                
+                // Illegal move - treat it the same as a failed move, but don't return up a level so that we
+                // loop again and just try the next move.
+                if !self.would_be_legal(pla: p, loc: move) {
+                    returnValue = isDefender
+                    returnedFromDeeper = false
+                    // if(print) cout << "illegal " << endl;
+                    continue
+                }
+                
+                // Play and record the move!
+                records[stackIdx] = self.playRecordedUnsafe(p, move)
+                
+                // And recurse to the next level
+                stackIdx += 1
+                moveListCur[stackIdx] = -1
+                moveLists[stackIdx] = []
+            }
+        }
+    }
+    
+    func undo(_ record: Record) {
+        
     }
 }
