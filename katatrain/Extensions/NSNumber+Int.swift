@@ -19,14 +19,6 @@ extension NSNumber: Comparable {
     static func != (lhs: NSNumber, rhs: Int) -> Bool {
         return lhs.intValue != rhs
     }
-
-    static func > (lhs: NSNumber, rhs: Int) -> Bool {
-        return lhs.intValue > rhs
-    }
-
-    static func <= (lhs: NSNumber, rhs: Int) -> Bool {
-        return lhs.intValue <= rhs
-    }
     
     static func -= (lhs: inout NSNumber, rhs: Int) {
         lhs = NSNumber(value: lhs.intValue - rhs)

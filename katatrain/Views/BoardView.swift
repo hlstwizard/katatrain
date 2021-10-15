@@ -10,7 +10,7 @@ import Logging
 
 @available(iOS 15.0, *)
 struct BoardView: View {
-    @StateObject var board = Board()
+    @StateObject var game = Game()
     @State var showTouchPoint = false
     
     let boardSize = 19
@@ -23,6 +23,7 @@ struct BoardView: View {
 
     var body: some View {
         HStack {
+            Spacer(minLength: 10)
             GeometryReader { reader in
                 Canvas { context, _ in
                     // (CGSize) $R0 = (width = 1148, height = 744)

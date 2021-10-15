@@ -49,7 +49,7 @@ class Board: ObservableObject {
     }
     var pla = Board.BLACK
     
-    var board: MLMultiArray! = nil
+    @Published var board: MLMultiArray! = nil
     var group_head: MLMultiArray! = nil
     var group_stone_count: MLMultiArray! = nil
     var group_liberty_count: MLMultiArray! = nil
@@ -58,7 +58,8 @@ class Board: ObservableObject {
     var zobrist = 0
     var simple_ko_point: Int?
     
-    init() {
+    init(_ size: Int = 19) {
+        self.size = size
         for _ in 0..<(19+1)*(19+2)+1 {
             Board.ZOBRIST_STONE[Board.BLACK]!.append(Int.random(in: Int.min..<Int.max))
             Board.ZOBRIST_STONE[Board.WHITE]!.append(Int.random(in: Int.min..<Int.max))
@@ -67,13 +68,12 @@ class Board: ObservableObject {
             Board.ZOBRIST_PLA.append(Int.random(in: Int.min..<Int.max))
         }
         
-        // TODO: - data type might be float as defined in the input and output
-        board = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
-        group_head = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
-        group_stone_count = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
-        group_liberty_count = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
-        group_next = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
-        group_prev = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .int32)
+        board = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
+        group_head = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
+        group_stone_count = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
+        group_liberty_count = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
+        group_next = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
+        group_prev = try! MLMultiArray(shape: [NSNumber(value: arrsize)], dataType: .float32)
         
         for i in -1..<size+1 {
             board[self.loc(i, -1)] = NSNumber(value: Board.WALL)
@@ -85,6 +85,21 @@ class Board: ObservableObject {
         self.group_head[0] = NSNumber(value: -1)
         self.group_next[0] = NSNumber(value: -1)
         self.group_prev[0] = NSNumber(value: -1)
+    }
+    
+    init(copyFrom board: Board) {
+        self.size = board.size
+        self.pla = board.pla
+        
+        self.board = board.board.copy() as? MLMultiArray
+        self.group_head = board.group_head.copy() as? MLMultiArray
+        self.group_stone_count = board.group_stone_count.copy() as? MLMultiArray
+        self.group_liberty_count = board.group_liberty_count.copy() as? MLMultiArray
+        self.group_next = board.group_next.copy() as? MLMultiArray
+        self.group_prev = board.group_prev.copy() as? MLMultiArray
+        
+        self.zobrist = board.zobrist
+        self.simple_ko_point = board.zobrist
     }
     
     static func get_opp(_ pla: Int) -> Int { return 3 - pla }
