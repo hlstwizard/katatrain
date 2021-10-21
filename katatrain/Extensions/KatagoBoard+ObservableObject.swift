@@ -9,5 +9,8 @@ import Foundation
 import Combine
 
 extension KatagoBoard: ObservableObject {
-    
+    func setStoneAndRefresh(loc: Loc, color: CSignedChar) {
+        setStone(loc, color)
+        objectWillChange.send()
+    }
 }

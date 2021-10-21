@@ -25,6 +25,8 @@
 		80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA179272113F90097D485 /* libc++.tbd */; };
 		80CDA17C272114000097D485 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17B272113FF0097D485 /* libz.tbd */; };
 		80CDA17E272115E70097D485 /* libKatagoObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17D272115E70097D485 /* libKatagoObjC.a */; };
+		80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDA1832721AF670097D485 /* BoardView+Action.swift */; };
+		80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDA18527221BD10097D485 /* CGPoint+divide.swift */; };
 		80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F782992718265900A9090C /* IntArray+NSNumber.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		80CDA179272113F90097D485 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		80CDA17B272113FF0097D485 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		80CDA17D272115E70097D485 /* libKatagoObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKatagoObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		80CDA1832721AF670097D485 /* BoardView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardView+Action.swift"; sourceTree = "<group>"; };
+		80CDA18527221BD10097D485 /* CGPoint+divide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+divide.swift"; sourceTree = "<group>"; };
 		80F782992718265900A9090C /* IntArray+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntArray+NSNumber.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +180,7 @@
 				80CC59772715316F009A24AC /* String+NSNumber.swift */,
 				80F782992718265900A9090C /* IntArray+NSNumber.swift */,
 				80CDA1742721123E0097D485 /* KatagoBoard+ObservableObject.swift */,
+				80CDA18527221BD10097D485 /* CGPoint+divide.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			children = (
 				80CC5941271476BF009A24AC /* ContentView.swift */,
 				80CC597D2715C396009A24AC /* BoardView.swift */,
+				80CDA1832721AF670097D485 /* BoardView+Action.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,10 +366,12 @@
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
 				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
+				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CDA1752721123E0097D485 /* KatagoBoard+ObservableObject.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
+				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,

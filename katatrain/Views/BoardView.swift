@@ -20,7 +20,8 @@ struct BoardView: View {
     let starWidth = 8.0
     let canvasPadding = 5.0
     let logger = Logger(label: #file)
-
+    let scale = 0.3
+    
     var body: some View {
         HStack {
             Spacer(minLength: 10)
@@ -29,6 +30,7 @@ struct BoardView: View {
                     // (CGSize) $R0 = (width = 1148, height = 744)
                     drawBoard(context: context, geoSize: reader.size)
                     drawStars(context: context, geoSize: reader.size)
+                    drawStones(context: context, geoSize: reader.size)
                     if showTouchPoint {
                         drawTouchPoint(context: context, geoSize: reader.size)
                     }
@@ -36,7 +38,8 @@ struct BoardView: View {
                     DragGesture(minimumDistance: 0)
                         .onEnded {
                             // (CGSize) $R0 = (width = 1180, height = 776)
-                            logger.info("\($0.location), \(toPoint(pos: $0.location, size: reader.size))")
+                            logger.debug("\($0.location), \(toPoint(pos: $0.location, size: reader.size))")
+                            playerMove(point: toPoint(pos: $0.location, size: reader.size))
                         }
                 ).padding(canvasPadding)
             }
@@ -56,6 +59,9 @@ struct BoardView: View {
         (boardArea.height - Double(boardSize - 2) * lineWidth) / CGFloat(boardSize - 1)
     }
     
+    /// 围棋坐标 -> 屏幕坐标
+    ///
+    ///  return CGPoint
     func getPoint(x: Int, y: Int, boardArea: CGSize) -> CGPoint {
         let gridWidth = getGridWidth(boardArea: boardArea)
         
@@ -69,7 +75,8 @@ struct BoardView: View {
                       height: size.height - canvasPadding)
     }
     
-    // size: the GeometryReader size
+    /// size: the GeometryReader size
+    /// 屏幕坐标 -> 围棋坐标
     func toPoint(pos: CGPoint, size: CGSize) -> (x: Int, y: Int) {
         let boardArea = getBoardArea(size: clipBoardSize(size: size))
         let gridWidth = getGridWidth(boardArea: boardArea)
@@ -158,6 +165,27 @@ struct BoardView: View {
     }
     
     // size: GeometryReader size
+    func drawStones(context: GraphicsContext, geoSize: CGSize) {
+        var _context = context
+        let locs = board.getColors() as! [NSNumber]
+        let black = _context.resolve(Image("B_stone"))
+        let size = clipBoardSize(size: geoSize)
+        let boardArea = getBoardArea(size: size)
+        var loc = -1
+        _context.scaleBy(x: scale, y: scale)
+
+        for y in 0..<boardSize {
+            for x in 0..<boardSize {
+                loc = (x+1) + (y+1)*(boardSize+1)
+                if locs[loc] == 1 {
+                    _context.draw(black, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
+                }
+            }
+        }
+    }
+    
+    // size: GeometryReader size
+    // For debugging
     func drawTouchPoint(context: GraphicsContext, geoSize: CGSize) {
         let size = clipBoardSize(size: geoSize)
         let boardArea = getBoardArea(size: size)
