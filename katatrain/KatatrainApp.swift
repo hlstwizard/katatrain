@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Logging
 
 @available(iOS 15.0, *)
 @main
 struct KatatrainApp: App {
+    init() {
+        KatagoBoard.initHash()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
