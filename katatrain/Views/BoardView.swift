@@ -10,7 +10,7 @@ import Logging
 
 @available(iOS 15.0, *)
 struct BoardView: View {
-    @StateObject var game = Game()
+    @StateObject var board = KatagoBoard()
     @State var showTouchPoint = false
     
     let boardSize = 19

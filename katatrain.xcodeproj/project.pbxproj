@@ -15,16 +15,16 @@
 		80CC5951271476C2009A24AC /* KatatrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5950271476C2009A24AC /* KatatrainTests.swift */; };
 		80CC595B271476C2009A24AC /* KatatrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC595A271476C2009A24AC /* KatatrainUITests.swift */; };
 		80CC595D271476C2009A24AC /* KatatrainUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC595C271476C2009A24AC /* KatatrainUITestsLaunchTests.swift */; };
-		80CC596B27147770009A24AC /* katagob40.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596A27147770009A24AC /* katagob40.mlmodel */; };
-		80CC596D271477A9009A24AC /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596C271477A9009A24AC /* Katago.swift */; };
-		80CC596F27147AFA009A24AC /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596E27147AFA009A24AC /* Board.swift */; };
+		80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 80CC596A27147770009A24AC /* Katagob40.mlmodel */; };
 		80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597127148E52009A24AC /* Int+NSNumber.swift */; };
 		80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597327148ECB009A24AC /* NSNumber+Int.swift */; };
 		80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597527152807009A24AC /* MLMultiArray+subscript.swift */; };
 		80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC59772715316F009A24AC /* String+NSNumber.swift */; };
-		80CC597B271553A2009A24AC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597A271553A2009A24AC /* Errors.swift */; };
 		80CC597E2715C396009A24AC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597D2715C396009A24AC /* BoardView.swift */; };
-		80F7829827181BDC00A9090C /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7829727181BDC00A9090C /* Game.swift */; };
+		80CDA1752721123E0097D485 /* KatagoBoard+ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDA1742721123E0097D485 /* KatagoBoard+ObservableObject.swift */; };
+		80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA179272113F90097D485 /* libc++.tbd */; };
+		80CDA17C272114000097D485 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17B272113FF0097D485 /* libz.tbd */; };
+		80CDA17E272115E70097D485 /* libKatagoObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17D272115E70097D485 /* libKatagoObjC.a */; };
 		80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F782992718265900A9090C /* IntArray+NSNumber.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,16 +56,17 @@
 		80CC5956271476C2009A24AC /* katatrainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = katatrainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CC595A271476C2009A24AC /* KatatrainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatatrainUITests.swift; sourceTree = "<group>"; };
 		80CC595C271476C2009A24AC /* KatatrainUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatatrainUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		80CC596A27147770009A24AC /* katagob40.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = katagob40.mlmodel; sourceTree = "<group>"; };
-		80CC596C271477A9009A24AC /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
-		80CC596E27147AFA009A24AC /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		80CC596A27147770009A24AC /* Katagob40.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Katagob40.mlmodel; sourceTree = "<group>"; };
 		80CC597127148E52009A24AC /* Int+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+NSNumber.swift"; sourceTree = "<group>"; };
 		80CC597327148ECB009A24AC /* NSNumber+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Int.swift"; sourceTree = "<group>"; };
 		80CC597527152807009A24AC /* MLMultiArray+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+subscript.swift"; sourceTree = "<group>"; };
 		80CC59772715316F009A24AC /* String+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSNumber.swift"; sourceTree = "<group>"; };
-		80CC597A271553A2009A24AC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		80CC597D2715C396009A24AC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		80F7829727181BDC00A9090C /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		80CDA1712721111B0097D485 /* katatrain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "katatrain-Bridging-Header.h"; sourceTree = "<group>"; };
+		80CDA1742721123E0097D485 /* KatagoBoard+ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatagoBoard+ObservableObject.swift"; sourceTree = "<group>"; };
+		80CDA179272113F90097D485 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		80CDA17B272113FF0097D485 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		80CDA17D272115E70097D485 /* libKatagoObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKatagoObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F782992718265900A9090C /* IntArray+NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntArray+NSNumber.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CDA17E272115E70097D485 /* libKatagoObjC.a in Frameworks */,
+				80CDA17C272114000097D485 /* libz.tbd in Frameworks */,
+				80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */,
 				80C0E2F02717D406003377D7 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,10 +102,12 @@
 		80CC5933271476BF009A24AC = {
 			isa = PBXGroup;
 			children = (
+				80CDA1712721111B0097D485 /* katatrain-Bridging-Header.h */,
 				80CC593E271476BF009A24AC /* katatrain */,
 				80CC594F271476C2009A24AC /* katatrainTests */,
 				80CC5959271476C2009A24AC /* katatrainUITests */,
 				80CC593D271476BF009A24AC /* Products */,
+				80CDA176272112760097D485 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,11 +162,7 @@
 		80CC596927147753009A24AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				80CC596A27147770009A24AC /* katagob40.mlmodel */,
-				80CC596C271477A9009A24AC /* Katago.swift */,
-				80CC596E27147AFA009A24AC /* Board.swift */,
-				80CC597A271553A2009A24AC /* Errors.swift */,
-				80F7829727181BDC00A9090C /* Game.swift */,
+				80CC596A27147770009A24AC /* Katagob40.mlmodel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +175,7 @@
 				80CC597527152807009A24AC /* MLMultiArray+subscript.swift */,
 				80CC59772715316F009A24AC /* String+NSNumber.swift */,
 				80F782992718265900A9090C /* IntArray+NSNumber.swift */,
+				80CDA1742721123E0097D485 /* KatagoBoard+ObservableObject.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -184,6 +187,16 @@
 				80CC597D2715C396009A24AC /* BoardView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		80CDA176272112760097D485 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80CDA17D272115E70097D485 /* libKatagoObjC.a */,
+				80CDA17B272113FF0097D485 /* libz.tbd */,
+				80CDA179272113F90097D485 /* libc++.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +271,7 @@
 				TargetAttributes = {
 					80CC593B271476BF009A24AC = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 					};
 					80CC594B271476C2009A24AC = {
 						CreatedOnToolsVersion = 13.0;
@@ -346,15 +360,12 @@
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
 				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
+				80CDA1752721123E0097D485 /* KatagoBoard+ObservableObject.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
-				80CC596F27147AFA009A24AC /* Board.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
-				80CC596D271477A9009A24AC /* Katago.swift in Sources */,
-				80F7829827181BDC00A9090C /* Game.swift in Sources */,
-				80CC597B271553A2009A24AC /* Errors.swift in Sources */,
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
-				80CC596B27147770009A24AC /* katagob40.mlmodel in Sources */,
+				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../KatagoObjC/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -498,6 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../KatagoObjC/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -513,6 +526,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"katatrain/Preview Content\"";
@@ -534,6 +548,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yiming.katatrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "katatrain-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -544,6 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"katatrain/Preview Content\"";
@@ -565,6 +582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yiming.katatrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "katatrain-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
