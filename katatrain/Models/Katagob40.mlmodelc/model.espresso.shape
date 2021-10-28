@@ -1,0 +1,5376 @@
+{
+  "layer_shapes" : {
+    "swa_model\/Tensordot_5\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_17x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_90" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_5\/ReverseV2" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv20\/norm1\/beta\/read\/_101__cf__101" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_81x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_206" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_298" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_253" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_368" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_50" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_34" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_18" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_4x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_123" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_323" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_81" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_65" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_49" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_170" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_4" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv11\/norm1\/beta\/read\/_47__cf__47" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_11" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_370" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv6\/norm2\/beta\/read\/_231__cf__231" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_68x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_257" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_91" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/strided_slice_1" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_46x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond\/pred_id\/_20__cf__20" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_38" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_212" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_327" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_24x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_38" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_16" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_22__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "_inversed_swa_model\/truediv_6" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/cond\/ReverseV2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_374" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Sqrt" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Reshape_1" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "identity_6" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv39\/norm1\/beta\/read\/_209__cf__209" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_0" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_216" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_6" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_193" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_263" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_378" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_92" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_333" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_12\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_17" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_20" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_1" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_7" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "identity_15" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_197" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_51" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_35" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_19" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_42" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_267" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_140" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_108" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_222" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_337" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_82" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_66" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_1" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_171" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_3\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_3\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "_neg_y_swa_model\/sub_11" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_68" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_8" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_55__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv26\/norm2\/beta\/read\/_135__cf__135" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_12" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_5" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_93" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_8" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_39" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_5" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/cond_3\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_226" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv33\/norm1\/beta\/read\/_177__cf__177" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/sub_9" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_6\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_43" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_273" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv38\/norm1\/beta\/read\/_204__cf__204" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_1\/Merge" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_343" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_3\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_2" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_10" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_69" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_17" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_277" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Sum_1_presqueeze" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/mul_40" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv21\/norm2\/beta\/read\/_108__cf__108" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_232" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_347" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_44__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Relu_21" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_302" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_52" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_36" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_8_presqueeze" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_141" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_109" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model_value_output" : {
+      "k" : 1,
+      "w" : 3,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Relu_83" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_67" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_236" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_156" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_3" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv36\/norm1\/beta\/read\/_192__cf__192" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_306" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_158" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "conv_13" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_283" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_41" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv32\/norm1\/beta\/read\/_172__cf__172" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_353" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2Dx" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_76x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_54x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv5\/norm1\/beta\/read\/_224__cf__224" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_20" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_32x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_10x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_287" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv18\/norm1\/beta\/read\/_86__cf__86" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_242" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_357" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_70" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_8\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_312" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_4" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_3\/Merge" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond\/Merge" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv31\/norm1\/beta\/read\/_165__cf__165" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_96" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_20" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_88__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_8\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_246" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_22" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_19x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_201" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_316" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_1\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_83x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_53" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_37" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_61x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_46" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_293" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_126" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_363" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_84" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_68" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_7\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_71" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_157" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_6\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "identity_8" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_5" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_3\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_205" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_1\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_159" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "conv_14" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_297" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_97" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_21" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_6" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_252" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_367" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_6" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_5\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_322" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_48x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_26x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_1\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_209" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_47" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_3" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_21" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_90x" : {
+      "k" : 2,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_16" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_256" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_6x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_66__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_211" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_19" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "conv_6" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_326" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv30\/norm1\/beta\/read\/_160__cf__160" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_1\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_5\/Merge" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_373" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_1\/ReverseV2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_19" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 1
+    },
+    "swa_model\/Relu_23" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_112" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_215" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_77x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_70" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_54" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_38" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_55x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_48" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_127" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_114" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_33x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_192" : {
+      "k" : 48,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_85" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_69" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_11x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_95" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_174" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_158" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_11__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_262" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_377" : {
+      "k" : 22,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_332" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_7" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv25\/norm1\/beta\/read\/_128__cf__128" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_219" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_11" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_15" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_196" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot\/MatMul" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_266" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_221" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_336" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_49" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_22" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_7\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/rconv29\/norm1\/beta\/read\/_150__cf__150" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_7\/ReverseV2" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_74" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_11__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv6\/norm2\/gamma\/read\/_232__cf__232" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_225" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_6\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_8" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_9" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_9\/Reshape" : {
+      "k" : 1,
+      "w" : 144,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_24" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_272" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_40" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_24" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_113" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_342" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_10" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/cond_7\/Merge" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_71" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_55" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_39" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_6\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_229" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_144" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_2\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_86" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_9" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/mul_97" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_175" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_75" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_21" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv36\/norm2\/beta\/read\/_194__cf__194" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_276" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_159" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv24\/norm1\/beta\/read\/_123__cf__123" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_231" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_346" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/trunk\/norm\/beta\/read\/_251__cf__251" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "conv_9" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv1\/norm1\/beta\/read\/_37__cf__37" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Max_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_301" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_6\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_7" : {
+      "k" : 1,
+      "w" : 144,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_25" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_16" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_11" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_7" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model_global_inputs" : {
+      "k" : 1,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_235" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv10\/norm1\/beta\/read\/_42__cf__42" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Max_2" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_1" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_305" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_23" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_98" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_282" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_22" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv7\/norm1\/beta\/read\/_236__cf__236" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv16\/norm2\/gamma\/read\/_77__cf__77" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_8\/MatMul" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_352" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv31\/norm2\/beta\/read\/_167__cf__167" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_239" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_10" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max_3" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Relu_44__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_30" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_309" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_26" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_41" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_25" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_130" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_114" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_286" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_12" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_241" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_72" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_56" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_356" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_145" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_116" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_311" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max_4" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv15\/norm1\/beta\/read\/_69__cf__69" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv9\/norm1\/beta\/read\/_246__cf__246" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_87" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model_miscvalues_output" : {
+      "k" : 1,
+      "w" : 10,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_85x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_5" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_17" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_63x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv11\/norm2\/gamma\/read\/_50__cf__50" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_41x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_245" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max_5" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_315" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_4" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv19\/norm1\/beta\/read\/_91__cf__91" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_200" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_27" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_17" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_88__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_292" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_52" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_362" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_0" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_4" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_249" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max_6" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_5" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_204" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_319" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_10" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_77__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_24" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_28x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_78" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_1" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_296" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_92x" : {
+      "k" : 1,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_6" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_70x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_251" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_366" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv37\/norm1\/beta\/read\/_199__cf__199" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_11" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_321" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_100" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max_7" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "conv_31" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_1\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_208" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_12" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_42" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_26" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_4\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_131" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_115" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_53" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_73" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_57" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_162" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_255" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_133" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/mul_117" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_210" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_5\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_325" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_88" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_177" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_79x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_79" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_1" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_57x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_4\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_35x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_372" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_13x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_8x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_259" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_8" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 362
+    },
+    "swa_model\/add_8" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_214" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_329" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_9\/MatMul" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Relu_33__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_18" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_4\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_191" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_76" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_261" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_376" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_8\/ReverseV2" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_331" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_8" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/concat" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_9" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_218" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_25" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/p1\/norm\/beta\/read\/_35__cf__35" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv13\/norm1\/beta\/read\/_59__cf__59" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_1" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_1\/pred_id\/_21__cf__21" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_195" : {
+      "k" : 48,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_265" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_12" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/strided_slice_1__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_101" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_220" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_335" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_32" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_43" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_27" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv16\/norm2\/beta\/read\/_76__cf__76" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "_neg_y_swa_model\/sub_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv17\/norm1\/beta\/read\/_81__cf__81" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_90" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_74" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_58" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_199" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_163" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_269" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_8\/x" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_89" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_224" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "_inversed_swa_model\/truediv_8" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_339" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_178" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv35\/norm1\/beta\/read\/_187__cf__187" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_2" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_271" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_30" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_2\/pred_id\/_22__cf__22" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_341" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_228" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_19" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_78" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_56" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_275" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_2\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_230" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_345" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_2" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_300" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_26" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_3" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_7" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_2" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Relu_13" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_31" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_279" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Square" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_234" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_60" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_44" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_28" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_33" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_349" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv2\/norm1\/beta\/read\/_96__cf__96" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model_ownership_output" : {
+      "k" : 1,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 19
+    },
+    "transpose_304" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_3\/pred_id\/_23__cf__23" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/mul_79" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Relu_91" : {
+      "k" : 1,
+      "w" : 128,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_57" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_2\/Merge" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_1\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_75" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_281" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_148" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_59" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_135" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_2\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model_policy_output" : {
+      "k" : 1,
+      "w" : 362,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 2
+    },
+    "transpose_351" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_82" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_3" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv34\/norm1\/beta\/read\/_182__cf__182" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/concat_2" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_238" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_40" : {
+      "k" : 48,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_5\/pred_id\/_25__cf__25" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_55__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_4" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_308" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_11" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_87x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_285" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_9" : {
+      "k" : 1,
+      "w" : 144,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/cond_2\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_65x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv26\/norm2\/gamma\/read\/_136__cf__136" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_43x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_240" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_355" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_21x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_310" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_4\/pred_id\/_24__cf__24" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "identity_13" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_2\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "_neg_y_swa_model\/sub_12" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_33__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_289" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_83" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_244" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_359" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_4" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_9" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_314" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_27" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv21\/norm2\/gamma\/read\/_109__cf__109" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv3\/norm1\/beta\/read\/_155__cf__155" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_5" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_6\/pred_id\/_26__cf__26" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Reshape_18" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 361
+    },
+    "transpose_291" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv16\/norm1\/beta\/read\/_74__cf__74" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_30" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_14" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_361" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_72x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_61" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_45" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_248" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_50x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_134" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_34" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_118" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_29" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_203" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_318" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_76" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_181" : {
+      "k" : 1,
+      "w" : 3,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_149" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_136" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/mul_152" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_295" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_250" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_365" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_5" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/cond_4\/Merge" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_2x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_41" : {
+      "k" : 48,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_320" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_3\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Relu_6" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_207" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_34" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_59x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_7\/pred_id\/_27__cf__27" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_299" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_37x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_254" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_15x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_369" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_324" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv6\/norm1\/beta\/read\/_229__cf__229" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_7\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_7" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_371" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv28\/norm1\/beta\/read\/_145__cf__145" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model_bin_inputs" : {
+      "k" : 1,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 3,
+      "h" : 361
+    },
+    "swa_model\/Mean_6" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Tensordot_4\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_258" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_7" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_28" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_213" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_328" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_31" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_15" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_57" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Reshape_21" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/add_35" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_104" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_7\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_190" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_88x" : {
+      "k" : 48,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_3" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_260" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_62" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_46" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_7" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv4\/norm1\/beta\/read\/_214__cf__214" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_135" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_119" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_66x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_375" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_330" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_6\/Reshape" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/Conv2D_22x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_35" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_77" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv36\/norm2\/gamma\/read\/_195__cf__195" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/sub_4\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_217" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_166" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_44x" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_60" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_182" : {
+      "k" : 1,
+      "w" : 10,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/cond_8\/pred_id\/_28__cf__28" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/Relu_90__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_194" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_7\/Merge_@ssa_version_3" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_86" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_8\/Reshape" : {
+      "k" : 1,
+      "w" : 144,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "swa_model\/concat_3" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Mean_7" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_264" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_7" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv23\/norm1\/beta\/read\/_118__cf__118" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_334" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_8" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_66__reduction_axis__1_@ssa_version_1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/cond_6\/Merge" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_13" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/rconv31\/norm2\/gamma\/read\/_168__cf__168" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_198" : {
+      "k" : 19,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_9" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv14\/norm1\/beta\/read\/_64__cf__64" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_61" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_268" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_223" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_338" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv27\/norm1\/beta\/read\/_140__cf__140" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/cond_4\/ReverseV2" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_87" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_270" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Mean_8" : {
+      "k" : 1,
+      "w" : 48,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_340" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "identity_4" : {
+      "k" : 19,
+      "w" : 22,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_9" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_29" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_227" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_32" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_16" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_59" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv8\/norm1\/beta\/read\/_241__cf__241" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_105" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_63" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_47" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_4\/MatMul" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_274" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_152" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_136" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_77__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_10\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_344" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_78" : {
+      "k" : 19,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_36" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_167" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv26\/norm1\/beta\/read\/_133__cf__133" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "identity_14" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv11\/norm2\/beta\/read\/_49__cf__49" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "_neg_y_swa_model\/sub_4" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_12" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv22\/norm1\/beta\/read\/_113__cf__113" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_278" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_233" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_348" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_303" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_38" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_280" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_8\/Merge" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_350" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_237" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_inversed_swa_model\/truediv_2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_307" : {
+      "k" : 192,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv40\/norm1\/beta\/read\/_219__cf__219" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/rconv21\/norm1\/beta\/read\/_106__cf__106" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_13" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_284" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/cond_5\/Merge_@ssa_version_1" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_354" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/mul_60" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/Relu_33" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_17" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_122" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_39" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_80" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_64" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_48" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_153" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/add_137" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_22__reduction_axis__1" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Sum_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/add_64" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_288" : {
+      "k" : 19,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_10" : {
+      "k" : 64,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Tensordot_4" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/cond_5\/Merge_@ssa_version_2" : {
+      "k" : 19,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Relu_79" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/rconv12\/norm1\/beta\/read\/_54__cf__54" : {
+      "k" : 1,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/strided_slice_1__reduction_axis__2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/sub_7\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/mul_155" : {
+      "k" : 19,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "conv_37" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_243" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_74x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_358" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_313" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_52x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_30x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/concat_4" : {
+      "k" : 1,
+      "w" : 192,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_290" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_360" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/sub_11\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "transpose_247" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_202" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "transpose_317" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "_neg_y_swa_model\/sub_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "swa_model\/sub_2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_294" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Reshape_15" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "swa_model\/add_65" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Max" : {
+      "k" : 1,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_364" : {
+      "k" : 19,
+      "w" : 256,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    },
+    "swa_model\/Conv2D_39x" : {
+      "k" : 256,
+      "w" : 19,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 19
+    }
+  },
+  "global_shapes" : {
+
+  }
+}

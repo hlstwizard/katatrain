@@ -1,0 +1,9 @@
+{
+    "name": "kata1-b40c256-s10197099008-d2485690778",
+    "numInputChannels": 22,
+    "numInputGlobalChannels": 19,
+    "numOwnershipChannels": 1,
+    "numScoreValueChannels": 6,
+    "numValueChannels": 3,
+    "version": 10
+}

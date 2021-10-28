@@ -12,7 +12,7 @@ import Logging
 @main
 struct KatatrainApp: App {
     init() {
-        KatagoBoard.initHash()
+        Setup.setup()
     }
     
     var body: some Scene {

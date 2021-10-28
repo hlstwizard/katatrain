@@ -3,3 +3,7 @@
 //
 
 #import "KatagoBoard.h"
+#import "KatagoBoardHistory.h"
+#import "Setup.h"
+
+#import "types.h"

@@ -1,0 +1,121 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float32",
+    "outputSchema" : [
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "swa_model_miscvalues_output",
+        "type" : "MultiArray"
+      },
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "swa_model_ownership_output",
+        "type" : "MultiArray"
+      },
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "swa_model_policy_output",
+        "type" : "MultiArray"
+      },
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "swa_model_value_output",
+        "type" : "MultiArray"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 4,
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.15",
+      "tvOS" : "13.0",
+      "watchOS" : "6.0",
+      "iOS" : "13.0",
+      "macCatalyst" : "13.0"
+    },
+    "neuralNetworkLayerTypeHistogram" : {
+      "ConcatND" : 10,
+      "Branch" : 9,
+      "Convolution" : 93,
+      "Copy" : 36,
+      "AddBroadcastable" : 65,
+      "InnerProduct" : 3,
+      "Multiply" : 19,
+      "ActivationReLU" : 92,
+      "RankPreservingReshape" : 2,
+      "ReduceMax" : 8,
+      "ReduceMean" : 9,
+      "SubtractBroadcastable" : 1,
+      "Transpose" : 190,
+      "UnarySqrt" : 1,
+      "Add" : 45,
+      "Reverse" : 6,
+      "BatchedMatmul" : 10,
+      "LoadConstantND" : 77,
+      "ReshapeStatic" : 32,
+      "Slice" : 1,
+      "MultiplyBroadcastable" : 17,
+      "ActivationLinear" : 12,
+      "ReduceSum" : 1
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.version" : "5.0",
+      "com.github.apple.coremltools.source" : "tensorflow==1.15.0"
+    },
+    "generatedClassName" : "Katagob40",
+    "inputSchema" : [
+      {
+        "dataType" : "Float32",
+        "hasShapeFlexibility" : "1",
+        "isOptional" : "0",
+        "shapeFlexibility" : "1... × 361 × 22",
+        "shapeRange" : "[[1, -1], [361, 361], [22, 22]]",
+        "formattedType" : "MultiArray (Float32 1 × 361 × 22)",
+        "type" : "MultiArray",
+        "shape" : "[1, 361, 22]",
+        "name" : "swa_model_bin_inputs",
+        "shortDescription" : ""
+      },
+      {
+        "dataType" : "Float32",
+        "hasShapeFlexibility" : "1",
+        "isOptional" : "0",
+        "shapeFlexibility" : "1... × 19",
+        "shapeRange" : "[[1, -1], [19, 19]]",
+        "formattedType" : "MultiArray (Float32 1 × 19)",
+        "type" : "MultiArray",
+        "shape" : "[1, 19]",
+        "name" : "swa_model_global_inputs",
+        "shortDescription" : ""
+      }
+    ],
+    "method" : "predict"
+  }
+]
