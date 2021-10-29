@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>name</key>
+		<string>kata1-b40c256-s10197099008-d2485690778</string>
+		<key>numInputChannels</key>
+		<integer>22</integer>
+		<key>numInputGlobalChannels</key>
+		<integer>19</integer>
+		<key>numOwnershipChannels</key>
+		<integer>1</integer>
+		<key>numScoreValueChannels</key>
+		<integer>6</integer>
+		<key>numValueChannels</key>
+		<integer>3</integer>
+		<key>version</key>
+		<integer>10</integer>
+	</dict>
+</plist>
+

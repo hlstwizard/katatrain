@@ -11,6 +11,8 @@ import Logging
 @available(iOS 15.0, *)
 @main
 struct KatatrainApp: App {
+    @StateObject var katago = Katago()
+    
     init() {
         Setup.setup()
     }
@@ -18,6 +20,7 @@ struct KatatrainApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(katago)
         }
     }
 }

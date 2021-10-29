@@ -10,7 +10,7 @@ import Logging
 
 @available(iOS 15.0, *)
 struct BoardView: View {
-    @StateObject var board = KatagoBoard()
+    @EnvironmentObject var katago: Katago
     @State var showTouchPoint = false
     
     let boardSize = 19
@@ -167,7 +167,7 @@ struct BoardView: View {
     // size: GeometryReader size
     func drawStones(context: GraphicsContext, geoSize: CGSize) {
         var _context = context
-        let locs = board.getColors() as! [NSNumber]
+        let locs = katago.getColors()
         let black = _context.resolve(Image("B_stone"))
         let size = clipBoardSize(size: geoSize)
         let boardArea = getBoardArea(size: size)
