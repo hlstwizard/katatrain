@@ -9,9 +9,8 @@ import Foundation
 
 @available(iOS 15.0, *)
 extension BoardView {
-    func playerMove(point:(x:Int, y: Int), pla: Int=1) {
-        let loc = (point.x + 1) + (point.y + 1) * (boardSize + 1)
-        board.setStoneAndRefresh(loc: Loc(loc), color: CSignedChar(pla))
-//        board.playMove(Loc(loc), Player(pla), true)
-    }
+  func play(point:(x:Int, y: Int)) {
+    let loc = (point.x + 1) + (point.y + 1) * (boardSize + 1)
+    katago.play(loc: Loc(loc))
+  }
 }

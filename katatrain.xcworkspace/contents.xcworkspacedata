@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../KatagoObjC/KatagoObjC.xcodeproj">
+      location = "group:../Katago/cpp/build.ios/libkatago.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:katatrain.xcodeproj">

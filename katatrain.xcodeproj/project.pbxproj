@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
+		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
+		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80BD07CF272BC01C00A4735C /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD07CE272BC01C00A4735C /* Katago.swift */; };
 		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
 		80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC593F271476BF009A24AC /* KatatrainApp.swift */; };
@@ -24,7 +27,6 @@
 		80CC597E2715C396009A24AC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC597D2715C396009A24AC /* BoardView.swift */; };
 		80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA179272113F90097D485 /* libc++.tbd */; };
 		80CDA17C272114000097D485 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17B272113FF0097D485 /* libz.tbd */; };
-		80CDA17E272115E70097D485 /* libKatagoObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDA17D272115E70097D485 /* libKatagoObjC.a */; };
 		80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDA1832721AF670097D485 /* BoardView+Action.swift */; };
 		80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDA18527221BD10097D485 /* CGPoint+divide.swift */; };
 		80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F782992718265900A9090C /* IntArray+NSNumber.swift */; };
@@ -48,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		809A307D272CDDDD005A0C45 /* Katagob40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Katagob40.plist; sourceTree = "<group>"; };
 		80BD07CE272BC01C00A4735C /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
 		80CC593C271476BF009A24AC /* katatrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katatrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CC593F271476BF009A24AC /* KatatrainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatatrainApp.swift; sourceTree = "<group>"; };
@@ -80,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80CDA17E272115E70097D485 /* libKatagoObjC.a in Frameworks */,
+				802C59FF272CAF1300501345 /* libkatago.a in Frameworks */,
 				80CDA17C272114000097D485 /* libz.tbd in Frameworks */,
 				80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */,
 				80C0E2F02717D406003377D7 /* Logging in Frameworks */,
@@ -168,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				80BD07CE272BC01C00A4735C /* Katago.swift */,
+				80459987272D5B8D00B40C35 /* Types.swift */,
+				809A307D272CDDDD005A0C45 /* Katagob40.plist */,
 				80CC596A27147770009A24AC /* Katagob40.mlmodel */,
 				80CD77C12727CD78001414B3 /* Katagob40.json */,
 			);
@@ -200,6 +207,7 @@
 		80CDA176272112760097D485 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				802C59FE272CAF1300501345 /* libkatago.a */,
 				80CDA17D272115E70097D485 /* libKatagoObjC.a */,
 				80CDA17B272113FF0097D485 /* libz.tbd */,
 				80CDA179272113F90097D485 /* libc++.tbd */,
@@ -320,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */,
+				809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */,
 				80CC5944271476C1009A24AC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +382,7 @@
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
+				80459988272D5B8D00B40C35 /* Types.swift in Sources */,
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
@@ -543,13 +553,14 @@
 				DEVELOPMENT_TEAM = ZRL24X77U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Katago/cpp/**";
 				INFOPLIST_FILE = katatrain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,13 +588,14 @@
 				DEVELOPMENT_TEAM = ZRL24X77U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Katago/cpp/**";
 				INFOPLIST_FILE = katatrain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
