@@ -44,6 +44,9 @@ struct BoardView: View {
         ).padding(canvasPadding)
       }
     }
+    Button("Test") {
+      katago.request_analysis()
+    }
   }
   
   var boardOrigin: CGPoint {

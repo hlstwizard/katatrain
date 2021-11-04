@@ -15,24 +15,29 @@ class Katago: ObservableObject {
   }
   
   var engine: Engine
-  var queue: DispatchQueue
+  var analyseQueue: DispatchQueue
   var mode: Mode = .vs
   var player: Player = 1
-  var queueLable = "com.hlstwizard.analysis"
   var commands: [String] = []
   var results: [String] = []
   var running: Bool = false
   
   init() {
     engine = Engine.init("Katagob40", "analysis_example")
-    queue = DispatchQueue(label: queueLable, qos: .utility)
+    analyseQueue = DispatchQueue(label: "com.katatrain.analyse", qos: .utility)
     
-    queue.async { [weak self] in
+    analyseQueue.async { [weak self] in
       guard let self = self else { return }
       self.engine.runLoop()
     }
   }
   
+  func request_analysis() {
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+      guard let self = self else { return }
+      self.engine.addInputRequest("{\"id\":\"foo\",\"action\":\"query_version\"}")
+    }
+  }
 //  func setPositions() {
 //    
 //  }
