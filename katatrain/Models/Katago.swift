@@ -15,11 +15,22 @@ class Katago: ObservableObject {
   }
   
   var engine: Engine
+  var queue: DispatchQueue
   var mode: Mode = .vs
   var player: Player = 1
+  var queueLable = "com.hlstwizard.analysis"
+  var commands: [String] = []
+  var results: [String] = []
+  var running: Bool = false
   
   init() {
-    engine = Engine.init("Katagob40")
+    engine = Engine.init("Katagob40", "analysis_example")
+    queue = DispatchQueue(label: queueLable, qos: .utility)
+    
+    queue.async { [weak self] in
+      guard let self = self else { return }
+      self.engine.runLoop()
+    }
   }
   
 //  func setPositions() {
@@ -27,16 +38,17 @@ class Katago: ObservableObject {
 //  }
   
   func getColors() -> [NSNumber] {
-    return engine.getColors() as! [NSNumber]
+    return [NSNumber(1)]
+  }
+  
+  func fetchResult() {
+    
   }
   
   func play(loc: Loc) {
     switch mode {
     case .vs:
-      _ = engine.play(loc, player)
-      let opp = player ^ 3
-      let botMove = engine.genmove(opp)
-      engine.play(Loc(botMove), opp)
+      print("Not implemented mode \(mode)")
     case .analyse:
       print("Not implemented mode \(mode)")
     

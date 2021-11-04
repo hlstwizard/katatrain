@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
+		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80BD07CF272BC01C00A4735C /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD07CE272BC01C00A4735C /* Katago.swift */; };
 		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
 		809A307D272CDDDD005A0C45 /* Katagob40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Katagob40.plist; sourceTree = "<group>"; };
 		80BD07CE272BC01C00A4735C /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
 		80CC593C271476BF009A24AC /* katatrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katatrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8075D3BC27302EB500AFE931 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				8075D3BD27302EC500AFE931 /* analysis_example.cfg */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		80CC5933271476BF009A24AC = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +144,7 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				8075D3BC27302EB500AFE931 /* Configs */,
 				80CC597C2715C33C009A24AC /* Views */,
 				80CC597027148E3F009A24AC /* Extensions */,
 				80CC596927147753009A24AC /* Models */,
@@ -328,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */,
+				8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */,
 				809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */,
 				80CC5944271476C1009A24AC /* Assets.xcassets in Resources */,
 			);
