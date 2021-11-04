@@ -44,6 +44,9 @@ struct BoardView: View {
         ).padding(canvasPadding)
       }
     }
+    Button("Test") {
+      katago.request_analysis()
+    }
   }
   
   var boardOrigin: CGPoint {
@@ -166,6 +169,8 @@ struct BoardView: View {
   
   // size: GeometryReader size
   func drawStones(context: GraphicsContext, geoSize: CGSize) {
+    // TODO: temp disabled.
+    return
     var _context = context
     let locs = katago.getColors()
     let black = _context.resolve(Image("B_stone"))
