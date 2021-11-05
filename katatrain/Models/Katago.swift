@@ -78,12 +78,18 @@ class Katago: ObservableObject {
     eventHandler = nil
   }
   
-  func request_analysis() {
+  func request_analysis(action: String? = nil) {
     let id = UUID()
     appendingResults.append(id.uuidString)
-    DispatchQueue.global(qos: .userInitiated).async { [weak self, id] in
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
-      self.engine.addInputRequest("{\"id\":\"\(id.uuidString)\",\"action\":\"query_version\"}")
+      if let action = action {
+        self.engine.addInputRequest("{\"id\":\"\(id.uuidString)\",\"action\":\"\(action)\"}")
+      } else {
+        let request = self.game.toRequestJson()
+        NSLog(request)
+        self.engine.addInputRequest(request)
+      }
     }
   }
   
@@ -99,6 +105,9 @@ class Katago: ObservableObject {
   }
   
   func play(loc: Loc) {
+    game.makeMove(loc, Int8(player.rawValue))
+    request_analysis()
+    
     switch mode {
     case .vs:
       print("Not implemented mode \(mode)")
