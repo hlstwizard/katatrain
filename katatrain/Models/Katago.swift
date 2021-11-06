@@ -9,6 +9,13 @@ import Foundation
 import Combine
 
 class Katago: ObservableObject {
+  @Published var initProgress: Double = 0
+  @Published var isThinking: Bool = false
+
+  var initFinished: Bool {
+      initProgress == 1.0
+  }
+  
   enum Mode {
     case vs
     case analyse
@@ -54,7 +61,7 @@ class Katago: ObservableObject {
   
   var mode: Mode = .vs
   var player: PlayerColor = .P_BLACK
-  var appendingResults: [String] = []
+  var appendingResults: Set<String> = []
   var running: Bool = false
   
   init() {
@@ -79,14 +86,16 @@ class Katago: ObservableObject {
   }
   
   func request_analysis(action: String? = nil) {
-    let id = UUID()
-    appendingResults.append(id.uuidString)
+    let id = UUID().uuidString
+    appendingResults.insert(id)
+    isThinking = true
+    
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
       if let action = action {
-        self.engine.addInputRequest("{\"id\":\"\(id.uuidString)\",\"action\":\"\(action)\"}")
+        self.engine.addInputRequest("{\"id\":\"\(id)\",\"action\":\"\(action)\"}")
       } else {
-        let request = self.game.toRequestJson()
+        let request = self.game.toRequestJson(id)
         NSLog(request)
         self.engine.addInputRequest(request)
       }
@@ -100,7 +109,30 @@ class Katago: ObservableObject {
   func fetchResultLoop() {
     let result = self.engine.fetchResult()
     if !result.isEmpty {
-        print("main loop: \(result)")
+      if let data = result.data(using: String.Encoding.utf8) {
+        do {
+          let parsedResult = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+          if let engineInitProcess = parsedResult?["initProcess"] {
+            DispatchQueue.main.async { [unowned self] in
+              self.initProgress = engineInitProcess as! Double
+            }
+            return
+          }
+          if let id = parsedResult?["id"]! as? String {
+            if appendingResults.contains(id) {
+              NSLog("Get result of \(id)")
+              DispatchQueue.main.async { [unowned self] in
+                self.isThinking = false
+              }
+              appendingResults.remove(id)
+            } else {
+              fatalError("Get unexpected id of result.")
+            }
+          }
+        } catch {
+          NSLog(error.localizedDescription)
+        }
+      }
     }
   }
   

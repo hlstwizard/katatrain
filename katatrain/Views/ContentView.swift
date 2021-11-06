@@ -9,14 +9,23 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct ContentView: View {
-    var body: some View {
-        BoardView()
+  @EnvironmentObject var katago: Katago
+  
+  var body: some View {
+    ZStack {
+      GameView()
+      if !katago.initFinished {
+        LandingView()
+          .transition(.asymmetric(insertion: .move(edge: .top), removal: .opacity))
+          .animation(.easeInOut(duration: 3), value: katago.initFinished)
+      }
     }
+  }
 }
 
 @available(iOS 15.0, *)
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
