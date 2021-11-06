@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum PlayerColor: Int {
+  case P_BLACK = 1
+  case P_WHITE
+}
+
 enum StoneColor: Int {
   case C_EMPTY = 0
   case C_BLACK
