@@ -10,6 +10,7 @@
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
+		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80B36AF127361959008FFDB0 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF027361959008FFDB0 /* LandingView.swift */; };
 		80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF2273625B5008FFDB0 /* GameView.swift */; };
@@ -19,7 +20,6 @@
 		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
 		80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC593F271476BF009A24AC /* KatatrainApp.swift */; };
 		80CC5942271476BF009A24AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5941271476BF009A24AC /* ContentView.swift */; };
-		80CC5944271476C1009A24AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5946271476C2009A24AC /* Preview Assets.xcassets */; };
 		80CC5951271476C2009A24AC /* KatatrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5950271476C2009A24AC /* KatatrainTests.swift */; };
 		80CC595B271476C2009A24AC /* KatatrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC595A271476C2009A24AC /* KatatrainUITests.swift */; };
@@ -358,10 +358,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80904A032737FBD10032B8EC /* Assets.xcassets in Resources */,
 				80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */,
 				8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */,
 				809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */,
-				80CC5944271476C1009A24AC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
