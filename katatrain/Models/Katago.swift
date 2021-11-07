@@ -11,9 +11,9 @@ import Combine
 class Katago: ObservableObject {
   @Published var initProgress: Double = 0
   @Published var isThinking: Bool = false
-
+  
   var initFinished: Bool {
-      initProgress == 1.0
+    initProgress == 1.0
   }
   
   enum Mode {
@@ -62,6 +62,7 @@ class Katago: ObservableObject {
   var mode: Mode = .vs
   var player: PlayerColor = .P_BLACK
   var appendingResults: Set<String> = []
+  var potentialStones: Set<Loc> = []
   var running: Bool = false
   
   init() {
@@ -73,9 +74,13 @@ class Katago: ObservableObject {
       guard let self = self else { return }
       self.engine.runLoop()
     }
-    eventHandler = self.fetchResultLoop
+    eventHandler = self.fetchResultHandle
     fetchResultTimer.activate()
     state = .resumed
+  }
+  
+  func getOpp(player: PlayerColor) -> PlayerColor {
+    return PlayerColor(rawValue: player.rawValue ^ 3)!
   }
   
   deinit {
@@ -106,7 +111,7 @@ class Katago: ObservableObject {
     return game.getColors().compactMap({ $0 as? NSNumber })
   }
   
-  func fetchResultLoop() {
+  func fetchResultHandle() {
     let result = self.engine.fetchResult()
     if !result.isEmpty {
       if let data = result.data(using: String.Encoding.utf8) {
@@ -119,15 +124,30 @@ class Katago: ObservableObject {
             return
           }
           if let id = parsedResult?["id"]! as? String {
-            if appendingResults.contains(id) {
-              NSLog("Get result of \(id)")
-              DispatchQueue.main.async { [unowned self] in
-                self.isThinking = false
-              }
-              appendingResults.remove(id)
-            } else {
-              fatalError("Get unexpected id of result.")
+            if !appendingResults.contains(id) {
+              NSLog("Query result \(id) discarded -- recent new game or node reset?")
+              return
             }
+            NSLog("Get result of \(id)")
+            let moveInfos = parsedResult?["moveInfos"] as! [Any]
+            let topMoveInfo = moveInfos[0] as! [String: Any]
+            var loc: Loc = 0
+            
+            let result = withUnsafeMutablePointer(to: &loc) {
+              Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
+            }
+            
+            if !result {
+              NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
+            }
+            let opp = Player(getOpp(player: player).rawValue)
+            
+            DispatchQueue.main.async { [unowned self] in
+              self.isThinking = false
+              game.makeMove(loc, opp)
+            }
+            appendingResults.remove(id)
+            
           }
         } catch {
           NSLog(error.localizedDescription)
@@ -136,17 +156,11 @@ class Katago: ObservableObject {
     }
   }
   
-  func play(loc: Loc) {
+  func play(loc: Loc, player: PlayerColor = .P_BLACK) {
     game.makeMove(loc, Int8(player.rawValue))
-    request_analysis()
-    
-    switch mode {
-    case .vs:
-      print("Not implemented mode \(mode)")
-    case .analyse:
-      print("Not implemented mode \(mode)")
+    if player == .P_BLACK {
+      request_analysis()
     }
-    
     objectWillChange.send()
   }
 }

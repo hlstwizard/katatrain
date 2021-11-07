@@ -13,6 +13,7 @@ struct BoardView: View {
   @EnvironmentObject var katago: Katago
   @State var showTouchPoint = false
   
+  var size: CGSize
   let boardSize = 19
   let margin = 15.0
   let boardLineWidth = 5.0
@@ -20,30 +21,30 @@ struct BoardView: View {
   let starWidth = 8.0
   let canvasPadding = 5.0
   let logger = Logger(label: #file)
-  let scale = 0.3
+  // TODO: - scale should be computed value against context size.
+  let scale = 0.2
+  
+  init(size: CGSize) {
+    self.size = size
+  }
   
   var body: some View {
-    HStack {
-      Spacer(minLength: 10)
-      GeometryReader { reader in
-        Canvas { context, _ in
-          // (CGSize) $R0 = (width = 1148, height = 744)
-          drawBoard(context: context, geoSize: reader.size)
-          drawStars(context: context, geoSize: reader.size)
-          drawStones(context: context, geoSize: reader.size)
-          if showTouchPoint {
-            drawTouchPoint(context: context, geoSize: reader.size)
-          }
-        }.gesture(
-          DragGesture(minimumDistance: 0)
-            .onEnded {
-              // (CGSize) $R0 = (width = 1180, height = 776)
-              logger.debug("\($0.location), \(toPoint(pos: $0.location, size: reader.size))")
-              play(point: toPoint(pos: $0.location, size: reader.size))
-            }
-        ).padding(canvasPadding)
+    Canvas { context, _ in
+      // (CGSize) $R0 = (width = 1148, height = 744)
+      drawBoard(context: context, geoSize: self.size)
+      drawStars(context: context, geoSize: self.size)
+      drawStones(context: context, geoSize: self.size)
+      if showTouchPoint {
+        drawTouchPoint(context: context, geoSize: self.size)
       }
-    }
+    }.gesture(
+      DragGesture(minimumDistance: 0)
+        .onEnded {
+          // (CGSize) $R0 = (width = 1180, height = 776)
+          logger.debug("\($0.location), \(toPoint(pos: $0.location, size: self.size))")
+          play(point: toPoint(pos: $0.location, size: self.size))
+        }
+    ).padding(canvasPadding)
   }
   
   var boardOrigin: CGPoint {
@@ -213,7 +214,7 @@ struct BoardView: View {
 @available(iOS 15.0, *)
 struct BoardView_Previews: PreviewProvider {
   static var previews: some View {
-    BoardView()
+    BoardView(size: CGSize(width: 810, height: 1136))
       .previewInterfaceOrientation(.landscapeLeft)
   }
 }

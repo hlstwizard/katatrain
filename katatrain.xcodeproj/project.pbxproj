@@ -13,6 +13,8 @@
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80B36AF127361959008FFDB0 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF027361959008FFDB0 /* LandingView.swift */; };
 		80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF2273625B5008FFDB0 /* GameView.swift */; };
+		80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */; };
+		80B36AF827377126008FFDB0 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF727377126008FFDB0 /* ControlView.swift */; };
 		80BD07CF272BC01C00A4735C /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD07CE272BC01C00A4735C /* Katago.swift */; };
 		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
 		80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC593F271476BF009A24AC /* KatatrainApp.swift */; };
@@ -59,6 +61,8 @@
 		809A307D272CDDDD005A0C45 /* Katagob40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Katagob40.plist; sourceTree = "<group>"; };
 		80B36AF027361959008FFDB0 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		80B36AF2273625B5008FFDB0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
+		80B36AF727377126008FFDB0 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		80BD07CE272BC01C00A4735C /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
 		80CC593C271476BF009A24AC /* katatrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katatrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CC593F271476BF009A24AC /* KatatrainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatatrainApp.swift; sourceTree = "<group>"; };
@@ -121,6 +125,14 @@
 				8075D3BD27302EC500AFE931 /* analysis_example.cfg */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		80B36AF4273767F2008FFDB0 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		80CC5933271476BF009A24AC = {
@@ -212,7 +224,9 @@
 		80CC597C2715C33C009A24AC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80B36AF4273767F2008FFDB0 /* Modifiers */,
 				80CC5941271476BF009A24AC /* ContentView.swift */,
+				80B36AF727377126008FFDB0 /* ControlView.swift */,
 				80B36AF027361959008FFDB0 /* LandingView.swift */,
 				80B36AF2273625B5008FFDB0 /* GameView.swift */,
 				80CC597D2715C396009A24AC /* BoardView.swift */,
@@ -392,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80B36AF827377126008FFDB0 /* ControlView.swift in Sources */,
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
 				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
@@ -402,6 +417,7 @@
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
+				80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */,
 				80459988272D5B8D00B40C35 /* Types.swift in Sources */,
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,

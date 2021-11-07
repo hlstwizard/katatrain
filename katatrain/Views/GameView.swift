@@ -9,13 +9,26 @@ import SwiftUI
 
 struct GameView: View {
   @EnvironmentObject var katago: Katago
+  @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
   
   var body: some View {
-    HStack {
-      BoardView()
-        .border(.black, width: 3)
-      Circle().fill(katago.isThinking ? .red : .green)
-        .frame(width: 20.0, height: 20.0)
+    Group {
+      GeometryReader { reader in
+        if reader.size.width > reader.size.height {
+          HStack {
+            BoardView(size: CGSize(width: reader.size.height, height: reader.size.height))
+              .border(.black, width: 3)
+            ControlView()
+          }
+        } else {
+          VStack {
+            BoardView(size: CGSize(width: reader.size.width, height: reader.size.width))
+              .border(.black, width: 3)
+            ControlView()
+          }
+        }
+      }
     }
   }
 }

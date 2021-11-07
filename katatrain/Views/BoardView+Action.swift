@@ -10,6 +10,13 @@ import Foundation
 @available(iOS 15.0, *)
 extension BoardView {
   func play(point:(x:Int, y: Int)) {
+    if point.x == -1 || point.y == -1 {
+      return
+    }
+    if katago.isThinking {
+      NSLog("Be patient..")
+      return
+    }
     let loc = (point.x + 1) + (point.y + 1) * (boardSize + 1)
     katago.play(loc: Loc(loc))
   }
