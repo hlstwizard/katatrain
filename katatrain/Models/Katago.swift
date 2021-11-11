@@ -163,4 +163,19 @@ class Katago: ObservableObject {
     }
     objectWillChange.send()
   }
+  
+  func undo() {
+    game.undo()
+    objectWillChange.send()
+  }
+  
+  func replay() {
+    game.replay()
+    objectWillChange.send()
+  }
+  
+  func reset() {
+    game.reset()
+    objectWillChange.send()
+  }
 }

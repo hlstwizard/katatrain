@@ -11,6 +11,7 @@
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
+		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80B36AF127361959008FFDB0 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF027361959008FFDB0 /* LandingView.swift */; };
 		80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF2273625B5008FFDB0 /* GameView.swift */; };
@@ -58,6 +59,8 @@
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
+		809261DC273BEF2E00CE2903 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		809261DE273BF22600CE2903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		809A307D272CDDDD005A0C45 /* Katagob40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Katagob40.plist; sourceTree = "<group>"; };
 		80B36AF027361959008FFDB0 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		80B36AF2273625B5008FFDB0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				80CC597027148E3F009A24AC /* Extensions */,
 				80CC596927147753009A24AC /* Models */,
 				80CC593F271476BF009A24AC /* KatatrainApp.swift */,
+				809261DE273BF22600CE2903 /* AppDelegate.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
 				80CC5945271476C2009A24AC /* Preview Content */,
 			);
@@ -231,6 +235,7 @@
 				80B36AF2273625B5008FFDB0 /* GameView.swift */,
 				80CC597D2715C396009A24AC /* BoardView.swift */,
 				80CDA1832721AF670097D485 /* BoardView+Action.swift */,
+				809261DC273BEF2E00CE2903 /* StatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
+				809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +601,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -631,6 +638,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

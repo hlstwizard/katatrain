@@ -22,7 +22,7 @@ struct BoardView: View {
   let canvasPadding = 5.0
   let logger = Logger(label: #file)
   // TODO: - scale should be computed value against context size.
-  let scale = 0.2
+  let scale = 0.15
   
   init(size: CGSize) {
     self.size = size
@@ -44,7 +44,8 @@ struct BoardView: View {
           logger.debug("\($0.location), \(toPoint(pos: $0.location, size: self.size))")
           play(point: toPoint(pos: $0.location, size: self.size))
         }
-    ).padding(canvasPadding)
+    ).frame(width: self.size.width, height: self.size.height)
+      .padding(canvasPadding)
   }
   
   var boardOrigin: CGPoint {
