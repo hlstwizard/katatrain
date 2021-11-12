@@ -20,9 +20,11 @@ struct BoardView: View {
   let lineWidth = 1.0
   let starWidth = 8.0
   let canvasPadding = 5.0
+  let cursorSize = 10.0
   let logger = Logger(label: #file)
-  // TODO: - scale should be computed value against context size.
-  let scale = 0.15
+  
+  let imageSize = 200.0
+  let scale = 0.18
   
   init(size: CGSize) {
     self.size = size
@@ -34,6 +36,11 @@ struct BoardView: View {
       drawBoard(context: context, geoSize: self.size)
       drawStars(context: context, geoSize: self.size)
       drawStones(context: context, geoSize: self.size)
+      
+      if katago.lastMove != -1 {
+        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
+      }
+
       if showTouchPoint {
         drawTouchPoint(context: context, geoSize: self.size)
       }
@@ -187,6 +194,20 @@ struct BoardView: View {
         }
       }
     }
+  }
+  
+  func drawCursor(context: GraphicsContext, geoSize: CGSize, loc: Loc, pla: PlayerColor) {
+    let _context = context
+    
+    let x = Int(loc) % (self.boardSize+1) - 1
+    let y = Int(loc) / (self.boardSize+1) - 1
+    let size = clipBoardSize(size: geoSize)
+    let boardArea = getBoardArea(size: size)
+    let origin = getPoint(x: x, y: y, boardArea: boardArea) -
+        CGPoint(x: imageSize * scale / 2, y: imageSize * scale / 2)
+    print("x: \(x), y: \(y), origin: \(origin)")
+    
+    _context.fill(Triangle().path(in: CGRect(origin: origin, size: CGSize(width: cursorSize, height: cursorSize))), with: .color(.green))
   }
   
   // size: GeometryReader size
