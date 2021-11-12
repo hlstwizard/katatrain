@@ -9,18 +9,30 @@ import SwiftUI
 
 struct ControlView: View {
   @EnvironmentObject var katago: Katago
+  
   var body: some View {
     HStack {
       Button(action: undo) {
         Image(systemName: "play")
           .font(.title)
           .rotation3DEffect(.degrees(180.0), axis: (0, 1.0, 0))
-      }
+      }.disabled(!katago.canUndo)
       
       Button(action: replay) {
         Image(systemName: "play")
           .font(.title)
+      }.disabled(!katago.canReplay)
+      
+      if katago.inTrial {
+        Button("Exit Try") {
+          katago.exitTrial()
+        }
+      } else {
+        Button("GO Try") {
+          katago.enterTrial()
+        }
       }
+      
       Circle().fill(katago.isThinking ? .red : .green)
         .frame(width: 20.0, height: 20.0)
     }
