@@ -13,6 +13,10 @@ class Katago: ObservableObject {
   @Published var isThinking: Bool = false
   @Published var lastMove: Loc = -1
   
+  @Published var canUndo: Bool = false
+  @Published var canReplay: Bool = false
+  @Published var inTrial: Bool = false
+  
   var initFinished: Bool {
     initProgress == 1.0
   }
@@ -166,31 +170,46 @@ class Katago: ObservableObject {
   func play(loc: Loc, player: PlayerColor = .P_BLACK) {
     game.makeMove(loc, Int8(player.rawValue))
     lastMove = game.getLastMove().int16Value
+    canUndo = true
     if player == .P_BLACK {
       request_analysis()
     }
-    objectWillChange.send()
   }
   
   func undo() {
-    game.undo()
-    lastMove = -1
-    objectWillChange.send()
+    canUndo = game.undo()
+    canReplay = true
+    lastMove = game.getLastMove().int16Value
   }
   
   func replay() {
-    game.replay()
-    objectWillChange.send()
+    canReplay = game.replay()
+    canUndo = true
+    lastMove = game.getLastMove().int16Value
   }
   
   func reset() {
     game.reset()
     lastMove = game.getLastMove().int16Value
-    objectWillChange.send()
   }
   
   func newGame(handicap: UInt8) {
     game.newGame(handicap)
+    if handicap > 0 {
+      request_analysis()
+    }
     objectWillChange.send()
+  }
+  
+  func enterTrial() {
+    game.enterTrial()
+    canUndo = false
+    canReplay = false
+    inTrial = true
+  }
+  
+  func exitTrial() {
+    game.exitTrial()
+    inTrial = false
   }
 }
