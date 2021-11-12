@@ -11,6 +11,7 @@ import Combine
 class Katago: ObservableObject {
   @Published var initProgress: Double = 0
   @Published var isThinking: Bool = false
+  @Published var lastMove: Loc = -1
   
   var initFinished: Bool {
     initProgress == 1.0
@@ -124,6 +125,10 @@ class Katago: ObservableObject {
             return
           }
           if let id = parsedResult?["id"]! as? String {
+            if let error = parsedResult?["error"] as? String {
+              NSLog("Query result \(id) error -- \(error)")
+              return
+            }
             if !appendingResults.contains(id) {
               NSLog("Query result \(id) discarded -- recent new game or node reset?")
               return
@@ -133,6 +138,7 @@ class Katago: ObservableObject {
             let topMoveInfo = moveInfos[0] as! [String: Any]
             var loc: Loc = 0
             
+            // pointer from objective-c++
             let result = withUnsafeMutablePointer(to: &loc) {
               Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
             }
@@ -145,6 +151,7 @@ class Katago: ObservableObject {
             DispatchQueue.main.async { [unowned self] in
               self.isThinking = false
               game.makeMove(loc, opp)
+              lastMove = game.getLastMove().int16Value
             }
             appendingResults.remove(id)
             
@@ -158,6 +165,7 @@ class Katago: ObservableObject {
   
   func play(loc: Loc, player: PlayerColor = .P_BLACK) {
     game.makeMove(loc, Int8(player.rawValue))
+    lastMove = game.getLastMove().int16Value
     if player == .P_BLACK {
       request_analysis()
     }
@@ -166,6 +174,7 @@ class Katago: ObservableObject {
   
   func undo() {
     game.undo()
+    lastMove = -1
     objectWillChange.send()
   }
   
@@ -176,6 +185,12 @@ class Katago: ObservableObject {
   
   func reset() {
     game.reset()
+    lastMove = game.getLastMove().int16Value
+    objectWillChange.send()
+  }
+  
+  func newGame(handicap: UInt8) {
+    game.newGame(handicap)
     objectWillChange.send()
   }
 }

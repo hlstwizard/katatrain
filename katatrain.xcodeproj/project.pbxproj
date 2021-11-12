@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
+		804C6F77273D326B007C67E8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F76273D326B007C67E8 /* Triangle.swift */; };
+		804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F78273DEA1C007C67E8 /* NewGameView.swift */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		804C6F76273D326B007C67E8 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		804C6F78273DEA1C007C67E8 /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
 		809261DC273BEF2E00CE2903 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		809261DE273BF22600CE2903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				80CC597D2715C396009A24AC /* BoardView.swift */,
 				80CDA1832721AF670097D485 /* BoardView+Action.swift */,
 				809261DC273BEF2E00CE2903 /* StatusView.swift */,
+				804C6F76273D326B007C67E8 /* Triangle.swift */,
+				804C6F78273DEA1C007C67E8 /* NewGameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,9 +420,11 @@
 				80B36AF827377126008FFDB0 /* ControlView.swift in Sources */,
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
 				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
+				804C6F77273D326B007C67E8 /* Triangle.swift in Sources */,
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
+				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,
