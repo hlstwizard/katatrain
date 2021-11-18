@@ -15,6 +15,7 @@
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
+		809CEEC227460489001B0AF6 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 809CEEC127460489001B0AF6 /* SwiftUICharts */; };
 		80B36AF127361959008FFDB0 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF027361959008FFDB0 /* LandingView.swift */; };
 		80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF2273625B5008FFDB0 /* GameView.swift */; };
 		80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */; };
@@ -106,6 +107,7 @@
 				80CDA17C272114000097D485 /* libz.tbd in Frameworks */,
 				80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */,
 				80C0E2F02717D406003377D7 /* Logging in Frameworks */,
+				809CEEC227460489001B0AF6 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +278,7 @@
 			name = katatrain;
 			packageProductDependencies = (
 				80C0E2EF2717D406003377D7 /* Logging */,
+				809CEEC127460489001B0AF6 /* SwiftUICharts */,
 			);
 			productName = katatrain;
 			productReference = 80CC593C271476BF009A24AC /* katatrain.app */;
@@ -352,6 +355,7 @@
 			mainGroup = 80CC5933271476BF009A24AC;
 			packageReferences = (
 				80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */,
+				809CEEC027460489001B0AF6 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 80CC593D271476BF009A24AC /* Products */;
 			projectDirPath = "";
@@ -802,6 +806,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		809CEEC027460489001B0AF6 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 		80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-log.git";
@@ -813,6 +825,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		809CEEC127460489001B0AF6 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809CEEC027460489001B0AF6 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
 		80C0E2EF2717D406003377D7 /* Logging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */;

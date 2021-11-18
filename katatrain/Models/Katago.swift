@@ -17,13 +17,15 @@ class Katago: ObservableObject {
   @Published var canReplay: Bool = false
   @Published var inTrial: Bool = false
   
+  @Published var winrates: [Double] = []
+  @Published var mode: Mode = .play
+  
   var initFinished: Bool {
     initProgress == 1.0
   }
   
-  enum Mode {
-    case vs
-    case analyse
+  enum Mode: Int {
+    case play=0, analyze=1
   }
   
   private enum State {
@@ -64,10 +66,9 @@ class Katago: ObservableObject {
   var engine: Engine
   var game: Game
   
-  var mode: Mode = .vs
   var player: PlayerColor = .P_BLACK
   var appendingResults: Set<String> = []
-  var potentialStones: Set<Loc> = []
+  var potentialStones: [(Loc, Double)] = []
   var running: Bool = false
   
   init() {
@@ -116,6 +117,55 @@ class Katago: ObservableObject {
     return game.getColors().compactMap({ $0 as? NSNumber })
   }
   
+  func handleResult(result: [String: Any]) {
+    let opp = Player(getOpp(player: player).rawValue)
+    let id = result["id"]! as! String
+    
+    if !appendingResults.contains(id) {
+      NSLog("Query result \(id) discarded -- recent new game or node reset?")
+      return
+    }
+    NSLog("Get result of \(id)")
+    let moveInfos = result["moveInfos"] as! [Any]
+    
+    if moveInfos.isEmpty {
+      NSLog("No valid moves for \(opp)")
+      return
+    }
+    
+//            for moveInfo in moveInfos {
+//              var _loc: Loc = 0
+//              var _winrate = moveInfo[""]
+//
+//              let result = withUnsafeMutablePointer(to: &loc) {
+//                Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
+//              }
+//            }
+    
+    let topMoveInfo = moveInfos[0] as! [String: Any]
+    var loc: Loc = 0
+    
+    // pointer from objective-c++
+    let result = withUnsafeMutablePointer(to: &loc) {
+      Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
+    }
+    
+    if !result {
+      NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
+    }
+    
+    DispatchQueue.main.async { [unowned self] in
+      self.isThinking = false
+      if self.mode == .play {
+        game.makeMove(loc, opp)
+        lastMove = game.getLastMove().int16Value
+      } else {
+        
+      }
+    }
+    appendingResults.remove(id)
+  }
+  
   func fetchResultHandle() {
     let result = self.engine.fetchResult()
     if !result.isEmpty {
@@ -129,36 +179,18 @@ class Katago: ObservableObject {
             return
           }
           if let id = parsedResult?["id"]! as? String {
-            if let error = parsedResult?["error"] as? String {
-              NSLog("Query result \(id) error -- \(error)")
+            if let _ = parsedResult?["error"] as? String {
+              NSLog("Query result \(id) error -- \(parsedResult!)")
               return
-            }
-            if !appendingResults.contains(id) {
-              NSLog("Query result \(id) discarded -- recent new game or node reset?")
+            } else if let _ = parsedResult?["warning"] as? String {
+              NSLog("Query result \(id) warning -- \(parsedResult!)")
               return
+            } else if let _ = parsedResult?["terminateId"] as? String {
+              NSLog("Query result \(id) terminateId -- \(parsedResult!)")
+              return
+            } else {
+              handleResult(result: parsedResult!)
             }
-            NSLog("Get result of \(id)")
-            let moveInfos = parsedResult?["moveInfos"] as! [Any]
-            let topMoveInfo = moveInfos[0] as! [String: Any]
-            var loc: Loc = 0
-            
-            // pointer from objective-c++
-            let result = withUnsafeMutablePointer(to: &loc) {
-              Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
-            }
-            
-            if !result {
-              NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
-            }
-            let opp = Player(getOpp(player: player).rawValue)
-            
-            DispatchQueue.main.async { [unowned self] in
-              self.isThinking = false
-              game.makeMove(loc, opp)
-              lastMove = game.getLastMove().int16Value
-            }
-            appendingResults.remove(id)
-            
           }
         } catch {
           NSLog(error.localizedDescription)
