@@ -1,13 +1,13 @@
-// Generated from sgf.g4 by ANTLR 4.7.2
+// Generated from Sgf.g4 by ANTLR 4.8
 import Antlr4
 
-open class sgfLexer: Lexer {
+open class SgfLexer: Lexer {
 
 	internal static var _decisionToDFA: [DFA] = {
           var decisionToDFA = [DFA]()
-          let length = sgfLexer._ATN.getNumberOfDecisions()
+          let length = SgfLexer._ATN.getNumberOfDecisions()
           for i in 0..<length {
-          	    decisionToDFA.append(DFA(sgfLexer._ATN.getDecisionState(i)!, i))
+          	    decisionToDFA.append(DFA(SgfLexer._ATN.getDecisionState(i)!, i))
           }
            return decisionToDFA
      }()
@@ -75,40 +75,38 @@ open class sgfLexer: Lexer {
 	public
 	static let VOCABULARY = Vocabulary(_LITERAL_NAMES, _SYMBOLIC_NAMES)
 
-
 	override open
 	func getVocabulary() -> Vocabulary {
-		return sgfLexer.VOCABULARY
+		return SgfLexer.VOCABULARY
 	}
 
 	public
 	required init(_ input: CharStream) {
-	    RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION)
+	    RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION)
 		super.init(input)
-		_interp = LexerATNSimulator(self, sgfLexer._ATN, sgfLexer._decisionToDFA, sgfLexer._sharedContextCache)
+		_interp = LexerATNSimulator(self, SgfLexer._ATN, SgfLexer._decisionToDFA, SgfLexer._sharedContextCache)
 	}
 
 	override open
-	func getGrammarFileName() -> String { return "sgf.g4" }
+	func getGrammarFileName() -> String { return "Sgf.g4" }
 
 	override open
-	func getRuleNames() -> [String] { return sgfLexer.ruleNames }
+	func getRuleNames() -> [String] { return SgfLexer.ruleNames }
 
 	override open
-	func getSerializedATN() -> String { return sgfLexer._serializedATN }
+	func getSerializedATN() -> String { return SgfLexer._serializedATN }
 
 	override open
-	func getChannelNames() -> [String] { return sgfLexer.channelNames }
+	func getChannelNames() -> [String] { return SgfLexer.channelNames }
 
 	override open
-	func getModeNames() -> [String] { return sgfLexer.modeNames }
+	func getModeNames() -> [String] { return SgfLexer.modeNames }
 
 	override open
-	func getATN() -> ATN { return sgfLexer._ATN }
-
+	func getATN() -> ATN { return SgfLexer._ATN }
 
 	public
-	static let _serializedATN: String = sgfLexerATN().jsonString
+	static let _serializedATN: String = SgfLexerATN().jsonString
 
 	public
 	static let _ATN: ATN = ATNDeserializer().deserializeFromJson(_serializedATN)

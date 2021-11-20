@@ -5,13 +5,13 @@
     See agpl-3.0.txt for legal details.
  */
 
-grammar sgf;
+grammar Sgf;
 
 collection      :   gameTree+;
 gameTree        :   '(' sequence gameTree* ')';
 sequence        :   node+;
-node            :   ';' property_*;
-property_        :
+node            :   ';' property*;
+property        :
                     move
                 |   setup
                 |   nodeAnnotation
@@ -22,7 +22,7 @@ property_        :
                 |   timing
                 |   misc
                 |   loa
-                |   go_
+                |   go
                 |   privateProp
                 ;
 
@@ -122,7 +122,7 @@ loa             :
                 |   'SU' TEXT
                 ;
 
-go_              :
+go              :
                     'HA' TEXT
                 |   'KM' TEXT
                 |   'TB' (NONE | TEXT+)
