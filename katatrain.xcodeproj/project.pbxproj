@@ -11,6 +11,9 @@
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
 		804C6F77273D326B007C67E8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F76273D326B007C67E8 /* Triangle.swift */; };
 		804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F78273DEA1C007C67E8 /* NewGameView.swift */; };
+		80739EC52748932100593DC7 /* SgfMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC42748932100593DC7 /* SgfMove.swift */; };
+		80739EC72748A26800593DC7 /* SGFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC62748A26800593DC7 /* SGFTests.swift */; };
+		80739EC92748A98F00593DC7 /* SgfNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC82748A98F00593DC7 /* SgfNode.swift */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
@@ -62,6 +65,9 @@
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		804C6F76273D326B007C67E8 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		804C6F78273DEA1C007C67E8 /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		80739EC42748932100593DC7 /* SgfMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgfMove.swift; sourceTree = "<group>"; };
+		80739EC62748A26800593DC7 /* SGFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGFTests.swift; sourceTree = "<group>"; };
+		80739EC82748A98F00593DC7 /* SgfNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgfNode.swift; sourceTree = "<group>"; };
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
 		809261DC273BEF2E00CE2903 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		809261DE273BF22600CE2903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80739EC3274892F000593DC7 /* SGF */ = {
+			isa = PBXGroup;
+			children = (
+				80739EC42748932100593DC7 /* SgfMove.swift */,
+				80739EC82748A98F00593DC7 /* SgfNode.swift */,
+			);
+			path = SGF;
+			sourceTree = "<group>";
+		};
 		8075D3BC27302EB500AFE931 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +182,7 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				80739EC3274892F000593DC7 /* SGF */,
 				8075D3BC27302EB500AFE931 /* Configs */,
 				80CC597C2715C33C009A24AC /* Views */,
 				80CC597027148E3F009A24AC /* Extensions */,
@@ -191,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				80CC5950271476C2009A24AC /* KatatrainTests.swift */,
+				80739EC62748A26800593DC7 /* SGFTests.swift */,
 			);
 			path = katatrainTests;
 			sourceTree = "<group>";
@@ -423,7 +440,9 @@
 				804C6F77273D326B007C67E8 /* Triangle.swift in Sources */,
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
+				80739EC92748A98F00593DC7 /* SgfNode.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
+				80739EC52748932100593DC7 /* SgfMove.swift in Sources */,
 				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
@@ -444,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80739EC72748A26800593DC7 /* SGFTests.swift in Sources */,
 				80CC5951271476C2009A24AC /* KatatrainTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
