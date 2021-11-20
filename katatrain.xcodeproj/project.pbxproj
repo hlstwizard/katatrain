@@ -11,6 +11,13 @@
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
 		804C6F77273D326B007C67E8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F76273D326B007C67E8 /* Triangle.swift */; };
 		804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F78273DEA1C007C67E8 /* NewGameView.swift */; };
+		80739EAD27488A7100593DC7 /* Antlr4 in Frameworks */ = {isa = PBXBuildFile; productRef = 80739EAC27488A7100593DC7 /* Antlr4 */; };
+		80739EB927488B1B00593DC7 /* SgfBaseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB327488B1B00593DC7 /* SgfBaseListener.swift */; };
+		80739EBA27488B1B00593DC7 /* SgfListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB427488B1B00593DC7 /* SgfListener.swift */; };
+		80739EBB27488B1B00593DC7 /* SgfParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB527488B1B00593DC7 /* SgfParser.swift */; };
+		80739EBC27488B1B00593DC7 /* SgfLexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB627488B1B00593DC7 /* SgfLexerATN.swift */; };
+		80739EBD27488B1B00593DC7 /* sgfLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB727488B1B00593DC7 /* sgfLexer.swift */; };
+		80739EBE27488B1B00593DC7 /* SgfParserATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EB827488B1B00593DC7 /* SgfParserATN.swift */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
@@ -57,11 +64,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		80739EAE27488A7100593DC7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		804C6F76273D326B007C67E8 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		804C6F78273DEA1C007C67E8 /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		80739EAB27488A3A00593DC7 /* Swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Swift; path = ../antlr4/runtime/Swift; sourceTree = "<group>"; };
+		80739EB327488B1B00593DC7 /* SgfBaseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SgfBaseListener.swift; path = "sgf-swift/Autogen/SgfBaseListener.swift"; sourceTree = SOURCE_ROOT; };
+		80739EB427488B1B00593DC7 /* SgfListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SgfListener.swift; path = "sgf-swift/Autogen/SgfListener.swift"; sourceTree = SOURCE_ROOT; };
+		80739EB527488B1B00593DC7 /* SgfParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SgfParser.swift; path = "sgf-swift/Autogen/SgfParser.swift"; sourceTree = SOURCE_ROOT; };
+		80739EB627488B1B00593DC7 /* SgfLexerATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SgfLexerATN.swift; path = "sgf-swift/Autogen/SgfLexerATN.swift"; sourceTree = SOURCE_ROOT; };
+		80739EB727488B1B00593DC7 /* sgfLexer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sgfLexer.swift; path = "sgf-swift/Autogen/sgfLexer.swift"; sourceTree = SOURCE_ROOT; };
+		80739EB827488B1B00593DC7 /* SgfParserATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SgfParserATN.swift; path = "sgf-swift/Autogen/SgfParserATN.swift"; sourceTree = SOURCE_ROOT; };
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
 		809261DC273BEF2E00CE2903 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		809261DE273BF22600CE2903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80739EAD27488A7100593DC7 /* Antlr4 in Frameworks */,
 				802C59FF272CAF1300501345 /* libkatago.a in Frameworks */,
 				80CDA17C272114000097D485 /* libz.tbd in Frameworks */,
 				80CDA17A272113F90097D485 /* libc++.tbd in Frameworks */,
@@ -126,6 +154,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80739EA927488A2100593DC7 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				80739EAB27488A3A00593DC7 /* Swift */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		80739EB227488B0600593DC7 /* SGF */ = {
+			isa = PBXGroup;
+			children = (
+				80739EB327488B1B00593DC7 /* SgfBaseListener.swift */,
+				80739EB727488B1B00593DC7 /* sgfLexer.swift */,
+				80739EB627488B1B00593DC7 /* SgfLexerATN.swift */,
+				80739EB427488B1B00593DC7 /* SgfListener.swift */,
+				80739EB527488B1B00593DC7 /* SgfParser.swift */,
+				80739EB827488B1B00593DC7 /* SgfParserATN.swift */,
+			);
+			name = SGF;
+			sourceTree = "<group>";
+		};
 		8075D3BC27302EB500AFE931 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +199,7 @@
 				80CC594F271476C2009A24AC /* katatrainTests */,
 				80CC5959271476C2009A24AC /* katatrainUITests */,
 				80CC593D271476BF009A24AC /* Products */,
+				80739EA927488A2100593DC7 /* Packages */,
 				80CDA176272112760097D485 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +217,7 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				80739EB227488B0600593DC7 /* SGF */,
 				8075D3BC27302EB500AFE931 /* Configs */,
 				80CC597C2715C33C009A24AC /* Views */,
 				80CC597027148E3F009A24AC /* Extensions */,
@@ -268,6 +319,7 @@
 				80CC5938271476BF009A24AC /* Sources */,
 				80CC5939271476BF009A24AC /* Frameworks */,
 				80CC593A271476BF009A24AC /* Resources */,
+				80739EAE27488A7100593DC7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,6 +328,7 @@
 			name = katatrain;
 			packageProductDependencies = (
 				80C0E2EF2717D406003377D7 /* Logging */,
+				80739EAC27488A7100593DC7 /* Antlr4 */,
 			);
 			productName = katatrain;
 			productReference = 80CC593C271476BF009A24AC /* katatrain.app */;
@@ -425,18 +478,24 @@
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
 				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
+				80739EBA27488B1B00593DC7 /* SgfListener.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
+				80739EBD27488B1B00593DC7 /* sgfLexer.swift in Sources */,
+				80739EBB27488B1B00593DC7 /* SgfParser.swift in Sources */,
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
 				80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */,
 				80459988272D5B8D00B40C35 /* Types.swift in Sources */,
+				80739EB927488B1B00593DC7 /* SgfBaseListener.swift in Sources */,
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
 				809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */,
+				80739EBC27488B1B00593DC7 /* SgfLexerATN.swift in Sources */,
+				80739EBE27488B1B00593DC7 /* SgfParserATN.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +872,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		80739EAC27488A7100593DC7 /* Antlr4 */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Antlr4;
+		};
 		80C0E2EF2717D406003377D7 /* Logging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80C0E2EE2717D406003377D7 /* XCRemoteSwiftPackageReference "swift-log" */;
