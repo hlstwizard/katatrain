@@ -41,6 +41,13 @@ class SgfTests: XCTestCase {
     XCTAssert(move.coord! == (0, 0))
   }
   
+  func testSgfLoadFile() throws {
+    let bundle = Bundle(for: type(of: self))
+    let url = bundle.url(forResource: "test", withExtension: "sgf")
+    let root = try! SGF.parse_file(url: url!)
+    
+  }
+  
   func testPerformanceExample() throws {
     // This is an example of a performance test case.
     self.measure {
