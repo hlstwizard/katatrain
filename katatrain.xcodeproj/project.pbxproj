@@ -12,9 +12,9 @@
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
 		804C6F77273D326B007C67E8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F76273D326B007C67E8 /* Triangle.swift */; };
 		804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C6F78273DEA1C007C67E8 /* NewGameView.swift */; };
-		80739EC52748932100593DC7 /* SgfMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC42748932100593DC7 /* SgfMove.swift */; };
+		80739EC52748932100593DC7 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC42748932100593DC7 /* Move.swift */; };
 		80739EC72748A26800593DC7 /* SGFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC62748A26800593DC7 /* SGFTests.swift */; };
-		80739EC92748A98F00593DC7 /* SgfNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC82748A98F00593DC7 /* SgfNode.swift */; };
+		80739EC92748A98F00593DC7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739EC82748A98F00593DC7 /* Node.swift */; };
 		80739ECB2748FCF000593DC7 /* SGF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80739ECA2748FCF000593DC7 /* SGF.swift */; };
 		80739ECD2749B3D100593DC7 /* test.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 80739ECC2749B3D100593DC7 /* test.sgf */; };
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
@@ -69,9 +69,9 @@
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		804C6F76273D326B007C67E8 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		804C6F78273DEA1C007C67E8 /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
-		80739EC42748932100593DC7 /* SgfMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgfMove.swift; sourceTree = "<group>"; };
+		80739EC42748932100593DC7 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		80739EC62748A26800593DC7 /* SGFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGFTests.swift; sourceTree = "<group>"; };
-		80739EC82748A98F00593DC7 /* SgfNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgfNode.swift; sourceTree = "<group>"; };
+		80739EC82748A98F00593DC7 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		80739ECA2748FCF000593DC7 /* SGF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGF.swift; sourceTree = "<group>"; };
 		80739ECC2749B3D100593DC7 /* test.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.sgf; sourceTree = "<group>"; };
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		80739EC3274892F000593DC7 /* SGF */ = {
 			isa = PBXGroup;
 			children = (
-				80739EC42748932100593DC7 /* SgfMove.swift */,
-				80739EC82748A98F00593DC7 /* SgfNode.swift */,
+				80739EC42748932100593DC7 /* Move.swift */,
+				80739EC82748A98F00593DC7 /* Node.swift */,
 				80739ECA2748FCF000593DC7 /* SGF.swift */,
 			);
 			path = SGF;
@@ -451,10 +451,10 @@
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */,
-				80739EC92748A98F00593DC7 /* SgfNode.swift in Sources */,
+				80739EC92748A98F00593DC7 /* Node.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
 				80739ECB2748FCF000593DC7 /* SGF.swift in Sources */,
-				80739EC52748932100593DC7 /* SgfMove.swift in Sources */,
+				80739EC52748932100593DC7 /* Move.swift in Sources */,
 				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,

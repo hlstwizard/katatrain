@@ -22,9 +22,9 @@ class SGF {
   private(set) var content: String
   private var idx: String.Index
   
-  var root: SgfNode
+  var root: Node
 
-  static func parse_file(url: URL) throws -> SgfNode {
+  static func parse_file(url: URL) throws -> Node {
     let SGF_PAT = try! NSRegularExpression(pattern: SGF.SGF_PAT_STR, options: [.dotMatchesLineSeparators])
     
     do {
@@ -47,11 +47,11 @@ class SGF {
     self.content = content.replacingOccurrences(of: "\n", with: "")
     self.idx = self.content.startIndex
     
-    root = SgfNode()
+    root = Node()
     self.parse_branch(root)
   }
   
-  private func parse_branch(_ node: SgfNode) {
+  private func parse_branch(_ node: Node) {
     let SGF_PROP_PAT = try! NSRegularExpression(pattern: SGF.SGF_PROP_PAT_STR, options: [.dotMatchesLineSeparators])
     var current_node = node
 
@@ -69,9 +69,9 @@ class SGF {
           return
         }
         if sub == "(" {
-          self.parse_branch(SgfNode(parent: current_node))
+          self.parse_branch(Node(parent: current_node))
         } else if sub == ";" {
-          current_node = SgfNode(parent: current_node)
+          current_node = Node(parent: current_node)
         } else {
           let property = content[Range(match.range(withName: "property"), in: content)!]
           let nsrange = match.range(withName: "values")

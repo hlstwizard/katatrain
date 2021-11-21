@@ -7,13 +7,13 @@
 
 import Foundation
 
-class SgfNode {
-  var children: [SgfNode] = []
+class Node {
+  var children: [Node] = []
   var properties: [String: [String]] = [:]
-  var parent: SgfNode?
+  var parent: Node?
   
   // MARK: - Properties
-  var root: SgfNode {
+  var root: Node {
     if _root != nil {
       return _root!
     }
@@ -43,12 +43,12 @@ class SgfNode {
     return self.root.get_property(property: "RU", default_value: "japanese") as! String
   }
   
-  var placement: [SgfMove] {
-    var res: [SgfMove] = []
-    for p in SgfMove.PLAYERS {
+  var placement: [Move] {
+    var res: [Move] = []
+    for p in Move.PLAYERS {
       if let sgf_coords = get_property(property: "A\(p)") as? [String] {
         for sgf_coord in sgf_coords {
-          res.append(SgfMove.from_sgf(sgf_coords: sgf_coord, player: p))
+          res.append(Move.from_sgf(sgf_coords: sgf_coord, player: p))
         }
       }
     }
@@ -56,14 +56,14 @@ class SgfNode {
     return res
   }
   
-  var move: SgfMove? {
+  var move: Move? {
     if let move = self._move {
       return move
     } else {
-      var res: [SgfMove] = []
-      for p in SgfMove.PLAYERS {
+      var res: [Move] = []
+      for p in Move.PLAYERS {
         if let sgf_coord = get_property(property: "\(p)") as? String {
-          res.append(SgfMove.from_sgf(sgf_coords: sgf_coord, player: p))
+          res.append(Move.from_sgf(sgf_coords: sgf_coord, player: p))
         }
       }
       // Discard if there are more moves.
@@ -97,10 +97,10 @@ class SgfNode {
   }
   
   // MARK: - Private
-  private var _root: SgfNode?
-  private var _move: SgfMove?
+  private var _root: Node?
+  private var _move: Move?
   
-  init(parent: SgfNode? = nil, properties: [String: [String]] = [:], move: SgfMove? = nil) {
+  init(parent: Node? = nil, properties: [String: [String]] = [:], move: Move? = nil) {
     self.parent = parent
     self.properties = properties
     

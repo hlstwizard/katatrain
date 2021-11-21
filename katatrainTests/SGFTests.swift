@@ -19,25 +19,25 @@ class SgfTests: XCTestCase {
   }
   
   func testSgfMoveFromGTP() throws {
-    let move = SgfMove.from_gtp(gtp_coords: "A12", board_size: 19)
+    let move = Move.from_gtp(gtp_coords: "A12", board_size: 19)
     XCTAssert(move.coord! == (0, 11))
               
-    let move1 = SgfMove.from_gtp(gtp_coords: "T19", board_size: 19)
+    let move1 = Move.from_gtp(gtp_coords: "T19", board_size: 19)
     XCTAssert(move1.coord! == (18, 18))
   }
   
   func testSgfMoveEqual() throws {
-    let move = SgfMove.from_gtp(gtp_coords: "A12", board_size: 19)
-    let move1 = SgfMove.from_gtp(gtp_coords: "T19", board_size: 19)
+    let move = Move.from_gtp(gtp_coords: "A12", board_size: 19)
+    let move1 = Move.from_gtp(gtp_coords: "T19", board_size: 19)
     
-    let move2 = SgfMove(coord: (0, 11), player: "B")
+    let move2 = Move(coord: (0, 11), player: "B")
     
     XCTAssert(move != move1)
     XCTAssert(move == move2)
   }
   
   func testSgfMoveFromSGF() throws {
-    let move = SgfMove.from_sgf(sgf_coords: "aa", board_size: 19)
+    let move = Move.from_sgf(sgf_coords: "aa", board_size: 19)
     XCTAssert(move.coord! == (0, 0))
   }
   
