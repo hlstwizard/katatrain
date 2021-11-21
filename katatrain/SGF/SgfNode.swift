@@ -47,8 +47,10 @@ class SgfNode {
   var placement: [SgfMove] {
     var res: [SgfMove] = []
     for p in SgfMove.PLAYERS {
-      for sgf_coord in get_property(property: "A\(p)") as! [String] {
-        res.append(SgfMove.from_sgf(sgf_coords: sgf_coord, player: p))
+      if let sgf_coords = get_property(property: "A\(p)") as? [String] {
+        for sgf_coord in sgf_coords {
+          res.append(SgfMove.from_sgf(sgf_coords: sgf_coord, player: p))
+        }
       }
     }
     

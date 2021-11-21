@@ -46,6 +46,13 @@ class SgfTests: XCTestCase {
     let url = bundle.url(forResource: "test", withExtension: "sgf")
     let root = try! SGF.parse_file(url: url!)
     
+    XCTAssert(root.komi == 6.5)
+    let placement = root.placement
+    XCTAssert(placement.count == 4)
+    XCTAssert(placement[0].coord! == (3, 14))
+    XCTAssert(placement[0].player == "B")
+    XCTAssert(root.handicap == 4)
+    
   }
   
   func testPerformanceExample() throws {

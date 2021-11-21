@@ -51,12 +51,14 @@ class SGF {
     self.parse_branch(root)
   }
   
-  private func parse_branch(_ current_node: SgfNode) {
+  private func parse_branch(_ node: SgfNode) {
     let SGF_PROP_PAT = try! NSRegularExpression(pattern: SGF.SGF_PROP_PAT_STR, options: [.dotMatchesLineSeparators])
+    var current_node = node
 
     while self.idx != self.content.endIndex {
       let scanPointer = self.content.distance(from: self.content.startIndex, to: self.idx)
-      let matches = SGF_PROP_PAT.matches(in: content, options: [], range: NSRange(location: scanPointer, length: self.content.count))
+      let resetLength = self.content.count - scanPointer
+      let matches = SGF_PROP_PAT.matches(in: content, options: [], range: NSRange(location: scanPointer, length: resetLength))
       
       for match in matches {
         self.content.formIndex(&self.idx, offsetBy: match.range.length)
@@ -69,7 +71,7 @@ class SGF {
         if sub == "(" {
           self.parse_branch(SgfNode(parent: current_node))
         } else if sub == ";" {
-          
+          current_node = SgfNode(parent: current_node)
         } else {
           let property = content[Range(match.range(withName: "property"), in: content)!]
           let nsrange = match.range(withName: "values")
