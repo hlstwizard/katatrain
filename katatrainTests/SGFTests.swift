@@ -53,6 +53,12 @@ class SgfTests: XCTestCase {
     XCTAssert(placement[0].player == "B")
     XCTAssert(root.handicap == 4)
     
+    let firstNode = root.children[0]
+    XCTAssert(firstNode.move!.coord! == (5,15))
+    XCTAssert(firstNode.move!.player == "W")
+    XCTAssert(firstNode.children.count == 2)
+    
+    
   }
   
   func testPerformanceExample() throws {

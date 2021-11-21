@@ -11,7 +11,6 @@ class SgfNode {
   var children: [SgfNode] = []
   var properties: [String: [String]] = [:]
   var parent: SgfNode?
-  var move: SgfMove?
   
   // MARK: - Properties
   var root: SgfNode {
@@ -27,21 +26,21 @@ class SgfNode {
   }
   
   var komi: Float {
-    if let komi = Float(get_property(property: "KM") as! String) {
+    if let komi = Float(self.root.get_property(property: "KM") as! String) {
       return komi
     }
     return 6.5
   }
   
   var handicap: Int {
-    if let ha = Int(get_property(property: "HA") as! String) {
+    if let ha = Int(self.root.get_property(property: "HA") as! String) {
       return ha
     }
     return 0
   }
   
   var ruleset: String {
-    return get_property(property: "RU", default_value: "japanese") as! String
+    return self.root.get_property(property: "RU", default_value: "japanese") as! String
   }
   
   var placement: [SgfMove] {
@@ -57,6 +56,23 @@ class SgfNode {
     return res
   }
   
+  var move: SgfMove? {
+    if let move = self._move {
+      return move
+    } else {
+      var res: [SgfMove] = []
+      for p in SgfMove.PLAYERS {
+        if let sgf_coord = get_property(property: "\(p)") as? String {
+          res.append(SgfMove.from_sgf(sgf_coords: sgf_coord, player: p))
+        }
+      }
+      // Discard if there are more moves.
+      if res.isEmpty { return nil }
+      self._move = res[0]
+      return self._move
+    }
+  }
+  
   var is_root: Bool {
     return self.parent == nil
   }
@@ -67,7 +83,7 @@ class SgfNode {
   }
   
   func get_property(property: String, default_value: Any? = nil) -> Any? {
-    if let values = self.root.properties[property] {
+    if let values = self.properties[property] {
       if values.count == 1 {
         return values[0]
       } else {
@@ -82,6 +98,7 @@ class SgfNode {
   
   // MARK: - Private
   private var _root: SgfNode?
+  private var _move: SgfMove?
   
   init(parent: SgfNode? = nil, properties: [String: [String]] = [:], move: SgfMove? = nil) {
     self.parent = parent
@@ -92,7 +109,7 @@ class SgfNode {
     }
     
     if let move = move {
-      self.move = move
+      self._move = move
     }
   }
 }
