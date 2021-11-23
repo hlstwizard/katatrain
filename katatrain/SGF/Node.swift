@@ -19,6 +19,7 @@ public protocol NodeProtocol {
   var placement: [Move] { get }
   var move: Move? { get }
   var is_root: Bool { get }
+  var nodes_from_root: [NodeProtocol] { get }
   
   func add_list_property(property: String, values: [String])
   func get_property(property: String, default_value: Any?) -> Any?
@@ -38,7 +39,7 @@ open class SgfNode: NodeProtocol {
   public var children: [NodeProtocol] = []
   public var parent: NodeProtocol?
   public var properties: [String: [String]]
-
+  
   private var _root: NodeProtocol?
   private var _move: Move?
   
@@ -129,6 +130,16 @@ open class SgfNode: NodeProtocol {
     return self.parent == nil
   }
   
+  public var nodes_from_root: [NodeProtocol] {
+    var nodes: [NodeProtocol] = [self]
+    var n: NodeProtocol = self as NodeProtocol
+    while !n.is_root {
+      n = n.parent!
+      nodes.append(n)
+    }
+    return nodes
+  }
+  
   // MARK: - Public
   public func add_list_property(property: String, values: [String]) {
     self.properties[property] = values
@@ -149,16 +160,22 @@ open class SgfNode: NodeProtocol {
   }
 }
 
-// class GameNode: SgfNode {
-//  var analysis_visits_requested: Int = 0
-//  var analysis: [String: Any] = [:]
-//  
-//  override init(parent: GameNode? = nil, properties: [String: [String]] = [:], move: Move? = nil) {
-//    super.init(parent: parent, properties: properties, move: move)
-//    
-//  }
-//  
-//  func load_analysis() {
-//    
-//  }
-// }
+final class GameNode: SgfNode {
+  var analysis_visits_requested: Int = 0
+  var analysis: [String: Any] = [:]
+  var analysis_from_sgf: [String] = []
+  
+  func analyse(engine: Katago) {
+    
+  }
+  
+  override func add_list_property(property: String, values: [String]) {
+    if property == "KT" {
+      self.analysis_from_sgf = values
+    } else if property == "C" {
+      // TODO: Comment in SGF
+    } else {
+      super.add_list_property(property: property, values: values)
+    }
+  }
+}

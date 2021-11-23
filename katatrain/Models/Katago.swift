@@ -17,6 +17,9 @@ class Katago: ObservableObject {
   @Published var canReplay: Bool = false
   @Published var inTrial: Bool = false
   
+  var size_x = 19
+  var size_y = 19
+  
   var initFinished: Bool {
     initProgress == 1.0
   }
@@ -110,6 +113,51 @@ class Katago: ObservableObject {
         self.engine.addInputRequest(request)
       }
     }
+  }
+  
+  static func get_rules(ruleset: String) -> String {
+    let RULESET = [
+      "jp": "japanese",
+      "cn": "chinese",
+      "ko": "korean",
+      "aga": "aga",
+      "tt": "tromp-taylor",
+      "nz": "new zealand",
+      "stone_scoring": "stone_scoring"
+    ]
+    
+    if let result = RULESET[ruleset] {
+      return result
+    } else if RULESET.values.contains(ruleset) {
+      return ruleset
+    } else {
+      return "japanese"
+    }
+  }
+  
+  func request_analysis(analysis_node: NodeProtocol) {
+    let nodes = analysis_node.nodes_from_root
+    
+    let moves = nodes.reduce(into: []) { result, nextNode in
+      if let move = nextNode.move {
+        result.append(move)
+      }
+    }
+    
+    let initial_stones = nodes.reduce(into: []) { result, nextNode in
+      _ = nextNode.placement.map {
+        result.append($0)
+      }
+    }
+    
+    let query: [String: Any] = [
+      "rules": Katago.get_rules(ruleset: analysis_node.ruleset),
+      "analyzeTurns": [moves.count],
+      "komi": analysis_node.komi,
+      "boardXSize": size_x,
+      "boardYSize": size_y
+      
+    ]
   }
   
   func getColors() -> [NSNumber] {

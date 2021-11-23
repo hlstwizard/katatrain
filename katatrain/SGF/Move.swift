@@ -70,4 +70,13 @@ public struct Move: Equatable {
       return "B"
     }
   }
+  
+  func gtp() -> String {
+    if self.is_pass() {
+      return "pass"
+    } else {
+      let index = Move.GTP_COORD.index(Move.GTP_COORD.startIndex, offsetBy: self.coord!.0)
+      return "\(Move.GTP_COORD[index])\(self.coord!.1 + 1)"
+    }
+  }
 }

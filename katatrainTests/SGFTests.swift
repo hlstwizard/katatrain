@@ -41,6 +41,11 @@ class SgfTests: XCTestCase {
     XCTAssert(move.coord! == (0, 0))
   }
   
+  func testSgfToGTP() throws {
+    let move = Move.from_sgf(sgf_coords: "aa", board_size: 19)
+    XCTAssert(move.gtp() == "A1")
+  }
+  
   func testSgfLoadFile() throws {
     let bundle = Bundle(for: type(of: self))
     let url = bundle.url(forResource: "test", withExtension: "sgf")
@@ -58,7 +63,7 @@ class SgfTests: XCTestCase {
     XCTAssert(firstNode.move!.player == "W")
     XCTAssert(firstNode.children.count == 2)
     
-    
+    XCTAssert(root.children[0].ruleset == "japanese")
   }
   
   func testPerformanceExample() throws {
