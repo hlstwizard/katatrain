@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-class SGF {
+let SGF_PAT_STR = #"\(;(.*)\)"#
+let SGF_PROP_PAT_STR = #"\s*(?:\(|\)|;|"# +
+  #"(?<property>\w+)"# +
+  #"(?<values>(\s*\[([^\]\\]|\\.)*\])+))"#
+
+class SGF<Node: NodeProtocol> {
   enum SGFError: Error {
     case failedToLoadFile
     case noNodeInFile
   }
-  
-  static let SGF_PAT_STR = #"\(;(.*)\)"#
-  static let SGF_PROP_PAT_STR = #"\s*(?:\(|\)|;|"# +
-    #"(?<property>\w+)"# +
-    #"(?<values>(\s*\[([^\]\\]|\\.)*\])+))"#
   
   private(set) var content: String
   private var idx: String.Index
@@ -25,7 +25,7 @@ class SGF {
   var root: Node
 
   static func parse_file(url: URL) throws -> Node {
-    let SGF_PAT = try! NSRegularExpression(pattern: SGF.SGF_PAT_STR, options: [.dotMatchesLineSeparators])
+    let SGF_PAT = try! NSRegularExpression(pattern: SGF_PAT_STR, options: [.dotMatchesLineSeparators])
     
     do {
       let data = try Data(contentsOf: url)
@@ -52,7 +52,7 @@ class SGF {
   }
   
   private func parse_branch(_ node: Node) {
-    let SGF_PROP_PAT = try! NSRegularExpression(pattern: SGF.SGF_PROP_PAT_STR, options: [.dotMatchesLineSeparators])
+    let SGF_PROP_PAT = try! NSRegularExpression(pattern: SGF_PROP_PAT_STR, options: [.dotMatchesLineSeparators])
     var current_node = node
 
     while self.idx != self.content.endIndex {
@@ -68,10 +68,11 @@ class SGF {
         if sub == ")" {
           return
         }
+        var _parent: NodeProtocol? = current_node as NodeProtocol
         if sub == "(" {
-          self.parse_branch(Node(parent: current_node))
+          self.parse_branch(Node(parent: &_parent))
         } else if sub == ";" {
-          current_node = Node(parent: current_node)
+          current_node = Node(parent: &_parent)
         } else {
           let property = content[Range(match.range(withName: "property"), in: content)!]
           let nsrange = match.range(withName: "values")

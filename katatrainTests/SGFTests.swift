@@ -44,7 +44,7 @@ class SgfTests: XCTestCase {
   func testSgfLoadFile() throws {
     let bundle = Bundle(for: type(of: self))
     let url = bundle.url(forResource: "test", withExtension: "sgf")
-    let root = try! SGF.parse_file(url: url!)
+    let root = try! SGF<SgfNode>.parse_file(url: url!)
     
     XCTAssert(root.komi == 6.5)
     let placement = root.placement

@@ -7,13 +7,65 @@
 
 import Foundation
 
-class Node {
-  var children: [Node] = []
-  var properties: [String: [String]] = [:]
-  var parent: Node?
+public protocol NodeProtocol {
+  var children: [NodeProtocol] { get set }
+  var properties: [String: [String]] { get set }
+  var parent: NodeProtocol? { get set }
+  var root: NodeProtocol { get }
+  
+  var komi: Float { get }
+  var handicap: Int { get }
+  var ruleset: String { get }
+  var placement: [Move] { get }
+  var move: Move? { get }
+  var is_root: Bool { get }
+  
+  func add_list_property(property: String, values: [String])
+  func get_property(property: String, default_value: Any?) -> Any?
+  
+  init()
+  init(parent: inout NodeProtocol?)
+  init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?)
+}
+
+extension NodeProtocol {
+  func get_property(property: String, default_value: Any? = nil ) -> Any? {
+    return get_property(property: property, default_value: default_value)
+  }
+}
+
+open class SgfNode: NodeProtocol {
+  public var children: [NodeProtocol] = []
+  public var parent: NodeProtocol?
+  public var properties: [String: [String]]
+
+  private var _root: NodeProtocol?
+  private var _move: Move?
+  
+  required public init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?) {
+    self.parent = parent
+    self.properties = properties
+    
+    if self.parent != nil {
+      self.parent!.children.append(self)
+    }
+    
+    if let move = move {
+      self._move = move
+    }
+  }
+  
+  required convenience public init() {
+    var parent: NodeProtocol?
+    self.init(parent: &parent, properties: [:], move: nil)
+  }
+  
+  required convenience public init(parent: inout NodeProtocol?) {
+    self.init(parent: &parent, properties: [:], move: nil)
+  }
   
   // MARK: - Properties
-  var root: Node {
+  public var root: NodeProtocol {
     if _root != nil {
       return _root!
     }
@@ -25,25 +77,25 @@ class Node {
     }
   }
   
-  var komi: Float {
+  public var komi: Float {
     if let komi = Float(self.root.get_property(property: "KM") as! String) {
       return komi
     }
     return 6.5
   }
   
-  var handicap: Int {
+  public var handicap: Int {
     if let ha = Int(self.root.get_property(property: "HA") as! String) {
       return ha
     }
     return 0
   }
   
-  var ruleset: String {
+  public var ruleset: String {
     return self.root.get_property(property: "RU", default_value: "japanese") as! String
   }
   
-  var placement: [Move] {
+  public var placement: [Move] {
     var res: [Move] = []
     for p in Move.PLAYERS {
       if let sgf_coords = get_property(property: "A\(p)") as? [String] {
@@ -56,7 +108,7 @@ class Node {
     return res
   }
   
-  var move: Move? {
+  public var move: Move? {
     if let move = self._move {
       return move
     } else {
@@ -73,16 +125,16 @@ class Node {
     }
   }
   
-  var is_root: Bool {
+  public var is_root: Bool {
     return self.parent == nil
   }
   
   // MARK: - Public
-  func add_list_property(property: String, values: [String]) {
+  public func add_list_property(property: String, values: [String]) {
     self.properties[property] = values
   }
   
-  func get_property(property: String, default_value: Any? = nil) -> Any? {
+  public func get_property(property: String, default_value: Any? = nil) -> Any? {
     if let values = self.properties[property] {
       if values.count == 1 {
         return values[0]
@@ -95,21 +147,18 @@ class Node {
     }
     return nil
   }
-  
-  // MARK: - Private
-  private var _root: Node?
-  private var _move: Move?
-  
-  init(parent: Node? = nil, properties: [String: [String]] = [:], move: Move? = nil) {
-    self.parent = parent
-    self.properties = properties
-    
-    if let parent = self.parent {
-      parent.children.append(self)
-    }
-    
-    if let move = move {
-      self._move = move
-    }
-  }
 }
+
+// class GameNode: SgfNode {
+//  var analysis_visits_requested: Int = 0
+//  var analysis: [String: Any] = [:]
+//  
+//  override init(parent: GameNode? = nil, properties: [String: [String]] = [:], move: Move? = nil) {
+//    super.init(parent: parent, properties: properties, move: move)
+//    
+//  }
+//  
+//  func load_analysis() {
+//    
+//  }
+// }

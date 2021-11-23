@@ -8,7 +8,7 @@
 import Foundation
 
 /// Actually it's a move but with a bad naming
-struct Move: Equatable {
+public struct Move: Equatable {
   static let PLAYERS = "BW"
   // Enough for size < 26
   // Not I in the COORD
@@ -16,7 +16,7 @@ struct Move: Equatable {
 
   typealias Coord = (Int, Int)
   
-  static func == (lhs: Move, rhs: Move) -> Bool {
+  public static func == (lhs: Move, rhs: Move) -> Bool {
     if lhs.coord == nil && rhs.coord == nil {
       return lhs.player == rhs.player
     } else if lhs.coord != nil || rhs.coord != nil {
