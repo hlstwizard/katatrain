@@ -21,6 +21,7 @@ public protocol NodeProtocol {
   var is_root: Bool { get }
   var initial_player: Character { get }
   var nodes_from_root: [NodeProtocol] { get }
+  var board_size: (Int, Int) { get }
   
   func add_list_property(property: String, values: [String])
   func get_property(property: String, default_value: Any?) -> Any?
@@ -163,6 +164,19 @@ open class SgfNode: NodeProtocol {
       nodes.append(n)
     }
     return nodes
+  }
+  
+  public var board_size: (Int, Int) {
+    if let board_size: String = self.root.get_property(property: "SZ", default_value: "19") as? String {
+      if board_size.contains(":") {
+        let size_tuple = board_size.components(separatedBy: ":").map { String($0) }
+        return (Int(size_tuple[0]) ?? 19, Int(size_tuple[1]) ?? 19)
+      } else {
+        return (Int(board_size) ?? 19, Int(board_size) ?? 19)
+      }
+    } else {
+      return (19, 19)
+    }
   }
   
   // MARK: - Public

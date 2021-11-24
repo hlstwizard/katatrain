@@ -13,7 +13,7 @@ extension BoardView {
     if point.x == -1 || point.y == -1 {
       return
     }
-    if katago.isThinking {
+    if katago.isIdle {
       NSLog("Be patient..")
       return
     }

@@ -10,7 +10,7 @@ import Combine
 
 class Katago: ObservableObject {
   @Published var initProgress: Double = 0
-  @Published var isThinking: Bool = false
+  @Published var isIdle: Bool = false
   @Published var lastMove: Loc = -1
   
   @Published var canUndo: Bool = false
@@ -101,23 +101,6 @@ class Katago: ObservableObject {
     eventHandler = nil
   }
   
-  func request_analysis(action: String? = nil) {
-    let id = UUID().uuidString
-    appendingResults.insert(id)
-    isThinking = true
-    
-    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-      guard let self = self else { return }
-      if let action = action {
-        self.engine.addInputRequest("{\"id\":\"\(id)\",\"action\":\"\(action)\"}")
-      } else {
-        let request = self.game.toRequestJson(id)
-        NSLog(request)
-        self.engine.addInputRequest(request)
-      }
-    }
-  }
-  
   static func get_rules(ruleset: String) -> String {
     let RULESET = [
       "jp": "japanese",
@@ -138,7 +121,44 @@ class Katago: ObservableObject {
     }
   }
   
-  func request_analysis(analysis_node: NodeProtocol, queue: DispatchQueue? = nil) {
+  func clearCache(queue: DispatchQueue? = nil) {
+    self.requestAnalysis(action: ["action": "clear_cache", "id": UUID().uuidString], queue: queue)
+  }
+  
+  func getKatagoVersion(queue: DispatchQueue? = nil) {
+    self.requestAnalysis(action: ["action": "query_version", "id": UUID().uuidString], queue: queue)
+  }
+  
+  func terminateQuery(query_id: String, queue: DispatchQueue? = nil) {
+    self.requestAnalysis(action: ["action": "terminate", "terminatedId": query_id], queue: queue)
+  }
+  
+  func requestAnalysis(action: Any, queue: DispatchQueue? = nil) {
+    let sending = { [weak self] in
+      guard let self = self else { return }
+    
+      do {
+        if let request = String(data: try JSONSerialization.data(withJSONObject: action, options: []), encoding: .utf8) {
+          NSLog("Sending request: \(action)")
+          self.engine.addInputRequest(request)
+        }
+      } catch {
+        NSLog("Failed to JSONify request: \(action)")
+      }
+    }
+    
+    if let queue = queue {
+      queue.async {
+        sending()
+      }
+    } else {
+      DispatchQueue.global(qos: .userInitiated).async {
+        sending()
+      }
+    }
+  }
+  
+  func requestAnalysis(analysis_node: NodeProtocol, queue: DispatchQueue? = nil) {
     let nodes = analysis_node.nodes_from_root
     
     let moves: [Move] = nodes.reduce(into: []) { result, nextNode in
@@ -167,7 +187,7 @@ class Katago: ObservableObject {
       "moves": moves.map { [String($0.player), $0.gtp()] }
     ]
     
-    isThinking = true
+    isIdle = true
     appendingResults.insert("\(queryCounter)")
     
     let sending = { [weak self] in
@@ -232,7 +252,7 @@ class Katago: ObservableObject {
             let opp = Player(getOpp(player: player).rawValue)
             
             DispatchQueue.main.async { [unowned self] in
-              self.isThinking = false
+              self.isIdle = false
               game.makeMove(loc, opp)
               lastMove = game.getLastMove().int16Value
             }
@@ -250,12 +270,7 @@ class Katago: ObservableObject {
   }
   
   func play(loc: Loc, player: PlayerColor = .P_BLACK) {
-    game.makeMove(loc, Int8(player.rawValue))
-    lastMove = game.getLastMove().int16Value
-    canUndo = true
-    if player == .P_BLACK {
-      request_analysis()
-    }
+    
   }
   
   func undo() {
@@ -277,9 +292,6 @@ class Katago: ObservableObject {
   
   func newGame(handicap: UInt8) {
     game.newGame(handicap)
-    if handicap > 0 {
-      request_analysis()
-    }
     objectWillChange.send()
   }
   

@@ -33,7 +33,7 @@ struct ControlView: View {
         }
       }
       
-      Circle().fill(katago.isThinking ? .red : .green)
+      Circle().fill(katago.isIdle ? .red : .green)
         .frame(width: 20.0, height: 20.0)
     }
   }

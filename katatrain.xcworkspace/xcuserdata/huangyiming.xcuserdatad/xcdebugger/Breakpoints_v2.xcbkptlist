@@ -103,22 +103,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C31A69AB-725F-4CD8-9EAD-422FEAAD9918"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "katatrain/Models/Katago.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "play(loc:player:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EF9C15F6-2158-46DA-A136-5ABE56EA8FAD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -238,8 +222,8 @@
             filePath = "katatrain/Models/Katago.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "fetchResultHandle()"
             landmarkType = "7">
          </BreakpointContent>

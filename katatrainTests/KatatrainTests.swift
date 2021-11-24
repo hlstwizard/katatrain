@@ -30,16 +30,26 @@ class KatatrainTests: XCTestCase {
     // Wait for katago init
     sleep(5)
     
-    katago.request_analysis(analysis_node: root, queue: queue)
+    katago.requestAnalysis(analysis_node: root, queue: queue)
     XCTAssert(!katago.appendingResults.isEmpty)
     
     queue.sync { }
     
-    while katago.isThinking {
+    while katago.isIdle {
       sleep(1)
     }
     
     XCTAssert(!katago.analysisResult.isEmpty)
+  }
+  
+  func testQueryVersion() throws {
+    let queue = DispatchQueue(label: "KatagoEngineTests")
+    
+    // Wait for katago init
+    sleep(5)
+    
+    katago.getKatagoVersion(queue: queue)
+    queue.sync { }
   }
   
   func testPerformanceExample() throws {
