@@ -64,6 +64,8 @@ class SgfTests: XCTestCase {
     XCTAssert(firstNode.children.count == 2)
     
     XCTAssert(root.children[0].ruleset == "japanese")
+    
+    XCTAssert(root.initial_player == "W")
   }
   
   func testPerformanceExample() throws {

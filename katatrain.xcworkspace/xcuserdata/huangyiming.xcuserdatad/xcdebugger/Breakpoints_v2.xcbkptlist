@@ -103,38 +103,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BF43A6B0-C4E8-4292-9B8F-0F48439345B2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "katatrain/Models/Katago.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "fetchResultHandle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "267A55A2-30ED-4241-80BD-836A1AEF0147"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "katatrain/Models/Katago.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "fetchResultHandle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C31A69AB-725F-4CD8-9EAD-422FEAAD9918"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -142,8 +110,8 @@
             filePath = "katatrain/Models/Katago.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "play(loc:player:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -209,6 +177,70 @@
             startingLineNumber = "61"
             endingLineNumber = "61"
             landmarkName = "parse_branch(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5F3831DA-E813-4E30-8C03-29A21CC60B23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "katatrainTests/KatatrainTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "testSendingAnalysisRequest()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5F3831DA-E813-4E30-8C03-29A21CC60B23 - 78cb01d15d83c72d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "katatrainTests.KatatrainTests.testSendingAnalysisRequest() throws -&gt; ()"
+                  moduleName = "katatrainTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huangyiming/Git/hlstwizard/katatrain/katatrainTests/KatatrainTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "1959">
+               </Location>
+               <Location
+                  uuid = "5F3831DA-E813-4E30-8C03-29A21CC60B23 - 78cb01d15d83c7d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "katatrainTests.KatatrainTests.testSendingAnalysisRequest() throws -&gt; ()"
+                  moduleName = "katatrainTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huangyiming/Git/hlstwizard/katatrain/katatrainTests/KatatrainTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "2100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD72942B-3CCB-4C3C-948A-6A57AF9AE361"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "katatrain/Models/Katago.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "fetchResultHandle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

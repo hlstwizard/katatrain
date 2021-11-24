@@ -19,6 +19,7 @@ public protocol NodeProtocol {
   var placement: [Move] { get }
   var move: Move? { get }
   var is_root: Bool { get }
+  var initial_player: Character { get }
   var nodes_from_root: [NodeProtocol] { get }
   
   func add_list_property(property: String, values: [String])
@@ -128,6 +129,30 @@ open class SgfNode: NodeProtocol {
   
   public var is_root: Bool {
     return self.parent == nil
+  }
+  
+  public var initial_player: Character {
+    if let player = root.get_property(property: "PL") as? String {
+      if player.uppercased().trimmingCharacters(in: .whitespacesAndNewlines) == "B" {
+        return "B"
+      } else {
+        return "W"
+      }
+    } else if !root.children.isEmpty {
+      for child in root.children {
+        for color in ["B", "W"] {
+          if let player = child.get_property(property: color) as? Character {
+            return player
+          }
+        }
+      }
+    }
+    
+    if self.properties["AB"] != nil && self.properties["AW"] == nil {
+      return "W"
+    } else {
+      return "B"
+    }
   }
   
   public var nodes_from_root: [NodeProtocol] {
