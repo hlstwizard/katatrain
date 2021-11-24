@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import katatrain
 
 class KatatrainTests: XCTestCase {
@@ -19,9 +20,26 @@ class KatatrainTests: XCTestCase {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
   
-  func testGetOpp() throws {
-    XCTAssertEqual (katago.getOpp(player: .P_BLACK), PlayerColor.P_WHITE)
-    XCTAssertEqual (katago.getOpp(player: .P_WHITE), PlayerColor.P_BLACK)
+  func testSendingAnalysisRequest() throws {
+    let bundle = Bundle(for: type(of: self))
+    let url = bundle.url(forResource: "test", withExtension: "sgf")
+    let root = try! SGF<SgfNode>.parse_file(url: url!)
+    
+    let queue = DispatchQueue(label: "KatagoEngineTests")
+    
+    // Wait for katago init
+    sleep(5)
+    
+    katago.request_analysis(analysis_node: root, queue: queue)
+    XCTAssert(!katago.appendingResults.isEmpty)
+    
+    queue.sync { }
+    
+    while katago.isThinking {
+      sleep(1)
+    }
+    
+    XCTAssert(!katago.analysisResult.isEmpty)
   }
   
   func testPerformanceExample() throws {

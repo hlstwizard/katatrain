@@ -17,6 +17,12 @@ class Katago: ObservableObject {
   @Published var canReplay: Bool = false
   @Published var inTrial: Bool = false
   
+  var queryCounter = 0
+  var analysisResult: [String] = []
+  
+  var size_x = 19
+  var size_y = 19
+  
   var initFinished: Bool {
     initProgress == 1.0
   }
@@ -112,6 +118,82 @@ class Katago: ObservableObject {
     }
   }
   
+  static func get_rules(ruleset: String) -> String {
+    let RULESET = [
+      "jp": "japanese",
+      "cn": "chinese",
+      "ko": "korean",
+      "aga": "aga",
+      "tt": "tromp-taylor",
+      "nz": "new zealand",
+      "stone_scoring": "stone_scoring"
+    ]
+    
+    if let result = RULESET[ruleset] {
+      return result
+    } else if RULESET.values.contains(ruleset) {
+      return ruleset
+    } else {
+      return "japanese"
+    }
+  }
+  
+  func request_analysis(analysis_node: NodeProtocol, queue: DispatchQueue? = nil) {
+    let nodes = analysis_node.nodes_from_root
+    
+    let moves: [Move] = nodes.reduce(into: []) { result, nextNode in
+      if let move = nextNode.move {
+        result.append(move)
+      }
+    }
+    
+    let initial_stones = nodes.reduce(into: []) { result, nextNode in
+      _ = nextNode.placement.map {
+        result.append($0)
+      }
+    }
+    
+    queryCounter += 1
+    
+    let query: [String: Any] = [
+      "id": "\(queryCounter)",
+      "rules": Katago.get_rules(ruleset: analysis_node.ruleset),
+      "analyzeTurns": [moves.count],
+      "komi": analysis_node.komi,
+      "boardXSize": size_x,
+      "boardYSize": size_y,
+      "initialStones": initial_stones.map { [String($0.player), $0.gtp()] },
+      "initialPlayer": String(analysis_node.initial_player),
+      "moves": moves.map { [String($0.player), $0.gtp()] }
+    ]
+    
+    isThinking = true
+    appendingResults.insert("\(queryCounter)")
+    
+    let sending = { [weak self] in
+      guard let self = self else { return }
+      
+      do {
+        if let request = String(data: try JSONSerialization.data(withJSONObject: query, options: []), encoding: .utf8) {
+          NSLog("Sending request: \(query)")
+          self.engine.addInputRequest(request)
+        }
+      } catch {
+        NSLog("Failed to JSONify request: \(query)")
+      }
+    }
+    
+    if let queue = queue {
+      queue.async {
+        sending()
+      }
+    } else {
+      DispatchQueue.global(qos: .userInitiated).async {
+        sending()
+      }
+    }
+  }
+  
   func getColors() -> [NSNumber] {
     return game.getColors().compactMap({ $0 as? NSNumber })
   }
@@ -119,6 +201,7 @@ class Katago: ObservableObject {
   func fetchResultHandle() {
     let result = self.engine.fetchResult()
     if !result.isEmpty {
+      analysisResult.append(result)
       if let data = result.data(using: String.Encoding.utf8) {
         do {
           let parsedResult = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -128,11 +211,7 @@ class Katago: ObservableObject {
             }
             return
           }
-          if let id = parsedResult?["id"]! as? String {
-            if let error = parsedResult?["error"] as? String {
-              NSLog("Query result \(id) error -- \(error)")
-              return
-            }
+          if let id = parsedResult?["id"] as? String {
             if !appendingResults.contains(id) {
               NSLog("Query result \(id) discarded -- recent new game or node reset?")
               return
@@ -158,8 +237,11 @@ class Katago: ObservableObject {
               lastMove = game.getLastMove().int16Value
             }
             appendingResults.remove(id)
-            
+          } else if let error = parsedResult?["error"] as? String {
+            NSLog("Query result error -- \(error)")
+            return
           }
+          
         } catch {
           NSLog(error.localizedDescription)
         }
