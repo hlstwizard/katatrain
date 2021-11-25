@@ -8,7 +8,7 @@
 import Foundation
 
 /// Actually it's a move but with a bad naming
-public struct Move: Equatable {
+public struct Move: Equatable, Hashable {
   static let PLAYERS = "BW"
   // Enough for size < 26
   // Not I in the COORD
@@ -23,6 +23,12 @@ public struct Move: Equatable {
       return lhs.coord! == rhs.coord! && lhs.player == rhs.player
     }
     return false
+  }
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(coord?.0)
+    hasher.combine(coord?.1)
+    hasher.combine(player)
   }
   
   /// `gtp_coords` e.g. `A12`, `H3`

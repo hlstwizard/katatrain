@@ -21,6 +21,7 @@
 		8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8075D3BD27302EC500AFE931 /* analysis_example.cfg */; };
 		80904A032737FBD10032B8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5943271476C1009A24AC /* Assets.xcassets */; };
 		809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809261DC273BEF2E00CE2903 /* StatusView.swift */; };
+		80945E51274F185E00A75F66 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80945E50274F185E00A75F66 /* Errors.swift */; };
 		809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809A307D272CDDDD005A0C45 /* Katagob40.plist */; };
 		80B36AF127361959008FFDB0 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF027361959008FFDB0 /* LandingView.swift */; };
 		80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF2273625B5008FFDB0 /* GameView.swift */; };
@@ -79,6 +80,7 @@
 		8075D3BD27302EC500AFE931 /* analysis_example.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = analysis_example.cfg; sourceTree = "<group>"; };
 		809261DC273BEF2E00CE2903 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		809261DE273BF22600CE2903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		80945E50274F185E00A75F66 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		809A307D272CDDDD005A0C45 /* Katagob40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Katagob40.plist; sourceTree = "<group>"; };
 		80B36AF027361959008FFDB0 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		80B36AF2273625B5008FFDB0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				80BD07CE272BC01C00A4735C /* Katago.swift */,
 				8052CB0D274E558B00B875C1 /* Game.swift */,
+				80945E50274F185E00A75F66 /* Errors.swift */,
 				80459987272D5B8D00B40C35 /* Types.swift */,
 				809A307D272CDDDD005A0C45 /* Katagob40.plist */,
 				80CC596A27147770009A24AC /* Katagob40.mlmodel */,
@@ -467,6 +470,7 @@
 				80F7829A2718265900A9090C /* IntArray+NSNumber.swift in Sources */,
 				80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */,
 				80459988272D5B8D00B40C35 /* Types.swift in Sources */,
+				80945E51274F185E00A75F66 /* Errors.swift in Sources */,
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
