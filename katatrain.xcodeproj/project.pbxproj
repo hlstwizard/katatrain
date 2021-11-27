@@ -29,6 +29,8 @@
 		80B36AF827377126008FFDB0 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B36AF727377126008FFDB0 /* ControlView.swift */; };
 		80BD07CF272BC01C00A4735C /* Katago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD07CE272BC01C00A4735C /* Katago.swift */; };
 		80C0E2F02717D406003377D7 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0E2EF2717D406003377D7 /* Logging */; };
+		80C803192751DDBD0078CA90 /* NodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C803182751DDBD0078CA90 /* NodeProtocol.swift */; };
+		80C8031B2751DF250078CA90 /* GameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8031A2751DF250078CA90 /* GameProtocol.swift */; };
 		80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC593F271476BF009A24AC /* KatatrainApp.swift */; };
 		80CC5942271476BF009A24AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC5941271476BF009A24AC /* ContentView.swift */; };
 		80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CC5946271476C2009A24AC /* Preview Assets.xcassets */; };
@@ -87,6 +89,8 @@
 		80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		80B36AF727377126008FFDB0 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		80BD07CE272BC01C00A4735C /* Katago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Katago.swift; sourceTree = "<group>"; };
+		80C803182751DDBD0078CA90 /* NodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeProtocol.swift; sourceTree = "<group>"; };
+		80C8031A2751DF250078CA90 /* GameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProtocol.swift; sourceTree = "<group>"; };
 		80CC593C271476BF009A24AC /* katatrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katatrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CC593F271476BF009A24AC /* KatatrainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatatrainApp.swift; sourceTree = "<group>"; };
 		80CC5941271476BF009A24AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -168,6 +172,15 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		80C803172751DDA50078CA90 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				80C803182751DDBD0078CA90 /* NodeProtocol.swift */,
+				80C8031A2751DF250078CA90 /* GameProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		80CC5933271476BF009A24AC = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +206,7 @@
 		80CC593E271476BF009A24AC /* katatrain */ = {
 			isa = PBXGroup;
 			children = (
+				80C803172751DDA50078CA90 /* Protocols */,
 				80739EC3274892F000593DC7 /* SGF */,
 				8075D3BC27302EB500AFE931 /* Configs */,
 				80CC597C2715C33C009A24AC /* Views */,
@@ -458,10 +472,12 @@
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */,
 				80739EC92748A98F00593DC7 /* Node.swift in Sources */,
+				80C803192751DDBD0078CA90 /* NodeProtocol.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
 				80739ECB2748FCF000593DC7 /* SGF.swift in Sources */,
 				80739EC52748932100593DC7 /* Move.swift in Sources */,
 				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
+				80C8031B2751DF250078CA90 /* GameProtocol.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,

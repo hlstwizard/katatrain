@@ -7,7 +7,8 @@
 
 import Foundation
 
-open class BaseGame {
+class BaseGame: GameProtocol {
+  
   let engine: Katago
   var root: GameNode
   var gameId: String
@@ -44,9 +45,14 @@ open class BaseGame {
     return y * boardSize.0 + x
   }
   
+  private func getLoc(move: Move) -> Int {
+    return getLoc(x: move.coord!.0, y: move.coord!.1)
+  }
+  
   private func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
     let sizeX = boardSize.0
     let sizeY = boardSize.1
+    let loc = getLoc(x: move.coord!.0, y: move.coord!.1)
     
     let neighbours = { (moves: [Move]) -> Set<Int> in
       var res = Set<Int>()
@@ -54,7 +60,7 @@ open class BaseGame {
         for delta in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
           if 0 <= (m.coord!.0 + delta.0) && (m.coord!.0 + delta.0) < sizeX &&
               0 <= (m.coord!.1 + delta.1) && (m.coord!.0 + delta.0) < sizeY {
-            res.insert(self.getLoc(x: m.coord!.1 + delta.1, y: m.coord!.0 + delta.0))
+            res.insert(self.board[self.getLoc(x: m.coord!.1 + delta.1, y: m.coord!.0 + delta.0)])
           }
         }
       }
@@ -66,11 +72,65 @@ open class BaseGame {
     
     if move.is_pass() { return }
     
-    if self.getLoc(x: move.coord!.1, y: move.coord!.0) != -1 {
+    if self.board[loc] != -1 {
       throw GameError.IllegalMoveError("Space already occupied")
     }
     
     // merge chains connected by this move, or create a new one
+    let nb_chains = Array(neighbours([move]).filter { $0 >= 0 && self.chains[$0][0].player == move.player })
+    var this_chain: Int
+    if nb_chains.isEmpty {
+      this_chain = self.chains.count
+      self.chains.append([move])
+    } else {
+      this_chain = nb_chains[0]
+      for i in 0..<self.board.count {
+        let sq = self.board[i]
+        if nb_chains.contains(sq) {
+          self.board[i] = this_chain
+        }
+      }
+      
+      for oc in nb_chains[1...] {
+        self.chains[this_chain] += self.chains[oc]
+        // Keep the chain for undo/redo
+        self.chains[oc] = []
+      }
+      self.chains[this_chain].append(move)
+    }
+    self.board[loc] = this_chain
+    
+    // check captures
+    let opp_nb_chains = neighbours([move]).filter { $0 >= 0 && self.chains[$0][0].player != move.player }
+    for c in opp_nb_chains {
+      // no liberties
+      if !neighbours(self.chains[c]).contains(-1) {
+        self.lastCapture += self.chains[c]
+        for om in self.chains[c] {
+          self.board[getLoc(move: om)] = -1
+        }
+        self.chains[c] = []
+      }
+    }
+    if koOrSnapback && self.lastCapture.count == 1 && !ignore_ko {
+      throw GameError.IllegalMoveError("Ko")
+    }
+    self.prisoners += self.lastCapture
+    
+    if !neighbours(self.chains[this_chain]).contains(-1) {
+      throw GameError.IllegalMoveError("Suicide")
+    }
+  }
+  
+  func play(move: Move, ignore_ko: Bool) {
+    
+  }
+  
+  func undo(n_times: UInt = 1) {
+    
+  }
+  
+  func redo(n_times: UInt) {
     
   }
 }
