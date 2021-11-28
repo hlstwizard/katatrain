@@ -46,6 +46,17 @@ class SgfTests: XCTestCase {
     XCTAssert(move.gtp() == "A1")
   }
   
+  func testSgfExpandPlacement() throws {
+    let node = SgfNode()
+    node.add_list_property(property: "AB", values: ["pd:dd"])
+    
+    let placements: [Move] = node.placements.sorted { $0.coord! < $1.coord! }
+    
+    XCTAssert(placements.count == 13)
+    XCTAssert(placements[0].coord! == (3, 15))
+    XCTAssert(placements[12].coord! == (15, 15))
+  }
+  
   func testSgfLoadFile() throws {
     let bundle = Bundle(for: type(of: self))
     let url = bundle.url(forResource: "test", withExtension: "sgf")

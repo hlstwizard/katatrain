@@ -27,6 +27,7 @@ protocol NodeProtocol {
   
   func add_list_property(property: String, values: [String])
   func get_property(property: String, default_value: Any?) -> Any?
+  func get_properties(property: String, default_value: [Any]) -> [Any]
   
   init()
   init(parent: inout NodeProtocol?)
@@ -34,7 +35,11 @@ protocol NodeProtocol {
 }
 
 extension NodeProtocol {
-  func get_property(property: String, default_value: Any? = nil ) -> Any? {
+  func get_property(property: String, default_value: Any? = nil) -> Any? {
     return get_property(property: property, default_value: default_value)
+  }
+  
+  func get_properties(property: String, default_value: [Any] = [] ) -> [Any] {
+    return get_properties(property: property, default_value: default_value)
   }
 }

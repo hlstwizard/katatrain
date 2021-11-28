@@ -44,7 +44,7 @@ class SgfNode: NodeProtocol {
     } else {
       sgf_pl = "E"
     }
-    let placements = get_property(property: "A\(sgf_pl)", default_value: []) as! [String]
+    let placements = get_properties(property: "A\(sgf_pl)", default_value: []) as! [String]
     if placements.isEmpty {
       return []
     }
@@ -52,7 +52,26 @@ class SgfNode: NodeProtocol {
     if to_be_expanded.isEmpty {
       return placements.map { Move.from_sgf(sgf_coords: $0, board_size: self.board_size, player: sgf_pl) }
     } else {
-      return []
+      var coords = Set(  placements.filter { !$0.contains(":") } .map { Move.from_sgf(sgf_coords: $0, player: sgf_pl) } )
+      for p in to_be_expanded {
+        let from_to_coords = p.split(separator: ":")[..<2].map { Move.from_sgf(sgf_coords: String($0), player: sgf_pl) }
+        let from_coord = from_to_coords[0]
+        let to_coord = from_to_coords[1]
+        
+        let minX = min(from_coord.coord!.0, to_coord.coord!.0)
+        let maxX = max(from_coord.coord!.0, to_coord.coord!.0)
+        let minY = min(from_coord.coord!.1, to_coord.coord!.1)
+        let maxY = max(from_coord.coord!.1, to_coord.coord!.1)
+        
+        for i in minX...maxX {
+          for j in minY...minY {
+            if i >= 0 && i < board_size.0 && j >= 0 && j < board_size.1 {
+              coords.insert(Move(coord: (i, j), player: player!))
+            }
+          }
+        }
+      }
+      return Array(coords)
     }
   }
   
@@ -89,12 +108,12 @@ class SgfNode: NodeProtocol {
   
   var placements: [Move] {
     var res: [Move] = []
+    
     for p in Move.PLAYERS {
-      if let sgf_coords = get_property(property: "A\(p)") as? [String] {
-        for sgf_coord in sgf_coords {
-          res.append(Move.from_sgf(sgf_coords: sgf_coord, player: p))
-        }
+      let tmp = self.expanded_placements(player: p).reduce(into: []) { result, newElement in
+        result.append(newElement)
       }
+      res += tmp
     }
     
     return res
@@ -186,17 +205,21 @@ class SgfNode: NodeProtocol {
   }
   
   func get_property(property: String, default_value: Any? = nil) -> Any? {
-    if let values = self.properties[property] {
-      if values.count == 1 {
-        return values[0]
-      } else {
-        return values
-      }
-    }
-    if let default_value = default_value {
+    let properties = get_properties(property: property)
+    if !properties.isEmpty {
+      return properties[0]
+    } else if default_value != nil {
       return default_value
     }
     return nil
+  }
+  
+  func get_properties(property: String, default_value: [Any] = []) -> [Any] {
+    if let values = self.properties[property] {
+      return values
+    }
+    
+    return default_value
   }
 }
 
