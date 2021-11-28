@@ -8,14 +8,14 @@
 import Foundation
 
 class SgfNode: NodeProtocol {
-  public var children: [NodeProtocol] = []
-  public var parent: NodeProtocol?
-  public var properties: [String: [String]]
+  var children: [NodeProtocol] = []
+  var parent: NodeProtocol?
+  var properties: [String: [String]]
   
   private var _root: NodeProtocol?
   private var _move: Move?
   
-  required public init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?) {
+  required init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?) {
     self.parent = parent
     self.properties = properties
     
@@ -28,17 +28,36 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  required convenience public init() {
+  required convenience init() {
     var parent: NodeProtocol?
     self.init(parent: &parent, properties: [:], move: nil)
   }
   
-  required convenience public init(parent: inout NodeProtocol?) {
+  required convenience init(parent: inout NodeProtocol?) {
     self.init(parent: &parent, properties: [:], move: nil)
   }
   
+  private func expanded_placements(player: Character?) -> [Move] {
+    let sgf_pl: Character
+    if let player = player {
+      sgf_pl = player
+    } else {
+      sgf_pl = "E"
+    }
+    let placements = get_property(property: "A\(sgf_pl)", default_value: []) as! [String]
+    if placements.isEmpty {
+      return []
+    }
+    let to_be_expanded = placements.filter { $0.contains(":") }
+    if to_be_expanded.isEmpty {
+      return placements.map { Move.from_sgf(sgf_coords: $0, board_size: self.board_size, player: sgf_pl) }
+    } else {
+      return []
+    }
+  }
+  
   // MARK: - Properties
-  public var root: NodeProtocol {
+  var root: NodeProtocol {
     if _root != nil {
       return _root!
     }
@@ -50,25 +69,25 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var komi: Float {
+  var komi: Float {
     if let komi = Float(self.root.get_property(property: "KM") as! String) {
       return komi
     }
     return 6.5
   }
   
-  public var handicap: Int {
+  var handicap: Int {
     if let ha = Int(self.root.get_property(property: "HA") as! String) {
       return ha
     }
     return 0
   }
   
-  public var ruleset: String {
+  var ruleset: String {
     return self.root.get_property(property: "RU", default_value: "japanese") as! String
   }
   
-  public var placement: [Move] {
+  var placements: [Move] {
     var res: [Move] = []
     for p in Move.PLAYERS {
       if let sgf_coords = get_property(property: "A\(p)") as? [String] {
@@ -81,7 +100,7 @@ class SgfNode: NodeProtocol {
     return res
   }
   
-  public var move: Move? {
+  var move: Move? {
     if let move = self._move {
       return move
     } else {
@@ -98,11 +117,23 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var is_root: Bool {
+  var clear_placements: [Move] {
+    return []
+  }
+  
+  var move_with_placements: [Move] {
+    if let move = move {
+      return self.placements + [move]
+    } else {
+      return self.placements
+    }
+  }
+  
+  var is_root: Bool {
     return self.parent == nil
   }
   
-  public var initial_player: Character {
+  var initial_player: Character {
     if let player = root.get_property(property: "PL") as? String {
       if player.uppercased().trimmingCharacters(in: .whitespacesAndNewlines) == "B" {
         return "B"
@@ -126,7 +157,7 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var nodes_from_root: [NodeProtocol] {
+  var nodes_from_root: [NodeProtocol] {
     var nodes: [NodeProtocol] = [self]
     var n: NodeProtocol = self as NodeProtocol
     while !n.is_root {
@@ -136,7 +167,7 @@ class SgfNode: NodeProtocol {
       return nodes.reversed()
   }
   
-  public var board_size: (Int, Int) {
+  var board_size: (Int, Int) {
     if let board_size: String = self.root.get_property(property: "SZ", default_value: "19") as? String {
       if board_size.contains(":") {
         let size_tuple = board_size.components(separatedBy: ":").map { String($0) }
@@ -150,11 +181,11 @@ class SgfNode: NodeProtocol {
   }
   
   // MARK: - Public
-  public func add_list_property(property: String, values: [String]) {
+  func add_list_property(property: String, values: [String]) {
     self.properties[property] = values
   }
   
-  public func get_property(property: String, default_value: Any? = nil) -> Any? {
+  func get_property(property: String, default_value: Any? = nil) -> Any? {
     if let values = self.properties[property] {
       if values.count == 1 {
         return values[0]

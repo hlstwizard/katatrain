@@ -51,9 +51,16 @@ class BaseGame: GameProtocol {
     self.lastCapture = []
   }
   
-  private func calculateGroups() {
+  private func calculateGroups() throws {
     self.init_state()
     for node in self.currentNode.nodes_from_root {
+      for m in node.move_with_placements {
+        do {
+          try self.validateMoveAndUpdateChain(move: m, ignore_ko: true)
+        } catch GameError.IllegalMoveError (let e) {
+          throw "Illegal move \(e)"
+        }
+      }
       
     }
   }

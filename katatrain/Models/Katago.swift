@@ -168,7 +168,7 @@ class Katago: ObservableObject {
     }
     
     let initial_stones = nodes.reduce(into: []) { result, nextNode in
-      _ = nextNode.placement.map {
+      _ = nextNode.placements.map {
         result.append($0)
       }
     }

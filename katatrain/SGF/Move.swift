@@ -13,6 +13,7 @@ public struct Move: Equatable, Hashable {
   // Enough for size < 26
   // Not I in the COORD
   static let GTP_COORD = "ABCDEFGHJKLMNOPQRSTUVWXYZ"
+  static let SGF_COORD = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   typealias Coord = (Int, Int)
   
@@ -32,7 +33,7 @@ public struct Move: Equatable, Hashable {
   }
   
   /// `gtp_coords` e.g. `A12`, `H3`
-  static func from_gtp(gtp_coords: String, board_size: Int = 19, player: Character = "B") -> Move {
+  static func from_gtp(gtp_coords: String, player: Character = "B") -> Move {
     // TODO: Lots of ! here, using try
     
     let range = NSRange(location: 0, length: gtp_coords.utf16.count)
@@ -48,13 +49,16 @@ public struct Move: Equatable, Hashable {
     return Move(coord: (Move.GTP_COORD.distance(from: Move.GTP_COORD.startIndex, to: firstIndex), second), player: player)
   }
   
-  /// `sgf_coords` e.g. `tt`
-  static func from_sgf(sgf_coords: String, board_size: Int = 19, player: Character = "B") -> Move {
+  /// `sgf_coords` e.g. `ab`, `tt` means pass
+  static func from_sgf(sgf_coords: String, board_size: (Int, Int) = (19, 19), player: Character = "B") -> Move {
+    if sgf_coords == "" || (sgf_coords == "tt" && board_size.0 <= 19 && board_size.1 <= 19 ) {
+      return Move(coord: nil, player: player)
+    }
     let upper = sgf_coords.uppercased()
-    let first = Move.GTP_COORD.distance(from: Move.GTP_COORD.startIndex, to: Move.GTP_COORD.firstIndex(of: upper.first!)!)
-    let second = Move.GTP_COORD.distance(from: Move.GTP_COORD.startIndex, to: Move.GTP_COORD.firstIndex(of: upper.last!)!)
+    let first = Move.SGF_COORD.distance(from: Move.SGF_COORD.startIndex, to: Move.SGF_COORD.firstIndex(of: upper.first!)!)
+    let second = Move.SGF_COORD.distance(from: Move.SGF_COORD.startIndex, to: Move.SGF_COORD.firstIndex(of: upper.last!)!)
     
-    return Move(coord: (first, second), player: player)
+    return Move(coord: (first, board_size.1 - second - 1), player: player)
   }
   
   var player: Character

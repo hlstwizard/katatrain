@@ -16,7 +16,9 @@ protocol NodeProtocol {
   var komi: Float { get }
   var handicap: Int { get }
   var ruleset: String { get }
-  var placement: [Move] { get }
+  var placements: [Move] { get }
+  var move_with_placements: [Move] { get }
+  var clear_placements: [Move] { get }
   var move: Move? { get }
   var is_root: Bool { get }
   var initial_player: Character { get }

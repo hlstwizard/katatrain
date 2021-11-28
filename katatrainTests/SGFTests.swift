@@ -19,16 +19,21 @@ class SgfTests: XCTestCase {
   }
   
   func testSgfMoveFromGTP() throws {
-    let move = Move.from_gtp(gtp_coords: "A12", board_size: 19)
+    let move = Move.from_gtp(gtp_coords: "A12")
     XCTAssert(move.coord! == (0, 11))
               
-    let move1 = Move.from_gtp(gtp_coords: "T19", board_size: 19)
+    let move1 = Move.from_gtp(gtp_coords: "T19")
     XCTAssert(move1.coord! == (18, 18))
   }
   
+  func testSgfMoveFromSGF() throws {
+    let move = Move.from_sgf(sgf_coords: "aa", board_size: (19, 19))
+    XCTAssert(move.coord! == (0, 0))
+  }
+  
   func testSgfMoveEqual() throws {
-    let move = Move.from_gtp(gtp_coords: "A12", board_size: 19)
-    let move1 = Move.from_gtp(gtp_coords: "T19", board_size: 19)
+    let move = Move.from_gtp(gtp_coords: "A12")
+    let move1 = Move.from_gtp(gtp_coords: "T19")
     
     let move2 = Move(coord: (0, 11), player: "B")
     
@@ -36,13 +41,8 @@ class SgfTests: XCTestCase {
     XCTAssert(move == move2)
   }
   
-  func testSgfMoveFromSGF() throws {
-    let move = Move.from_sgf(sgf_coords: "aa", board_size: 19)
-    XCTAssert(move.coord! == (0, 0))
-  }
-  
   func testSgfToGTP() throws {
-    let move = Move.from_sgf(sgf_coords: "aa", board_size: 19)
+    let move = Move.from_sgf(sgf_coords: "aa", board_size: (19, 19))
     XCTAssert(move.gtp() == "A1")
   }
   
@@ -52,14 +52,14 @@ class SgfTests: XCTestCase {
     let root = try! SGF<SgfNode>.parse_file(url: url!)
     
     XCTAssert(root.komi == 6.5)
-    let placement = root.placement
+    let placement = root.placements
     XCTAssert(placement.count == 4)
-    XCTAssert(placement[0].coord! == (3, 14))
+    XCTAssert(placement[0].coord! == (3, 3))
     XCTAssert(placement[0].player == "B")
     XCTAssert(root.handicap == 4)
     
     let firstNode = root.children[0]
-    XCTAssert(firstNode.move!.coord! == (5,15))
+    XCTAssert(firstNode.move!.coord! == (5,2))
     XCTAssert(firstNode.move!.player == "W")
     XCTAssert(firstNode.children.count == 2)
     
