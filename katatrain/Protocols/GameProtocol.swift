@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameProtocol {  
+protocol GameProtocol {
   func play(move: Move, ignore_ko: Bool)
   func undo(n_times: UInt)
   func redo(n_times: UInt)

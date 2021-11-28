@@ -133,7 +133,7 @@ class SgfNode: NodeProtocol {
       n = n.parent!
       nodes.append(n)
     }
-    return nodes
+      return nodes.reversed()
   }
   
   public var board_size: (Int, Int) {

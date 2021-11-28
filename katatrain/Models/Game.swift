@@ -11,6 +11,7 @@ class BaseGame: GameProtocol {
   
   let engine: Katago
   var root: GameNode
+  var currentNode: GameNode
   var gameId: String
   var komi: Float = 6.5
   var handicap: Int = 0
@@ -36,9 +37,25 @@ class BaseGame: GameProtocol {
     } else {
       root = GameNode()
     }
+
+    currentNode = root
     
-    self.boardSize = root.board_size
-    self.board = Array(repeating: -1, count: root.board_size.0 * root.board_size.1)
+    boardSize = root.board_size
+    board = Array(repeating: -1, count: root.board_size.0 * root.board_size.1)
+  }
+  
+  private func init_state() {
+    self.board = Array(repeating: -1, count: boardSize.0 * boardSize.1)
+    self.chains = []
+    self.prisoners = []
+    self.lastCapture = []
+  }
+  
+  private func calculateGroups() {
+    self.init_state()
+    for node in self.currentNode.nodes_from_root {
+      
+    }
   }
   
   private func getLoc(x: Int, y: Int) -> Int {
@@ -131,6 +148,11 @@ class BaseGame: GameProtocol {
   }
   
   func redo(n_times: UInt) {
+    
+  }
+  
+  func set_current_node(node: GameNode) {
+    currentNode = node
     
   }
 }
