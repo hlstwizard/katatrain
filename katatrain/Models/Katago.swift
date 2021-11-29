@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class Katago {
+class Katago: ObservableObject {
   @Published var initProgress: Double = 0
   @Published var isIdle: Bool = false
   

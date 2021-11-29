@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Coord: Equatable, Hashable {
+struct Coord: Equatable, Hashable, Comparable {
+  static func < (lhs: Coord, rhs: Coord) -> Bool {
+    return lhs.x < rhs.x && lhs.y < rhs.y
+  }
+  
   var x: Int
   var y: Int
   
@@ -105,5 +109,12 @@ struct Move: Equatable, Hashable {
       return ""
     }
     return "\(Move.SGF_COORD[coord!.x])\(Move.SGF_COORD[boardSize.1 - coord!.y - 1])"
+  }
+}
+
+
+extension Coord {
+  static func ==(left: Coord, right: (Int, Int)) -> Bool {
+    return left.x == right.0 && left.y == right.1
   }
 }

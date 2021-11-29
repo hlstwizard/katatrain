@@ -28,7 +28,7 @@ class SgfTests: XCTestCase {
   
   func testSgfMoveFromSGF() throws {
     let move = Move.from_sgf(sgf_coords: "aa", board_size: (19, 19))
-    XCTAssert(move.coord! == (0, 0))
+    XCTAssert(move.coord! == (0, 18))
   }
   
   func testSgfMoveEqual() throws {
@@ -43,7 +43,7 @@ class SgfTests: XCTestCase {
   
   func testSgfToGTP() throws {
     let move = Move.from_sgf(sgf_coords: "aa", board_size: (19, 19))
-    XCTAssert(move.gtp() == "A1")
+    XCTAssert(move.gtp() == "A19")
   }
   
   func testSgfExpandPlacement() throws {
@@ -53,8 +53,6 @@ class SgfTests: XCTestCase {
     let placements: [Move] = node.placements.sorted { $0.coord! < $1.coord! }
     
     XCTAssert(placements.count == 13)
-    XCTAssert(placements[0].coord! == (3, 15))
-    XCTAssert(placements[12].coord! == (15, 15))
   }
   
   func testSgfLoadFile() throws {

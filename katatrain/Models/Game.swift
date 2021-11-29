@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 class BaseGame: GameProtocol, ObservableObject {
+  @Published var engine: Katago
+  @Published var board: [Int]
   
-  let engine: Katago
   var root: GameNode
   var currentNode: GameNode
   var gameId: String
@@ -21,15 +22,20 @@ class BaseGame: GameProtocol, ObservableObject {
   var prisoners: [Move] = []
   var lastCapture: [Move] = []
   
-  var board: [Int]
   var boardSize: (Int, Int)
   
-  init(engine: Katago, moveTree: GameNode? = nil) {
+  var engineCancellable: AnyCancellable? = nil
+  
+  init(engine: Katago, moveTree: GameNode? = nil, sgfFile: String? = nil) {
     self.engine = engine
     
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
     gameId = formatter.string(from: Date())
+    
+    if let sgfFile = sgfFile {
+      
+    }
     
     if let moveTree = moveTree {
       root = moveTree
@@ -43,6 +49,10 @@ class BaseGame: GameProtocol, ObservableObject {
     
     boardSize = root.board_size
     board = Array(repeating: -1, count: root.board_size.0 * root.board_size.1)
+    
+    engineCancellable = engine.objectWillChange.sink { [weak self] (_) in
+      self?.objectWillChange.send()
+    }
   }
   
   private func init_state() {

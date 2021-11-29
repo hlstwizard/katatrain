@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2957E1332754FDFF004178FA /* example.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 2957E1322754FDFF004178FA /* example.sgf */; };
 		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
 		800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */; };
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2957E1322754FDFF004178FA /* example.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.sgf; sourceTree = "<group>"; };
 		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
 		800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+splitn.swift"; sourceTree = "<group>"; };
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,7 @@
 				80CC593F271476BF009A24AC /* KatatrainApp.swift */,
 				809261DE273BF22600CE2903 /* AppDelegate.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
+				2957E1322754FDFF004178FA /* example.sgf */,
 				80CC5945271476C2009A24AC /* Preview Content */,
 			);
 			path = katatrain;
@@ -422,6 +425,7 @@
 				80CC5947271476C2009A24AC /* Preview Assets.xcassets in Resources */,
 				8075D3BE27302EC500AFE931 /* analysis_example.cfg in Resources */,
 				809A307E272CDDDD005A0C45 /* Katagob40.plist in Resources */,
+				2957E1332754FDFF004178FA /* example.sgf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
