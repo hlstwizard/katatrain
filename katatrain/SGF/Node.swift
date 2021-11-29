@@ -8,14 +8,14 @@
 import Foundation
 
 class SgfNode: NodeProtocol {
-  public var children: [NodeProtocol] = []
-  public var parent: NodeProtocol?
-  public var properties: [String: [String]]
+  var children: [NodeProtocol] = []
+  var parent: NodeProtocol?
+  var properties: [String: [String]]
   
   private var _root: NodeProtocol?
   private var _move: Move?
   
-  required public init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?) {
+  required init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?) {
     self.parent = parent
     self.properties = properties
     
@@ -25,20 +25,71 @@ class SgfNode: NodeProtocol {
     
     if let move = move {
       self._move = move
+      self.properties[String(move.player)] = [move.sgf()]
     }
   }
   
-  required convenience public init() {
+  required convenience init() {
     var parent: NodeProtocol?
     self.init(parent: &parent, properties: [:], move: nil)
   }
   
-  required convenience public init(parent: inout NodeProtocol?) {
+  required convenience init(parent: inout NodeProtocol?) {
     self.init(parent: &parent, properties: [:], move: nil)
   }
   
+  required convenience init(move: Move) {
+    var parent: NodeProtocol?
+    self.init(parent: &parent, properties: [:], move: move)
+  }
+  
+  private func createNewNode(move: Move) -> NodeProtocol {
+    let node = type(of: self).init(move: move)
+    node.parent = self
+    self.children.append(node)
+    return node
+  }
+  
+  private func expanded_placements(player: Character?) -> [Move] {
+    let sgf_pl: Character
+    if let player = player {
+      sgf_pl = player
+    } else {
+      sgf_pl = "E"
+    }
+    let placements = get_properties(property: "A\(sgf_pl)", default_value: []) as! [String]
+    if placements.isEmpty {
+      return []
+    }
+    let to_be_expanded = placements.filter { $0.contains(":") }
+    if to_be_expanded.isEmpty {
+      return placements.map { Move.from_sgf(sgf_coords: $0, board_size: self.board_size, player: sgf_pl) }
+    } else {
+      var coords = Set(  placements.filter { !$0.contains(":") } .map { Move.from_sgf(sgf_coords: $0, player: sgf_pl) } )
+      for p in to_be_expanded {
+        let from_to_coords = p.split(separator: ":")[..<2].map { Move.from_sgf(sgf_coords: String($0), player: sgf_pl) }
+        let from_coord = from_to_coords[0]
+        let to_coord = from_to_coords[1]
+        
+        let minX = min(from_coord.coord!.x, to_coord.coord!.x)
+        let maxX = max(from_coord.coord!.x, to_coord.coord!.x)
+        let minY = min(from_coord.coord!.y, to_coord.coord!.y)
+        let maxY = max(from_coord.coord!.y, to_coord.coord!.y)
+        
+        for i in minX...maxX {
+          for j in minY...maxY {
+            if i >= 0 && i < board_size.0 && j >= 0 && j < board_size.1 {
+              coords.insert(Move(coord: (i, j), player: player!))
+            }
+          }
+        }
+      }
+      return Array(coords)
+    }
+  }
+  
   // MARK: - Properties
-  public var root: NodeProtocol {
+  var root: NodeProtocol {
     if _root != nil {
       return _root!
     }
@@ -50,38 +101,38 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var komi: Float {
+  var komi: Float {
     if let komi = Float(self.root.get_property(property: "KM") as! String) {
       return komi
     }
     return 6.5
   }
   
-  public var handicap: Int {
+  var handicap: Int {
     if let ha = Int(self.root.get_property(property: "HA") as! String) {
       return ha
     }
     return 0
   }
   
-  public var ruleset: String {
+  var ruleset: String {
     return self.root.get_property(property: "RU", default_value: "japanese") as! String
   }
   
-  public var placement: [Move] {
+  var placements: [Move] {
     var res: [Move] = []
+    
     for p in Move.PLAYERS {
-      if let sgf_coords = get_property(property: "A\(p)") as? [String] {
-        for sgf_coord in sgf_coords {
-          res.append(Move.from_sgf(sgf_coords: sgf_coord, player: p))
-        }
+      let tmp = self.expanded_placements(player: p).reduce(into: []) { result, newElement in
+        result.append(newElement)
       }
+      res += tmp
     }
     
     return res
   }
   
-  public var move: Move? {
+  var move: Move? {
     if let move = self._move {
       return move
     } else {
@@ -98,11 +149,23 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var is_root: Bool {
+  var clear_placements: [Move] {
+    return []
+  }
+  
+  var move_with_placements: [Move] {
+    if let move = move {
+      return self.placements + [move]
+    } else {
+      return self.placements
+    }
+  }
+  
+  var is_root: Bool {
     return self.parent == nil
   }
   
-  public var initial_player: Character {
+  var initial_player: Character {
     if let player = root.get_property(property: "PL") as? String {
       if player.uppercased().trimmingCharacters(in: .whitespacesAndNewlines) == "B" {
         return "B"
@@ -126,17 +189,17 @@ class SgfNode: NodeProtocol {
     }
   }
   
-  public var nodes_from_root: [NodeProtocol] {
+  var nodes_from_root: [NodeProtocol] {
     var nodes: [NodeProtocol] = [self]
     var n: NodeProtocol = self as NodeProtocol
     while !n.is_root {
       n = n.parent!
       nodes.append(n)
     }
-    return nodes
+      return nodes.reversed()
   }
   
-  public var board_size: (Int, Int) {
+  var board_size: (Int, Int) {
     if let board_size: String = self.root.get_property(property: "SZ", default_value: "19") as? String {
       if board_size.contains(":") {
         let size_tuple = board_size.components(separatedBy: ":").map { String($0) }
@@ -150,22 +213,38 @@ class SgfNode: NodeProtocol {
   }
   
   // MARK: - Public
-  public func add_list_property(property: String, values: [String]) {
+  func add_list_property(property: String, values: [String]) {
     self.properties[property] = values
   }
   
-  public func get_property(property: String, default_value: Any? = nil) -> Any? {
-    if let values = self.properties[property] {
-      if values.count == 1 {
-        return values[0]
-      } else {
-        return values
-      }
-    }
-    if let default_value = default_value {
+  func get_property(property: String, default_value: Any? = nil) -> Any? {
+    let properties = get_properties(property: property)
+    if !properties.isEmpty {
+      return properties[0]
+    } else if default_value != nil {
       return default_value
     }
     return nil
+  }
+  
+  func get_properties(property: String, default_value: [Any] = []) -> [Any] {
+    if let values = self.properties[property] {
+      return values
+    }
+    
+    return default_value
+  }
+  
+  func play(move: Move) -> NodeProtocol {
+    for c in children {
+      if let _move = c.move {
+        if _move == move {
+          return c
+        }
+      }
+    }
+    
+    return createNewNode(move: move)
   }
 }
 

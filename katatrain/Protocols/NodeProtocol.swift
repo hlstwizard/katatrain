@@ -16,7 +16,9 @@ protocol NodeProtocol {
   var komi: Float { get }
   var handicap: Int { get }
   var ruleset: String { get }
-  var placement: [Move] { get }
+  var placements: [Move] { get }
+  var move_with_placements: [Move] { get }
+  var clear_placements: [Move] { get }
   var move: Move? { get }
   var is_root: Bool { get }
   var initial_player: Character { get }
@@ -25,14 +27,21 @@ protocol NodeProtocol {
   
   func add_list_property(property: String, values: [String])
   func get_property(property: String, default_value: Any?) -> Any?
+  func get_properties(property: String, default_value: [Any]) -> [Any]
   
   init()
   init(parent: inout NodeProtocol?)
   init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?)
+  
+  func play(move: Move) -> NodeProtocol
 }
 
 extension NodeProtocol {
-  func get_property(property: String, default_value: Any? = nil ) -> Any? {
+  func get_property(property: String, default_value: Any? = nil) -> Any? {
     return get_property(property: property, default_value: default_value)
+  }
+  
+  func get_properties(property: String, default_value: [Any] = [] ) -> [Any] {
+    return get_properties(property: property, default_value: default_value)
   }
 }

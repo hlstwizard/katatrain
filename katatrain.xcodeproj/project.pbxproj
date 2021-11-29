@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
 		800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */; };
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
 		800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+splitn.swift"; sourceTree = "<group>"; };
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */,
 				80CC597527152807009A24AC /* MLMultiArray+subscript.swift */,
 				80CC59772715316F009A24AC /* String+NSNumber.swift */,
+				299DC9AD275461F700F013D3 /* String+Index.swift */,
 				80F782992718265900A9090C /* IntArray+NSNumber.swift */,
 				80CDA18527221BD10097D485 /* CGPoint+divide.swift */,
 			);
@@ -471,6 +474,7 @@
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
 				800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */,
+				299DC9AE275461F700F013D3 /* String+Index.swift in Sources */,
 				80739EC92748A98F00593DC7 /* Node.swift in Sources */,
 				80C803192751DDBD0078CA90 /* NodeProtocol.swift in Sources */,
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,

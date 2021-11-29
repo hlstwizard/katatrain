@@ -10,3 +10,6 @@ import Foundation
 enum GameError: Error {
   case IllegalMoveError(String)
 }
+
+
+extension String: Error { }
