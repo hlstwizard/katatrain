@@ -27,6 +27,9 @@ class BaseGame: GameProtocol, ObservableObject {
   var engineCancellable: AnyCancellable? = nil
   
   init(engine: Katago, moveTree: GameNode? = nil, sgfFile: String? = nil) {
+    guard !(moveTree != nil && sgfFile != nil) else {
+      fatalError("can't init game from both node and sgfFile")
+    }
     self.engine = engine
     
     let formatter = DateFormatter()
@@ -34,10 +37,9 @@ class BaseGame: GameProtocol, ObservableObject {
     gameId = formatter.string(from: Date())
     
     if let sgfFile = sgfFile {
-      
-    }
-    
-    if let moveTree = moveTree {
+      let url = Bundle.main.url(forResource: sgfFile, withExtension: "sgf")
+      root = try! SGF<GameNode>.parse_file(url: url!)
+    } else if let moveTree = moveTree {
       root = moveTree
       komi = moveTree.komi
       handicap = moveTree.handicap
