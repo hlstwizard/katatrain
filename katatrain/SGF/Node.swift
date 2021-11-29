@@ -58,10 +58,10 @@ class SgfNode: NodeProtocol {
         let from_coord = from_to_coords[0]
         let to_coord = from_to_coords[1]
         
-        let minX = min(from_coord.coord!.0, to_coord.coord!.0)
-        let maxX = max(from_coord.coord!.0, to_coord.coord!.0)
-        let minY = min(from_coord.coord!.1, to_coord.coord!.1)
-        let maxY = max(from_coord.coord!.1, to_coord.coord!.1)
+        let minX = min(from_coord.coord!.x, to_coord.coord!.x)
+        let maxX = max(from_coord.coord!.x, to_coord.coord!.x)
+        let minY = min(from_coord.coord!.y, to_coord.coord!.y)
+        let maxY = max(from_coord.coord!.y, to_coord.coord!.y)
         
         for i in minX...maxX {
           for j in minY...minY {

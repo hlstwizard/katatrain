@@ -7,17 +7,25 @@
 
 import Foundation
 
+struct Coord: Equatable, Hashable {
+  var x: Int
+  var y: Int
+  
+  init(t: (Int, Int)) {
+    x = t.0
+    y = t.1
+  }
+}
+
 /// Actually it's a move but with a bad naming
-public struct Move: Equatable, Hashable {
+struct Move: Equatable, Hashable {
   static let PLAYERS = "BW"
   // Enough for size < 26
   // Not I in the COORD
   static let GTP_COORD = "ABCDEFGHJKLMNOPQRSTUVWXYZ"
   static let SGF_COORD = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-  typealias Coord = (Int, Int)
-  
-  public static func == (lhs: Move, rhs: Move) -> Bool {
+  static func == (lhs: Move, rhs: Move) -> Bool {
     if lhs.coord == nil && rhs.coord == nil {
       return lhs.player == rhs.player
     } else if lhs.coord != nil || rhs.coord != nil {
@@ -26,9 +34,19 @@ public struct Move: Equatable, Hashable {
     return false
   }
   
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(coord?.0)
-    hasher.combine(coord?.1)
+  var player: Character
+  var coord: Coord? = nil
+  
+  init(coord: (Int, Int)?, player: Character) {
+    if let coord = coord {
+      self.coord = Coord(t: coord)
+    }
+    self.player = player
+  }
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(coord?.x)
+    hasher.combine(coord?.y)
     hasher.combine(player)
   }
   
@@ -61,14 +79,6 @@ public struct Move: Equatable, Hashable {
     return Move(coord: (first, board_size.1 - second - 1), player: player)
   }
   
-  var player: Character
-  var coord: Coord?
-  
-  init(coord: Coord?, player: Character) {
-    self.coord = coord
-    self.player = player
-  }
-  
   func is_pass() -> Bool {
     return self.coord == nil
   }
@@ -85,8 +95,8 @@ public struct Move: Equatable, Hashable {
     if self.is_pass() {
       return "pass"
     } else {
-      let index = Move.GTP_COORD.index(Move.GTP_COORD.startIndex, offsetBy: self.coord!.0)
-      return "\(Move.GTP_COORD[index])\(self.coord!.1 + 1)"
+      let index = Move.GTP_COORD.index(Move.GTP_COORD.startIndex, offsetBy: self.coord!.x)
+      return "\(Move.GTP_COORD[index])\(self.coord!.y + 1)"
     }
   }
 }

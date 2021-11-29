@@ -53,15 +53,25 @@ class BaseGame: GameProtocol {
   
   private func calculateGroups() throws {
     self.init_state()
-    for node in self.currentNode.nodes_from_root {
-      for m in node.move_with_placements {
-        do {
+    do {
+      for node in self.currentNode.nodes_from_root {
+        for m in node.move_with_placements {
           try self.validateMoveAndUpdateChain(move: m, ignore_ko: true)
-        } catch GameError.IllegalMoveError (let e) {
-          throw "Illegal move \(e)"
+        }
+        
+        if !node.clear_placements.isEmpty {
+          let clear_coords: Set<Coord> = Set( node.clear_placements.map { $0.coord! } )
+          let stones = self.chains.reduce(into: []) {
+            result, c in result += c.filter { clear_coords.contains($0.coord!) }
+          }
+          self.init_state()
+          for m in stones {
+            try self.validateMoveAndUpdateChain(move: m, ignore_ko: true)
+          }
         }
       }
-      
+    } catch GameError.IllegalMoveError (let e) {
+      throw "Illegal move \(e)"
     }
   }
   
@@ -70,21 +80,21 @@ class BaseGame: GameProtocol {
   }
   
   private func getLoc(move: Move) -> Int {
-    return getLoc(x: move.coord!.0, y: move.coord!.1)
+    return getLoc(x: move.coord!.x, y: move.coord!.y)
   }
   
   private func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
     let sizeX = boardSize.0
     let sizeY = boardSize.1
-    let loc = getLoc(x: move.coord!.0, y: move.coord!.1)
+    let loc = getLoc(x: move.coord!.x, y: move.coord!.y)
     
     let neighbours = { (moves: [Move]) -> Set<Int> in
       var res = Set<Int>()
       for m in moves {
         for delta in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
-          if 0 <= (m.coord!.0 + delta.0) && (m.coord!.0 + delta.0) < sizeX &&
-              0 <= (m.coord!.1 + delta.1) && (m.coord!.0 + delta.0) < sizeY {
-            res.insert(self.board[self.getLoc(x: m.coord!.1 + delta.1, y: m.coord!.0 + delta.0)])
+          if 0 <= (m.coord!.x + delta.0) && (m.coord!.x + delta.0) < sizeX &&
+              0 <= (m.coord!.y + delta.1) && (m.coord!.x + delta.0) < sizeY {
+            res.insert(self.board[self.getLoc(x: m.coord!.y + delta.1, y: m.coord!.x + delta.0)])
           }
         }
       }
