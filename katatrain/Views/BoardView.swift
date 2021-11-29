@@ -10,7 +10,7 @@ import Logging
 
 @available(iOS 15.0, *)
 struct BoardView: View {
-  @EnvironmentObject var katago: Katago
+  @EnvironmentObject var game: Game
   @State var showTouchPoint = false
   
   var size: CGSize
@@ -37,9 +37,9 @@ struct BoardView: View {
       drawStars(context: context, geoSize: self.size)
       drawStones(context: context, geoSize: self.size)
       
-      if katago.lastMove != -1 {
-        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
-      }
+//      if katago.lastMove != -1 {
+//        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
+//      }
 
       if showTouchPoint {
         drawTouchPoint(context: context, geoSize: self.size)
@@ -176,7 +176,7 @@ struct BoardView: View {
   // size: GeometryReader size
   func drawStones(context: GraphicsContext, geoSize: CGSize) {
     var _context = context
-    let locs = katago.getColors()
+//    let locs = katago.getColors()
     let black = _context.resolve(Image("B_stone"))
     let white = _context.resolve(Image("W_stone"))
     let size = clipBoardSize(size: geoSize)
@@ -184,16 +184,16 @@ struct BoardView: View {
     var loc = -1
     _context.scaleBy(x: scale, y: scale)
     
-    for y in 0..<boardSize {
-      for x in 0..<boardSize {
-        loc = (x+1) + (y+1)*(boardSize+1)
-        if locs[loc] == StoneColor.C_BLACK.rawValue {
-          _context.draw(black, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
-        } else if locs[loc] == StoneColor.C_WHITE.rawValue {
-          _context.draw(white, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
-        }
-      }
-    }
+//    for y in 0..<boardSize {
+//      for x in 0..<boardSize {
+//        loc = (x+1) + (y+1)*(boardSize+1)
+//        if locs[loc] == StoneColor.C_BLACK.rawValue {
+//          _context.draw(black, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
+//        } else if locs[loc] == StoneColor.C_WHITE.rawValue {
+//          _context.draw(white, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
+//        }
+//      }
+//    }
   }
   
   func drawCursor(context: GraphicsContext, geoSize: CGSize, loc: Loc, pla: PlayerColor) {

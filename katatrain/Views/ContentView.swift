@@ -9,15 +9,15 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct ContentView: View {
-  @EnvironmentObject var katago: Katago
+  @EnvironmentObject var game: Game
   
   var body: some View {
     ZStack {
       GameView()
-      if !katago.initFinished {
+      if !game.engine.initFinished {
         LandingView()
           .transition(.asymmetric(insertion: .move(edge: .top), removal: .opacity))
-          .animation(.easeInOut(duration: 3), value: katago.initFinished)
+          .animation(.easeInOut(duration: 3), value: game.engine.initFinished)
       }
     }
   }

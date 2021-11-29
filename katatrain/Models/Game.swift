@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Combine
 
-class BaseGame: GameProtocol {
+class BaseGame: GameProtocol, ObservableObject {
   
   let engine: Katago
   var root: GameNode
@@ -183,4 +184,9 @@ class BaseGame: GameProtocol {
     currentNode = node
     
   }
+}
+
+/// Extensions related to analysis etc.
+class Game: BaseGame {
+  
 }

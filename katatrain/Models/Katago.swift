@@ -8,14 +8,9 @@
 import Foundation
 import Combine
 
-class Katago: ObservableObject {
+class Katago {
   @Published var initProgress: Double = 0
   @Published var isIdle: Bool = false
-  @Published var lastMove: Loc = -1
-  
-  @Published var canUndo: Bool = false
-  @Published var canReplay: Bool = false
-  @Published var inTrial: Bool = false
   
   var queryCounter = 0
   var analysisResult: [String] = []
@@ -25,11 +20,6 @@ class Katago: ObservableObject {
   
   var initFinished: Bool {
     initProgress == 1.0
-  }
-  
-  enum Mode {
-    case vs
-    case analyse
   }
   
   private enum State {
@@ -68,17 +58,11 @@ class Katago: ObservableObject {
   var eventHandler: (() -> Void)?
   
   var engine: Engine
-  var game: Game
-  
-  var mode: Mode = .vs
-  var player: PlayerColor = .P_BLACK
   var appendingResults: Set<String> = []
-  var potentialStones: Set<Loc> = []
   var running: Bool = false
   
   init() {
     engine = Engine.init("Katagob40", "analysis_example")
-    game = Game.init("tromp-taylor")
     analyseQueue = DispatchQueue(label: "com.katatrain.analyse", qos: .utility)
     
     analyseQueue.async { [weak self] in
@@ -88,10 +72,6 @@ class Katago: ObservableObject {
     eventHandler = self.fetchResultHandle
     fetchResultTimer.activate()
     state = .resumed
-  }
-  
-  func getOpp(player: PlayerColor) -> PlayerColor {
-    return PlayerColor(rawValue: player.rawValue ^ 3)!
   }
   
   deinit {
@@ -214,10 +194,6 @@ class Katago: ObservableObject {
     }
   }
   
-  func getColors() -> [NSNumber] {
-    return game.getColors().compactMap({ $0 as? NSNumber })
-  }
-  
   func fetchResultHandle() {
     let result = self.engine.fetchResult()
     if !result.isEmpty {
@@ -242,19 +218,16 @@ class Katago: ObservableObject {
             var loc: Loc = 0
             
             // pointer from objective-c++
-            let result = withUnsafeMutablePointer(to: &loc) {
-              Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
-            }
+//            let result = withUnsafeMutablePointer(to: &loc) {
+//              Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
+//            }
             
-            if !result {
-              NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
-            }
-            let opp = Player(getOpp(player: player).rawValue)
+//            if !result {
+//              NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
+//            }
             
             DispatchQueue.main.async { [unowned self] in
               self.isIdle = false
-              game.makeMove(loc, opp)
-              lastMove = game.getLastMove().int16Value
             }
             appendingResults.remove(id)
           } else if let error = parsedResult?["error"] as? String {
@@ -267,43 +240,5 @@ class Katago: ObservableObject {
         }
       }
     }
-  }
-  
-  func play(loc: Loc, player: PlayerColor = .P_BLACK) {
-    
-  }
-  
-  func undo() {
-    canUndo = game.undo()
-    canReplay = true
-    lastMove = game.getLastMove().int16Value
-  }
-  
-  func replay() {
-    canReplay = game.replay()
-    canUndo = true
-    lastMove = game.getLastMove().int16Value
-  }
-  
-  func reset() {
-    game.reset()
-    lastMove = game.getLastMove().int16Value
-  }
-  
-  func newGame(handicap: UInt8) {
-    game.newGame(handicap)
-    objectWillChange.send()
-  }
-  
-  func enterTrial() {
-    game.enterTrial()
-    canUndo = false
-    canReplay = false
-    inTrial = true
-  }
-  
-  func exitTrial() {
-    game.exitTrial()
-    inTrial = false
   }
 }

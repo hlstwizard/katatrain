@@ -11,16 +11,19 @@ import Logging
 @available(iOS 15.0, *)
 @main
 struct KatatrainApp: App {
-    @StateObject var katago = Katago()
+  @StateObject var game: Game
+  
+  init() {
+    let engine = Katago()
+    _game = StateObject(wrappedValue: Game(engine: engine))
     
-    init() {
-        Setup.setup()
+    Setup.setup()
+  }
+  
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environmentObject(game)
     }
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(katago)
-        }
-    }
+  }
 }
