@@ -156,8 +156,19 @@ class BaseGame: GameProtocol {
     }
   }
   
-  func play(move: Move, ignore_ko: Bool) {
+  func play(move: Move, ignore_ko: Bool) throws {
+    if !move.is_pass() && !(move.coord!.x >= 0 && move.coord!.y >= 0 && move.coord!.x < boardSize.0 && move.coord!.y < boardSize.1) {
+      throw GameError.IllegalMoveError("Move \(move) outside of board coordinates")
+    }
     
+    do {
+      try self.validateMoveAndUpdateChain(move: move, ignore_ko: ignore_ko)
+    } catch GameError.IllegalMoveError(let message) {
+      try self.calculateGroups()
+      throw message
+    }
+    let node = currentNode.play(move: move) as! GameNode
+    currentNode = node
   }
   
   func undo(n_times: UInt = 1) {

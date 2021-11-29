@@ -99,4 +99,11 @@ struct Move: Equatable, Hashable {
       return "\(Move.GTP_COORD[index])\(self.coord!.y + 1)"
     }
   }
+  
+  func sgf(boardSize: (Int, Int) = (19, 19)) -> String {
+    if self.is_pass() {
+      return ""
+    }
+    return "\(Move.SGF_COORD[coord!.x])\(Move.SGF_COORD[boardSize.1 - coord!.y - 1])"
+  }
 }

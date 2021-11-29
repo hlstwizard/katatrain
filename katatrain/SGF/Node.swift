@@ -25,6 +25,7 @@ class SgfNode: NodeProtocol {
     
     if let move = move {
       self._move = move
+      self.properties[String(move.player)] = [move.sgf()]
     }
   }
   
@@ -35,6 +36,18 @@ class SgfNode: NodeProtocol {
   
   required convenience init(parent: inout NodeProtocol?) {
     self.init(parent: &parent, properties: [:], move: nil)
+  }
+  
+  required convenience init(move: Move) {
+    var parent: NodeProtocol?
+    self.init(parent: &parent, properties: [:], move: move)
+  }
+  
+  private func createNewNode(move: Move) -> NodeProtocol {
+    let node = type(of: self).init(move: move)
+    node.parent = self
+    self.children.append(node)
+    return node
   }
   
   private func expanded_placements(player: Character?) -> [Move] {
@@ -64,7 +77,7 @@ class SgfNode: NodeProtocol {
         let maxY = max(from_coord.coord!.y, to_coord.coord!.y)
         
         for i in minX...maxX {
-          for j in minY...minY {
+          for j in minY...maxY {
             if i >= 0 && i < board_size.0 && j >= 0 && j < board_size.1 {
               coords.insert(Move(coord: (i, j), player: player!))
             }
@@ -220,6 +233,18 @@ class SgfNode: NodeProtocol {
     }
     
     return default_value
+  }
+  
+  func play(move: Move) -> NodeProtocol {
+    for c in children {
+      if let _move = c.move {
+        if _move == move {
+          return c
+        }
+      }
+    }
+    
+    return createNewNode(move: move)
   }
 }
 

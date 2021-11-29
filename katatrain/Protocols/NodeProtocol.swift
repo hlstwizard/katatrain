@@ -32,6 +32,8 @@ protocol NodeProtocol {
   init()
   init(parent: inout NodeProtocol?)
   init(parent: inout NodeProtocol?, properties: [String: [String]], move: Move?)
+  
+  func play(move: Move) -> NodeProtocol
 }
 
 extension NodeProtocol {
