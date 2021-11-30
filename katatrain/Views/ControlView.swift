@@ -19,7 +19,7 @@ struct ControlView: View {
       }
 //      .disabled(!katago.canUndo)
       
-      Button(action: replay) {
+      Button(action: redo) {
         Image(systemName: "play")
           .font(.title)
       }
@@ -41,11 +41,11 @@ struct ControlView: View {
   }
   
   func undo() {
-//    katago.undo()
+    game.undo()
   }
   
-  func replay() {
-//    katago.replay()
+  func redo() {
+    game.redo()
   }
 }
 

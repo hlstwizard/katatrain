@@ -185,11 +185,22 @@ class BaseGame: GameProtocol, ObservableObject {
   }
   
   func undo(n_times: UInt = 1) {
-    
+    for _ in 1...n_times {
+      guard let parent = currentNode.parent else {
+        return
+      }
+      currentNode = parent as! GameNode
+      try! calculateGroups()
+    }
   }
   
-  func redo(n_times: UInt) {
-    
+  func redo(n_times: UInt = 1) {
+    for _ in 1...n_times {
+      if currentNode.children.count == 1 {
+        currentNode = currentNode.children[0] as! GameNode
+        try! calculateGroups()
+      }
+    }
   }
   
   func set_current_node(node: GameNode) {

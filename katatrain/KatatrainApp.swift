@@ -17,6 +17,7 @@ struct KatatrainApp: App {
     let engine = Katago()
     #if DEBUG
     _game = StateObject(wrappedValue: Game(engine: engine, sgfFile: "example"))
+    
     #else
     _game = StateObject(wrappedValue: Game(engine: engine))
     #endif
