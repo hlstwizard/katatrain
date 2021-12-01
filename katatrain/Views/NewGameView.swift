@@ -10,6 +10,7 @@ import SwiftUI
 struct NewGameView: View {
   @EnvironmentObject var game: Game
   @State var handicap: UInt8 = 0
+  @State var show = false
   
   var body: some View {
     Group {
@@ -18,10 +19,17 @@ struct NewGameView: View {
         Button("Start") {
 //          katago.newGame(handicap: handicap)
         }
+        
+        Button("Open") {
+          show.toggle()
+        }.sheet(isPresented: $show) {
+          DocumentPicker()
+        }
       }
     }
   }
 }
+
 
 struct NewGameView_Previews: PreviewProvider {
   static var previews: some View {
