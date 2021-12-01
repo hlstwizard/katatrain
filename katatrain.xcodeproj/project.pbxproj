@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2957E1332754FDFF004178FA /* example.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 2957E1322754FDFF004178FA /* example.sgf */; };
 		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
+		29B3AC4927575E28008557F5 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3AC4827575E28008557F5 /* DocumentPicker.swift */; };
 		29F8D9A62757040600BF1AE0 /* capture.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 29F8D9A52757040600BF1AE0 /* capture.sgf */; };
 		29F8D9A82757057100BF1AE0 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8D9A72757057100BF1AE0 /* GameTests.swift */; };
 		800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */; };
@@ -74,6 +75,8 @@
 /* Begin PBXFileReference section */
 		2957E1322754FDFF004178FA /* example.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.sgf; sourceTree = "<group>"; };
 		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
+		29B3AC4827575E28008557F5 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		29CC38CD27575C000030F023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = katatrain/Info.plist; sourceTree = SOURCE_ROOT; };
 		29F8D9A52757040600BF1AE0 /* capture.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capture.sgf; sourceTree = "<group>"; };
 		29F8D9A72757057100BF1AE0 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+splitn.swift"; sourceTree = "<group>"; };
@@ -223,6 +226,7 @@
 				80CC593F271476BF009A24AC /* KatatrainApp.swift */,
 				809261DE273BF22600CE2903 /* AppDelegate.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
+				29CC38CD27575C000030F023 /* Info.plist */,
 				2957E1322754FDFF004178FA /* example.sgf */,
 				80CC5945271476C2009A24AC /* Preview Content */,
 			);
@@ -300,6 +304,7 @@
 				809261DC273BEF2E00CE2903 /* StatusView.swift */,
 				804C6F76273D326B007C67E8 /* Triangle.swift */,
 				804C6F78273DEA1C007C67E8 /* NewGameView.swift */,
+				29B3AC4827575E28008557F5 /* DocumentPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
+				29B3AC4927575E28008557F5 /* DocumentPicker.swift in Sources */,
 				809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol GameProtocol {
+  func load(url: URL) throws
   func play(move: Move, ignore_ko: Bool) throws
   func undo(n_times: UInt)
   func redo(n_times: UInt)

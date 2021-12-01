@@ -13,7 +13,7 @@ class GameTests: XCTestCase {
     let bundle = Bundle(for: GameTests.self)
     let url = bundle.url(forResource: "capture", withExtension: "sgf")
     return try! SGF<GameNode>.parse_file(url: url!)
-  }())
+  }(), url: nil)
   
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in the class.
