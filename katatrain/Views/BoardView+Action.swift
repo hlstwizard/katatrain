@@ -13,11 +13,11 @@ extension BoardView {
     if point.x == -1 || point.y == -1 {
       return
     }
-    if katago.isIdle {
+    if game.engine.isIdle {
       NSLog("Be patient..")
       return
     }
     let loc = (point.x + 1) + (point.y + 1) * (boardSize + 1)
-    katago.play(loc: Loc(loc))
+//    katago.play(loc: Loc(loc))
   }
 }

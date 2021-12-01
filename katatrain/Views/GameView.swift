@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-  @EnvironmentObject var katago: Katago
+  @EnvironmentObject var game: Game
   @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
   @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
   

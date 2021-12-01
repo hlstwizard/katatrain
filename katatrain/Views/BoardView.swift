@@ -10,7 +10,7 @@ import Logging
 
 @available(iOS 15.0, *)
 struct BoardView: View {
-  @EnvironmentObject var katago: Katago
+  @EnvironmentObject var game: Game
   @State var showTouchPoint = false
   
   var size: CGSize
@@ -35,11 +35,11 @@ struct BoardView: View {
       // (CGSize) $R0 = (width = 1148, height = 744)
       drawBoard(context: context, geoSize: self.size)
       drawStars(context: context, geoSize: self.size)
-      drawStones(context: context, geoSize: self.size)
+      drawChains(context: context, geoSize: self.size)
       
-      if katago.lastMove != -1 {
-        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
-      }
+//      if katago.lastMove != -1 {
+//        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
+//      }
 
       if showTouchPoint {
         drawTouchPoint(context: context, geoSize: self.size)
@@ -174,23 +174,24 @@ struct BoardView: View {
   }
   
   // size: GeometryReader size
-  func drawStones(context: GraphicsContext, geoSize: CGSize) {
+  func drawChains(context: GraphicsContext, geoSize: CGSize) {
     var _context = context
-    let locs = katago.getColors()
+    let chains = game.chains
+    
     let black = _context.resolve(Image("B_stone"))
     let white = _context.resolve(Image("W_stone"))
     let size = clipBoardSize(size: geoSize)
     let boardArea = getBoardArea(size: size)
-    var loc = -1
     _context.scaleBy(x: scale, y: scale)
     
-    for y in 0..<boardSize {
-      for x in 0..<boardSize {
-        loc = (x+1) + (y+1)*(boardSize+1)
-        if locs[loc] == StoneColor.C_BLACK.rawValue {
-          _context.draw(black, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
-        } else if locs[loc] == StoneColor.C_WHITE.rawValue {
-          _context.draw(white, at: getPoint(x: x, y: y, boardArea: boardArea) / scale)
+    for chain in chains {
+      for move in chain {
+        if let coord = move.coord {
+          if move.player == "B" {
+            _context.draw(black, at: getPoint(x: coord.x, y: boardSize - coord.y - 1, boardArea: boardArea) / scale)
+          } else if move.player == "W" {
+            _context.draw(white, at: getPoint(x: coord.x, y: boardSize - coord.y - 1, boardArea: boardArea) / scale)
+          }
         }
       }
     }

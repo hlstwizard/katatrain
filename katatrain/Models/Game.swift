@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 
-class BaseGame: GameProtocol {
+class BaseGame: GameProtocol, ObservableObject {
+  @Published var engine: Katago
+  @Published var board: [Int]
   
-  let engine: Katago
   var root: GameNode
   var currentNode: GameNode
   var gameId: String
@@ -20,17 +22,24 @@ class BaseGame: GameProtocol {
   var prisoners: [Move] = []
   var lastCapture: [Move] = []
   
-  var board: [Int]
   var boardSize: (Int, Int)
   
-  init(engine: Katago, moveTree: GameNode? = nil) {
+  var engineCancellable: AnyCancellable? = nil
+  
+  init(engine: Katago, moveTree: GameNode? = nil, sgfFile: String? = nil) {
+    guard !(moveTree != nil && sgfFile != nil) else {
+      fatalError("can't init game from both node and sgfFile")
+    }
     self.engine = engine
     
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
     gameId = formatter.string(from: Date())
     
-    if let moveTree = moveTree {
+    if let sgfFile = sgfFile {
+      let url = Bundle.main.url(forResource: sgfFile, withExtension: "sgf")
+      root = try! SGF<GameNode>.parse_file(url: url!)
+    } else if let moveTree = moveTree {
       root = moveTree
       komi = moveTree.komi
       handicap = moveTree.handicap
@@ -42,6 +51,10 @@ class BaseGame: GameProtocol {
     
     boardSize = root.board_size
     board = Array(repeating: -1, count: root.board_size.0 * root.board_size.1)
+    
+    engineCancellable = engine.objectWillChange.sink { [weak self] (_) in
+      self?.objectWillChange.send()
+    }
   }
   
   private func init_state() {
@@ -92,9 +105,10 @@ class BaseGame: GameProtocol {
       var res = Set<Int>()
       for m in moves {
         for delta in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
-          if 0 <= (m.coord!.x + delta.0) && (m.coord!.x + delta.0) < sizeX &&
-              0 <= (m.coord!.y + delta.1) && (m.coord!.x + delta.0) < sizeY {
-            res.insert(self.board[self.getLoc(x: m.coord!.y + delta.1, y: m.coord!.x + delta.0)])
+          let _x = m.coord!.x + delta.0
+          let _y = m.coord!.y + delta.1
+          if 0 <= _x && _x < sizeX && 0 <= _y && _y < sizeY {
+            res.insert(self.board[self.getLoc(x: _x, y: _y)])
           }
         }
       }
@@ -172,15 +186,31 @@ class BaseGame: GameProtocol {
   }
   
   func undo(n_times: UInt = 1) {
-    
+    for _ in 1...n_times {
+      guard let parent = currentNode.parent else {
+        return
+      }
+      currentNode = parent as! GameNode
+      try! calculateGroups()
+    }
   }
   
-  func redo(n_times: UInt) {
-    
+  func redo(n_times: UInt = 1) {
+    for _ in 1...n_times {
+      if currentNode.children.count == 1 {
+        currentNode = currentNode.children[0] as! GameNode
+        try! calculateGroups()
+      }
+    }
   }
   
   func set_current_node(node: GameNode) {
     currentNode = node
     
   }
+}
+
+/// Extensions related to analysis etc.
+class Game: BaseGame {
+  
 }

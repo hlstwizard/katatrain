@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct StatusView: View {
-  @EnvironmentObject var katago: Katago
+  @EnvironmentObject var game: Game
   
   var body: some View {
     Button("New Game") {
-      katago.reset()
+//      katago.reset()
     }
   }
 }

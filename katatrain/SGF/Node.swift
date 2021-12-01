@@ -102,17 +102,11 @@ class SgfNode: NodeProtocol {
   }
   
   var komi: Float {
-    if let komi = Float(self.root.get_property(property: "KM") as! String) {
-      return komi
-    }
-    return 6.5
+    return Float(self.root.get_property(property: "KM", default_value: "6.5") as! String)!
   }
   
   var handicap: Int {
-    if let ha = Int(self.root.get_property(property: "HA") as! String) {
-      return ha
-    }
-    return 0
+    return Int(self.root.get_property(property: "HA", default_value: "0") as! String)!
   }
   
   var ruleset: String {
