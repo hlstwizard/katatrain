@@ -105,9 +105,10 @@ class BaseGame: GameProtocol, ObservableObject {
       var res = Set<Int>()
       for m in moves {
         for delta in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
-          if 0 <= (m.coord!.x + delta.0) && (m.coord!.x + delta.0) < sizeX &&
-              0 <= (m.coord!.y + delta.1) && (m.coord!.x + delta.0) < sizeY {
-            res.insert(self.board[self.getLoc(x: m.coord!.y + delta.1, y: m.coord!.x + delta.0)])
+          let _x = m.coord!.x + delta.0
+          let _y = m.coord!.y + delta.1
+          if 0 <= _x && _x < sizeX && 0 <= _y && _y < sizeY {
+            res.insert(self.board[self.getLoc(x: _x, y: _y)])
           }
         }
       }

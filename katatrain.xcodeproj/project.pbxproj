@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2957E1332754FDFF004178FA /* example.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 2957E1322754FDFF004178FA /* example.sgf */; };
 		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
+		29F8D9A62757040600BF1AE0 /* capture.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 29F8D9A52757040600BF1AE0 /* capture.sgf */; };
+		29F8D9A82757057100BF1AE0 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8D9A72757057100BF1AE0 /* GameTests.swift */; };
 		800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */; };
 		802C59FF272CAF1300501345 /* libkatago.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802C59FE272CAF1300501345 /* libkatago.a */; };
 		80459988272D5B8D00B40C35 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80459987272D5B8D00B40C35 /* Types.swift */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		2957E1322754FDFF004178FA /* example.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.sgf; sourceTree = "<group>"; };
 		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
+		29F8D9A52757040600BF1AE0 /* capture.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capture.sgf; sourceTree = "<group>"; };
+		29F8D9A72757057100BF1AE0 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+splitn.swift"; sourceTree = "<group>"; };
 		802C59FE272CAF1300501345 /* libkatago.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libkatago.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80459987272D5B8D00B40C35 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -236,9 +240,11 @@
 		80CC594F271476C2009A24AC /* katatrainTests */ = {
 			isa = PBXGroup;
 			children = (
+				29F8D9A52757040600BF1AE0 /* capture.sgf */,
 				80739ECC2749B3D100593DC7 /* test.sgf */,
 				80CC5950271476C2009A24AC /* KatatrainTests.swift */,
 				80739EC62748A26800593DC7 /* SGFTests.swift */,
+				29F8D9A72757057100BF1AE0 /* GameTests.swift */,
 			);
 			path = katatrainTests;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80739ECD2749B3D100593DC7 /* test.sgf in Resources */,
+				29F8D9A62757040600BF1AE0 /* capture.sgf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80739EC72748A26800593DC7 /* SGFTests.swift in Sources */,
+				29F8D9A82757057100BF1AE0 /* GameTests.swift in Sources */,
 				80CC5951271476C2009A24AC /* KatatrainTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

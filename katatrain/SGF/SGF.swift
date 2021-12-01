@@ -64,7 +64,6 @@ class SGF<Node: NodeProtocol> {
         self.content.formIndex(&self.idx, offsetBy: match.range.length)
         let sub = content[Range(match.range(at: 0), in: content)!]
         
-        print(sub)
         if sub == ")" {
           return
         }
