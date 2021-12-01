@@ -24,6 +24,7 @@ protocol NodeProtocol {
   var initial_player: Character { get }
   var nodes_from_root: [NodeProtocol] { get }
   var board_size: (Int, Int) { get }
+  var title: String { get }
   
   func add_list_property(property: String, values: [String])
   func get_property(property: String, default_value: Any?) -> Any?

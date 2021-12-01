@@ -206,6 +206,17 @@ class SgfNode: NodeProtocol {
     }
   }
   
+  var title: String {
+    let black = self.root.get_property(property: "PB", default_value: "Black") as! String
+    let white = self.root.get_property(property: "PW", default_value: "White") as! String
+    
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let today = formatter.string(from: Date())
+    let date = self.root.get_property(property: "DT", default_value: today) as! String
+    return "B:\(black) vs W:\(white) \(date)"
+  }
+  
   // MARK: - Public
   func add_list_property(property: String, values: [String]) {
     self.properties[property] = values

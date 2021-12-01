@@ -15,6 +15,8 @@ struct NewGameView: View {
   var body: some View {
     Group {
       VStack {
+        Text(game.title)
+        
         Stepper("Handicap: \(handicap)", value: $handicap, in: 0...9)
         Button("Start") {
 //          katago.newGame(handicap: handicap)
@@ -23,7 +25,7 @@ struct NewGameView: View {
         Button("Open") {
           show.toggle()
         }.sheet(isPresented: $show) {
-          DocumentPicker()
+          DocumentPicker(game: game)
         }
       }
     }

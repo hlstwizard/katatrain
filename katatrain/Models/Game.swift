@@ -10,6 +10,7 @@ import Combine
 
 class BaseGame: GameProtocol, ObservableObject {
   @Published var engine: Katago
+  @Published var title: String
   @Published var board: [Int]
   
   var root: GameNode
@@ -26,9 +27,9 @@ class BaseGame: GameProtocol, ObservableObject {
   
   var engineCancellable: AnyCancellable? = nil
   
-  init(engine: Katago, moveTree: GameNode? = nil, sgfFile: String? = nil) {
-    guard !(moveTree != nil && sgfFile != nil) else {
-      fatalError("can't init game from both node and sgfFile")
+  init(engine: Katago, moveTree: GameNode? = nil, url: URL? = nil) {
+    guard !(moveTree != nil && url != nil) else {
+      fatalError("can't init game from both node and url")
     }
     self.engine = engine
     
@@ -36,9 +37,8 @@ class BaseGame: GameProtocol, ObservableObject {
     formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
     gameId = formatter.string(from: Date())
     
-    if let sgfFile = sgfFile {
-      let url = Bundle.main.url(forResource: sgfFile, withExtension: "sgf")
-      root = try! SGF<GameNode>.parse_file(url: url!)
+    if let url = url {
+      root = try! SGF<GameNode>.parse_file(url: url)
     } else if let moveTree = moveTree {
       root = moveTree
       komi = moveTree.komi
@@ -48,12 +48,34 @@ class BaseGame: GameProtocol, ObservableObject {
     }
 
     currentNode = root
+    title = root.title
     
     boardSize = root.board_size
     board = Array(repeating: -1, count: root.board_size.0 * root.board_size.1)
     
     engineCancellable = engine.objectWillChange.sink { [weak self] (_) in
       self?.objectWillChange.send()
+    }
+  }
+  
+  convenience init(engine: Katago, moveTree: GameNode? = nil, sgfFile: String? = nil) {
+    let url: URL?
+    if let sgfFile = sgfFile {
+      url = Bundle.main.url(forResource: sgfFile, withExtension: "sgf")
+    } else {
+      url = nil
+    }
+    self.init(engine: engine, moveTree: moveTree, url: url)
+  }
+  
+  func load(url: URL) throws {
+    do {
+      root = try SGF<GameNode>.parse_file(url: url)
+      currentNode = root
+      title = root.title
+      init_state()
+    } catch {
+      NSLog("Failed to load: \(url)")
     }
   }
   
