@@ -15,12 +15,11 @@ struct KatatrainApp: App {
   
   init() {
     let engine = Katago()
-    #if DEBUG
+#if false
     _game = StateObject(wrappedValue: Game(engine: engine, sgfFile: "example"))
-    
-    #else
+#else
     _game = StateObject(wrappedValue: Game(engine: engine))
-    #endif
+#endif
     
     Setup.setup()
   }

@@ -21,41 +21,8 @@ class Katago: ObservableObject {
   var initFinished: Bool {
     initProgress == 1.0
   }
-  
-  private enum State {
-    case suspended
-    case resumed
-  }
-  
-  private var state: State = .suspended
+
   private var analyseQueue: DispatchQueue
-  private lazy var fetchResultTimer: DispatchSourceTimer = {
-    let queue = DispatchQueue(label: "com.katatrain.result", qos: .utility)
-    let t = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-    t.schedule(deadline: .now(), repeating: .seconds(1))
-    t.setEventHandler(handler: { [weak self] in
-      self?.eventHandler?()
-    })
-    return t
-  }()
-  
-  func resume() {
-    if state == .resumed {
-      return
-    }
-    state = .resumed
-    fetchResultTimer.resume()
-  }
-  
-  func suspend() {
-    if state == .suspended {
-      return
-    }
-    state = .suspended
-    fetchResultTimer.suspend()
-  }
-  
-  var eventHandler: (() -> Void)?
   
   var engine: Engine
   var appendingResults: Set<String> = []
@@ -69,16 +36,10 @@ class Katago: ObservableObject {
       guard let self = self else { return }
       self.engine.runLoop()
     }
-    eventHandler = self.fetchResultHandle
-    fetchResultTimer.activate()
-    state = .resumed
   }
   
   deinit {
-    fetchResultTimer.setEventHandler {}
-    fetchResultTimer.cancel()
-    resume()
-    eventHandler = nil
+    
   }
   
   static func get_rules(ruleset: String) -> String {
@@ -194,10 +155,10 @@ class Katago: ObservableObject {
     }
   }
   
-  func fetchResultHandle() {
+  /// Blocking fetch
+  func fetchResult() -> [String: Any]? {
     let result = self.engine.fetchResult()
-    if !result.isEmpty {
-      analysisResult.append(result)
+    if result != "terminate" {
       if let data = result.data(using: String.Encoding.utf8) {
         do {
           let parsedResult = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -205,40 +166,31 @@ class Katago: ObservableObject {
             DispatchQueue.main.async { [unowned self] in
               self.initProgress = engineInitProcess as! Double
             }
-            return
+            return nil
           }
           if let id = parsedResult?["id"] as? String {
             if !appendingResults.contains(id) {
               NSLog("Query result \(id) discarded -- recent new game or node reset?")
-              return
+              return nil
+            } else {
+              appendingResults.remove(id)
+              if appendingResults.isEmpty {
+                DispatchQueue.main.async { [unowned self] in
+                  self.isIdle = true
+                }
+              }
             }
             NSLog("Get result of \(id)")
-            let moveInfos = parsedResult?["moveInfos"] as! [Any]
-            let topMoveInfo = moveInfos[0] as! [String: Any]
-            var loc: Loc = 0
-            
-            // pointer from objective-c++
-//            let result = withUnsafeMutablePointer(to: &loc) {
-//              Game.tryLoc(of: topMoveInfo["move"] as! String, $0, 19, 19)
-//            }
-            
-//            if !result {
-//              NSLog("Failed to parse loc \(String(describing: topMoveInfo["move"]))")
-//            }
-            
-            DispatchQueue.main.async { [unowned self] in
-              self.isIdle = false
-            }
-            appendingResults.remove(id)
-          } else if let error = parsedResult?["error"] as? String {
-            NSLog("Query result error -- \(error)")
-            return
           }
           
+          return parsedResult
         } catch {
           NSLog(error.localizedDescription)
+          return nil
         }
       }
     }
+    NSLog("Result queue closed. (or some other reason)")
+    return nil
   }
 }

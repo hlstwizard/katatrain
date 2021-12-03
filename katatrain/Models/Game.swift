@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 class BaseGame: GameProtocol, ObservableObject {
   @Published var engine: Katago
@@ -79,14 +80,14 @@ class BaseGame: GameProtocol, ObservableObject {
     }
   }
   
-  private func init_state() {
+  fileprivate func init_state() {
     self.board = Array(repeating: -1, count: boardSize.0 * boardSize.1)
     self.chains = []
     self.prisoners = []
     self.lastCapture = []
   }
   
-  private func calculateGroups() throws {
+  fileprivate func calculateGroups() throws {
     self.init_state()
     do {
       for node in self.currentNode.nodes_from_root {
@@ -110,15 +111,15 @@ class BaseGame: GameProtocol, ObservableObject {
     }
   }
   
-  private func getLoc(x: Int, y: Int) -> Int {
+  fileprivate func getLoc(x: Int, y: Int) -> Int {
     return y * boardSize.0 + x
   }
   
-  private func getLoc(move: Move) -> Int {
+  fileprivate func getLoc(move: Move) -> Int {
     return getLoc(x: move.coord!.x, y: move.coord!.y)
   }
   
-  private func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
+  fileprivate func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
     let sizeX = boardSize.0
     let sizeY = boardSize.1
     let loc = getLoc(x: move.coord!.x, y: move.coord!.y)
@@ -234,5 +235,44 @@ class BaseGame: GameProtocol, ObservableObject {
 
 /// Extensions related to analysis etc.
 class Game: BaseGame {
+  convenience init(engine: Katago) {
+    self.init(engine: engine, moveTree: nil, sgfFile: nil)
+    
+    self.start()
+  }
   
+  var funcMapping = [
+    "new_game": newGame
+  ]
+  
+  var players = ["B": Player("B"), "W": Player("W")]
+  var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
+  
+  func newGame(moveTree: NodeProtocol, analyzeFast: Bool = false, sgfFilename: String? = nil) {
+    root = GameNode()
+    currentNode = root
+    title = root.title
+    init_state()
+    
+    players["W"]?.type = .ai
+  }
+  
+  func start() {
+    engineQueue.async { [weak self] in
+      guard let self = self else {
+        return
+      }
+      self.engineLoop()
+    }
+  }
+  
+  func engineLoop() {
+    while true {
+      let result = self.engine.fetchResult()
+      if result == nil {
+        NSLog("engine loop end")
+        break
+      }
+    }
+  }
 }
