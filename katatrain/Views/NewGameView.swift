@@ -19,7 +19,7 @@ struct NewGameView: View {
         
         Stepper("Handicap: \(handicap)", value: $handicap, in: 0...9)
         Button("Start") {
-//          katago.newGame(handicap: handicap)
+          game.newGame()
         }
         
         Button("Open") {

@@ -245,12 +245,19 @@ class Game: BaseGame {
     "new_game": newGame
   ]
   
+  var currentPlayer: Character = "B"
   var players = ["B": Player("B"), "W": Player("W")]
   var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
   
-  func newGame(moveTree: NodeProtocol, analyzeFast: Bool = false, sgfFilename: String? = nil) {
-    root = GameNode()
+  func newGame(moveTree: NodeProtocol? = nil, analyzeFast: Bool = false, sgfFilename: String? = nil) {
+    if let moveTree = moveTree {
+      root = moveTree as! GameNode
+    } else {
+      root = GameNode()
+    }
+    
     currentNode = root
+    currentPlayer = root.initial_player
     title = root.title
     init_state()
     
@@ -264,6 +271,12 @@ class Game: BaseGame {
       }
       self.engineLoop()
     }
+  }
+  
+  func play(x: Int, y: Int) throws {
+    let move = Move(coord: (x, y), player: currentPlayer)
+    try super.play(move: move, ignore_ko: false)
+    currentPlayer = move.opponent()
   }
   
   func engineLoop() {

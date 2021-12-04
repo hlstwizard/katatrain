@@ -17,7 +17,10 @@ extension BoardView {
       NSLog("Be patient..")
       return
     }
-    let loc = (point.x + 1) + (point.y + 1) * (boardSize + 1)
-//    katago.play(loc: Loc(loc))
+    do {
+      try game.play(x: point.x, y: boardSize - point.y - 1)
+    } catch {
+      NSLog("\(error)")
+    }
   }
 }
