@@ -33,7 +33,6 @@ enum AIStrategy: String {
   case rank = "ai:p:rank"
   case simple_ownership = "ai:simple"
   case settle_stones = "ai:settle"
-
 }
 
 struct Player {
