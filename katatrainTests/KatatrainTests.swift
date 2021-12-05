@@ -30,16 +30,14 @@ class KatatrainTests: XCTestCase {
     // Wait for katago init
     sleep(5)
     
-    katago.requestAnalysis(analysis_node: root, queue: queue)
-    XCTAssert(!katago.appendingResults.isEmpty)
+    katago.requestAnalysis(analysis_node: root as! GameNode, queue: queue)
+    XCTAssert(!katago.isIdle)
     
     queue.sync { }
     
-    while katago.isIdle {
+    while !katago.isIdle {
       sleep(1)
     }
-    
-    XCTAssert(!katago.analysisResult.isEmpty)
   }
   
   func testQueryVersion() throws {

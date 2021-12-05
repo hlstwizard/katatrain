@@ -12,21 +12,17 @@ class Katago: ObservableObject {
   @Published var initProgress: Double = 0
   @Published var isIdle: Bool = true
   
-  var queryCounter = 0
-  var analysisResult: [String] = []
+  typealias Callback = ([String: Any], Bool) -> Void
   
-  var size_x = 19
-  var size_y = 19
+  private var analyseQueue: DispatchQueue
+  private var queries: [String: Callback] = [:] // queryId: Callback
+  var engine: Engine
+  
+  var queryCounter: Int = 0
   
   var initFinished: Bool {
     initProgress == 1.0
   }
-
-  private var analyseQueue: DispatchQueue
-  
-  var engine: Engine
-  var appendingResults: Set<String> = []
-  var running: Bool = false
   
   init() {
     engine = Engine.init("Katagob40", "analysis_example")
@@ -99,7 +95,7 @@ class Katago: ObservableObject {
     }
   }
   
-  func requestAnalysis(analysis_node: NodeProtocol, queue: DispatchQueue? = nil) {
+  func requestAnalysis(analysis_node: GameNode, queue: DispatchQueue? = nil) {
     let nodes = analysis_node.nodes_from_root
     
     let moves: [Move] = nodes.reduce(into: []) { result, nextNode in
@@ -113,23 +109,23 @@ class Katago: ObservableObject {
         result.append($0)
       }
     }
-    
-    queryCounter += 1
-    
+
     let query: [String: Any] = [
       "id": "\(queryCounter)",
       "rules": Katago.get_rules(ruleset: analysis_node.ruleset),
       "analyzeTurns": [moves.count],
       "komi": analysis_node.komi,
-      "boardXSize": size_x,
-      "boardYSize": size_y,
+      "boardXSize": analysis_node.root.board_size.0,
+      "boardYSize": analysis_node.root.board_size.1,
       "initialStones": initial_stones.map { [String($0.player), $0.gtp()] },
       "initialPlayer": String(analysis_node.initial_player),
       "moves": moves.map { [String($0.player), $0.gtp()] }
     ]
     
     isIdle = false
-    appendingResults.insert("\(queryCounter)")
+    queries["\(queryCounter)"] = analysis_node.set_analysis
+    
+    queryCounter += 1
     
     let sending = { [weak self] in
       guard let self = self else { return }
@@ -168,16 +164,20 @@ class Katago: ObservableObject {
             }
           }
           if let id = parsedResult?["id"] as? String {
-            if !appendingResults.contains(id) {
-              NSLog("Query result \(id) discarded -- recent new game or node reset?")
-            } else {
-              appendingResults.remove(id)
-              if appendingResults.isEmpty {
+            if let callback = queries[id] {
+              queries.removeValue(forKey: id)
+              let partialResult = parsedResult?["isDuringSearch"] as? Bool
+              callback(parsedResult!, partialResult!)
+              
+              if queries.isEmpty {
                 DispatchQueue.main.async { [unowned self] in
                   self.isIdle = true
                 }
               }
+            } else {
+              NSLog("Query result \(id) discarded -- recent new game or node reset?")
             }
+
             NSLog("Get result of \(id)")
           }
           

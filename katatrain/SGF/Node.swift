@@ -258,8 +258,9 @@ final class GameNode: SgfNode {
   var analysis: [String: Any] = [:]
   var analysis_from_sgf: [String] = []
   
-  func analyse(engine: Katago) {
-    
+  /// Callback function when analysis done.
+  func set_analysis(analysis_json: [String: Any], partial_result: Bool) {
+    NSLog("callback \(analysis_json), \(partial_result)")
   }
   
   func update_move_analysis(move_analysis: [String: Any], move_gtp: String) {
