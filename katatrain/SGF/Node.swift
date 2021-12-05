@@ -252,38 +252,3 @@ class SgfNode: NodeProtocol {
     return createNewNode(move: move)
   }
 }
-
-final class GameNode: SgfNode {
-  var analysis_visits_requested: Int = 0
-  var analysis: [String: Any] = [:]
-  var analysis_from_sgf: [String] = []
-  
-  /// Callback function when analysis done.
-  func set_analysis(analysis_json: [String: Any], partial_result: Bool) {
-    NSLog("callback \(analysis_json), \(partial_result)")
-  }
-  
-  func update_move_analysis(move_analysis: [String: Any], move_gtp: String) {
-    
-  }
-  
-  func set_analysis(analysis_json: [String: Any],
-                    refine_move: Move? = nil,
-                    addtional_moves: Bool = false,
-                    region_of_interest: [Int]? = nil,
-                    partial_result: Bool = false) {
-    if refine_move != nil {
-      
-    }
-  }
-  
-  override func add_list_property(property: String, values: [String]) {
-    if property == "KT" {
-      self.analysis_from_sgf = values
-    } else if property == "C" {
-      // TODO: Comment in SGF
-    } else {
-      super.add_list_property(property: property, values: values)
-    }
-  }
-}

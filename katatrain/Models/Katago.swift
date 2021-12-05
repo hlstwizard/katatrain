@@ -95,7 +95,17 @@ class Katago: ObservableObject {
     }
   }
   
-  func requestAnalysis(analysis_node: GameNode, queue: DispatchQueue? = nil) {
+  func requestAnalysis(analysis_node: GameNode,
+                       visits: Int? = nil,
+                       analyze_fast: Bool = false,
+                       time_limit: Bool = true,
+                       find_alternatives: Bool = false,
+                       region_of_interest: [Int]? = nil,
+                       priority: Int = 0,
+                       ponder: Bool = false, // infinite visits, cancellable
+                       ownership: Bool? = nil,
+                       next_move: GameNode? = nil,
+                       queue: DispatchQueue? = nil) {
     let nodes = analysis_node.nodes_from_root
     
     let moves: [Move] = nodes.reduce(into: []) { result, nextNode in
@@ -119,6 +129,8 @@ class Katago: ObservableObject {
       "boardYSize": analysis_node.root.board_size.1,
       "initialStones": initial_stones.map { [String($0.player), $0.gtp()] },
       "initialPlayer": String(analysis_node.initial_player),
+      // TODO: get ownership from config
+      "includeOwnership": ownership ?? true,
       "moves": moves.map { [String($0.player), $0.gtp()] }
     ]
     

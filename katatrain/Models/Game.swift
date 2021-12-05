@@ -276,10 +276,10 @@ class Game: BaseGame {
   func play(x: Int, y: Int) throws {
     let move = Move(coord: (x, y), player: currentPlayer)
     try super.play(move: move, ignore_ko: false)
-    currentPlayer = move.opponent()
+    let nextPla = move.opponent()
     
-    if players[currentPlayer]!.ai {
-      engine.requestAnalysis(analysis_node: currentNode)
+    if players[nextPla]!.ai {
+      let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
     }
   }
   

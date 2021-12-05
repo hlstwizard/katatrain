@@ -66,17 +66,21 @@ func ai_rank_estimation(strategy: AIStrategy, settings: [String: Double]) -> Int
   return 1 - kyu
 }
 
+func request_ai_analysis(game: Game, cn: GameNode, extra_settings: [String: Any]? = nil) {
+  
+}
+
 /// Sync method, should be called in a dispatchqueue
-func generate_ai_move(game: Game, ai_mode: String, ai_settings: [String: Any]) -> (Move, NodeProtocol) {
+func generate_ai_move(game: Game, ai_mode: AIStrategy, ai_settings: [String: Any]? = nil) -> (Move, NodeProtocol) {
   let cn = game.currentNode
   
-  if ai_mode == AIStrategy.handicap.rawValue {
+  if ai_mode == .handicap {
     
-  } else if ai_mode == AIStrategy.antimirror.rawValue {
+  } else if ai_mode == .antimirror {
     
   }
   
-  if AI_STRATEGIES_POLICY.contains(ai_mode) {
+  if AI_STRATEGIES_POLICY.contains(ai_mode.rawValue) {
     
   }
   

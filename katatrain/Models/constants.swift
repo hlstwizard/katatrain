@@ -120,6 +120,8 @@ let AI_PICK_ELO_GRID = [
     ],
 ]
 
+let ADDITIONAL_MOVE_ORDER = 999
+
 let AI_DEFAULT = "ai:default"
 let AI_HANDICAP = "ai:handicap"
 let AI_SCORELOSS = "ai:scoreloss"
