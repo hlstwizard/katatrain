@@ -246,7 +246,7 @@ class Game: BaseGame {
   ]
   
   var currentPlayer: Character = "B"
-  var players = ["B": Player("B"), "W": Player("W")]
+  var players: [Character: Player] = ["B": Player("B"), "W": Player("W")]
   var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
   
   func newGame(moveTree: NodeProtocol? = nil, analyzeFast: Bool = false, sgfFilename: String? = nil) {
@@ -277,6 +277,10 @@ class Game: BaseGame {
     let move = Move(coord: (x, y), player: currentPlayer)
     try super.play(move: move, ignore_ko: false)
     currentPlayer = move.opponent()
+    
+    if players[currentPlayer]!.ai {
+      engine.requestAnalysis(analysis_node: currentNode)
+    }
   }
   
   func engineLoop() {

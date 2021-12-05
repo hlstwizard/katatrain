@@ -10,7 +10,7 @@ import Combine
 
 class Katago: ObservableObject {
   @Published var initProgress: Double = 0
-  @Published var isIdle: Bool = false
+  @Published var isIdle: Bool = true
   
   var queryCounter = 0
   var analysisResult: [String] = []
@@ -128,7 +128,7 @@ class Katago: ObservableObject {
       "moves": moves.map { [String($0.player), $0.gtp()] }
     ]
     
-    isIdle = true
+    isIdle = false
     appendingResults.insert("\(queryCounter)")
     
     let sending = { [weak self] in
@@ -166,12 +166,10 @@ class Katago: ObservableObject {
             DispatchQueue.main.async { [unowned self] in
               self.initProgress = engineInitProcess as! Double
             }
-            return nil
           }
           if let id = parsedResult?["id"] as? String {
             if !appendingResults.contains(id) {
               NSLog("Query result \(id) discarded -- recent new game or node reset?")
-              return nil
             } else {
               appendingResults.remove(id)
               if appendingResults.isEmpty {
