@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 fileprivate func interp_ix<T: FloatingPoint>(lst: [T], x: T) -> (Int, T) {
   var i = 0
   while i + 1 < lst.count - 1 && lst[i + 1] < x {
@@ -66,23 +67,47 @@ func ai_rank_estimation(strategy: AIStrategy, settings: [String: Double]) -> Int
   return 1 - kyu
 }
 
-func request_ai_analysis(game: Game, cn: GameNode, extra_settings: [String: Any]? = nil) {
+func ai_move_callback(game: Game, ai_mode: AIStrategy, _ json: [String: Any], _ partial: Bool) {
+  let cn = game.currentNode
+  cn.set_analysis(analysis_json: json, partial_result: partial)
+  
+  var ai_thoughts: String = ""
+  
+  if AI_STRATEGIES_POLICY.contains(ai_mode.rawValue) && cn.analysis?.policy != nil {
+    let policy_moves = cn.policy_ranking!
+    let pass_policy = cn.analysis?.policy?.last
+    
+    let top_5_pass = policy_moves[..<5].filter { $0.1.is_pass() }.count > 0
+    ai_thoughts += "Using policy based strategy, base top 5 moves are \(policy_moves[..<5])"
+  } else {
+    // Engine based move
+    let moves_dict = cn.analysis?.moves.values as! [String:Any]
+    
+  }
   
 }
 
-/// Sync method, should be called in a dispatchqueue
-func generate_ai_move(game: Game, ai_mode: AIStrategy, ai_settings: [String: Any]? = nil) -> (Move, NodeProtocol) {
+func generate_ai_move(game: Game, ai_mode: AIStrategy, ai_settings: [String: Any]? = nil) {
   let cn = game.currentNode
-  
+    
   if ai_mode == .handicap {
+    let n_handicap = game.root.handicap
+    let MOVE_VALUE: Double = 14
+    let b_stone_advantage = max(n_handicap - 1, 0) - (Double(cn.komi) - MOVE_VALUE / 2) / MOVE_VALUE
+    let pda = min(3, max(-3, -b_stone_advantage * (3 / 8)))
     
+    game.engine.requestAnalysis(analysis_node: cn,
+                                callback: { ai_move_callback(game: game, ai_mode: ai_mode, $0, $1) },
+                                extra_settings: [
+                                  "playoutDoublingAdvantage": pda,"playoutDoublingAdvantagePla": "BLACK"
+                                ])
   } else if ai_mode == .antimirror {
-    
+    game.engine.requestAnalysis(analysis_node: cn,
+                                callback: { ai_move_callback(game: game, ai_mode: ai_mode, $0, $1) },
+                                extra_settings: ["antiMirror": true])
   }
   
   if AI_STRATEGIES_POLICY.contains(ai_mode.rawValue) {
     
   }
-  
-  return (Move(coord: nil, player: "B"), cn)
 }

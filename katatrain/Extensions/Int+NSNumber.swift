@@ -15,4 +15,8 @@ extension Int {
     static func += (lhs: inout Int, rhs: NSNumber) {
         lhs += rhs.intValue
     }
+  
+  static func - <T: Numeric> (lhs: Int, rhs: T) -> T {
+    return T(exactly: lhs)! - rhs
+  }
 }

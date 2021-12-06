@@ -50,7 +50,7 @@ class SgfNode: NodeProtocol {
     return node
   }
   
-  private func expanded_placements(player: Character?) -> [Move] {
+  private func expandedPlacements(player: Character?) -> [Move] {
     let sgf_pl: Character
     if let player = player {
       sgf_pl = player
@@ -117,7 +117,7 @@ class SgfNode: NodeProtocol {
     var res: [Move] = []
     
     for p in Move.PLAYERS {
-      let tmp = self.expanded_placements(player: p).reduce(into: []) { result, newElement in
+      let tmp = self.expandedPlacements(player: p).reduce(into: []) { result, newElement in
         result.append(newElement)
       }
       res += tmp
@@ -215,6 +215,19 @@ class SgfNode: NodeProtocol {
     let today = formatter.string(from: Date())
     let date = self.root.get_property(property: "DT", default_value: today) as! String
     return "B:\(black) vs W:\(white) \(date)"
+  }
+  
+  var next_player: Character {
+    if is_root {
+      return self.initial_player
+    } else if properties["B"] != nil {
+      return "W"
+    } else if properties["W"] != nil {
+      return "B"
+    } else {
+      // TODO: only placements, find a parent node with a real move. TODO: better placement support
+      return self.parent!.next_player
+    }
   }
   
   // MARK: - Public

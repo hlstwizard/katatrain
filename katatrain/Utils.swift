@@ -22,3 +22,14 @@ func unzip<K, V>(_ array: [(K, V)]) -> ([K], [V]) {
 
     return (first, second)
 }
+
+
+func var_to_grid<T>(array: [T], size: (Int, Int)) -> [[T]] {
+  var ix = 0
+  var grid = Array<[T]>(repeating: [], count: size.1)
+  for y in stride(from: size.1-1, to: -1, by: -1) {
+    grid[y] = Array(array[ix..<ix + size.0])
+    ix += size.0
+  }
+  return grid
+}

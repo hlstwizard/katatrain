@@ -262,6 +262,7 @@ class Game: BaseGame {
     init_state()
     
     players["W"]?.type = .ai
+    players["W"]?.strategy = .handicap
   }
   
   func start() {
@@ -279,6 +280,7 @@ class Game: BaseGame {
     let nextPla = move.opponent()
     
     if players[nextPla]!.ai {
+//      engine.requestAnalysis(analysis_node: currentNode)
       let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
     }
   }
