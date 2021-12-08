@@ -19,4 +19,8 @@ extension Int {
   static func - <T: Numeric> (lhs: Int, rhs: T) -> T {
     return T(exactly: lhs)! - rhs
   }
+  
+  static func * <T: Numeric> (lhs: Int, rhs: T) -> T {
+    return T(exactly: lhs)! - rhs
+  }
 }

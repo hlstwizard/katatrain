@@ -34,8 +34,14 @@ final class GameNode: SgfNode {
   var analysis: Analysis? = nil
   var analysis_from_sgf: [String] = []
   
+  static func player_sign(player: Character) -> Int {
+    return ["B": 1,"W": -1][player] ?? 0
+  }
+  
   var candidate_moves: [[String: Any]]? {
     if let moves = analysis?.moves {
+      let root_score = analysis?.root["scoreLead"] as! Double
+      let root_winrate = analysis?.root["winrate"] as! Double
       let move_dicts: [[String: Any]] = Array(moves.values.map { $0 as! [String: Any] })
       let top_move = move_dicts.filter { $0["order"] as? Int == 0 }
       let top_score_lead: Double
@@ -47,14 +53,17 @@ final class GameNode: SgfNode {
       
       let move_dicts_with_lost: [[String: Any]] = move_dicts.map {
         var tmp: [String: Any] = [
-          "pointsLost": 0,
-          "relativePointsLost": 0,
-          "winrateLost": 0
+          "pointsLost": GameNode.player_sign(player: next_player) * (root_score - ($0["scoreLead"] as! Double)),
+          "relativePointsLost": GameNode.player_sign(player: next_player) * (top_score_lead - ($0["scoreLead"] as! Double)),
+          "winrateLost": GameNode.player_sign(player: next_player) * (root_winrate - ($0["winrate"] as! Double)),
         ]
         
         tmp.merge($0, uniquingKeysWith: { cur, new in new })
         
         return tmp
+      }
+      return move_dicts_with_lost.sorted {
+        ($0["order"] as! Double, $0["pointsLost"] as! Double) < ($1["order"] as! Double, $1["pointsLost"] as! Double)
       }
     }
     

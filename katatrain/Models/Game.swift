@@ -141,7 +141,7 @@ class BaseGame: GameProtocol, ObservableObject {
     let koOrSnapback = lastCapture.count == 1 && lastCapture[0] == move
     self.lastCapture = []
     
-    if move.is_pass() { return }
+    if move.is_pass { return }
     
     if self.board[loc] != -1 {
       throw GameError.IllegalMoveError("Space already occupied")
@@ -194,7 +194,7 @@ class BaseGame: GameProtocol, ObservableObject {
   }
   
   func play(move: Move, ignore_ko: Bool) throws {
-    if !move.is_pass() && !(move.coord!.x >= 0 && move.coord!.y >= 0 && move.coord!.x < boardSize.0 && move.coord!.y < boardSize.1) {
+    if !move.is_pass && !(move.coord!.x >= 0 && move.coord!.y >= 0 && move.coord!.x < boardSize.0 && move.coord!.y < boardSize.1) {
       throw GameError.IllegalMoveError("Move \(move) outside of board coordinates")
     }
     
@@ -277,7 +277,7 @@ class Game: BaseGame {
   func play(x: Int, y: Int) throws {
     let move = Move(coord: (x, y), player: currentPlayer)
     try super.play(move: move, ignore_ko: false)
-    let nextPla = move.opponent()
+    let nextPla = move.opponent
     
     if players[nextPla]!.ai {
 //      engine.requestAnalysis(analysis_node: currentNode)
