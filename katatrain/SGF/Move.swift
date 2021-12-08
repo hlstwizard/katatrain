@@ -83,11 +83,11 @@ struct Move: Equatable, Hashable {
     return Move(coord: (first, board_size.1 - second - 1), player: player)
   }
   
-  func is_pass() -> Bool {
+  var is_pass: Bool {
     return self.coord == nil
   }
   
-  func opponent() -> Character {
+  var opponent: Character {
     if self.player == "B" {
       return "W"
     } else {
@@ -96,7 +96,7 @@ struct Move: Equatable, Hashable {
   }
   
   func gtp() -> String {
-    if self.is_pass() {
+    if self.is_pass {
       return "pass"
     } else {
       let index = Move.GTP_COORD.index(Move.GTP_COORD.startIndex, offsetBy: self.coord!.x)
@@ -105,7 +105,7 @@ struct Move: Equatable, Hashable {
   }
   
   func sgf(boardSize: (Int, Int) = (19, 19)) -> String {
-    if self.is_pass() {
+    if self.is_pass {
       return ""
     }
     return "\(Move.SGF_COORD[coord!.x])\(Move.SGF_COORD[boardSize.1 - coord!.y - 1])"

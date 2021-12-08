@@ -77,14 +77,27 @@ func ai_move_callback(game: Game, ai_mode: AIStrategy, _ json: [String: Any], _ 
     let policy_moves = cn.policy_ranking!
     let pass_policy = cn.analysis?.policy?.last
     
-    let top_5_pass = policy_moves[..<5].filter { $0.1.is_pass() }.count > 0
+    let top_5_pass = policy_moves[..<5].filter { $0.1.is_pass }.count > 0
     ai_thoughts += "Using policy based strategy, base top 5 moves are \(policy_moves[..<5])"
   } else {
     // Engine based move
-    let moves_dict = cn.analysis?.moves.values as! [String:Any]
-    
+    if let candidate_ai_moves = cn.candidate_moves {
+      let top_cand = Move.from_gtp(gtp_coords: candidate_ai_moves[0]["move"] as! String, player: cn.next_player)
+      if top_cand.is_pass {
+        ai_thoughts += "It's a pass."
+      } else {
+        let aimove = top_cand
+        do {
+          try game.play(move: aimove, ignore_ko: false)
+          ai_thoughts += "AI played: \(aimove)"
+        } catch {
+          NSLog("\(error)")
+        }
+      }
+    }
   }
   
+  NSLog(ai_thoughts)
 }
 
 func generate_ai_move(game: Game, ai_mode: AIStrategy, ai_settings: [String: Any]? = nil) {
