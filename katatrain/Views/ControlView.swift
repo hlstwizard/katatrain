@@ -35,7 +35,7 @@ struct ControlView: View {
 //        }
 //      }
       
-      Circle().fill(game.engine.isIdle ? .red : .green)
+      Circle().fill(game.engine.isIdle ? .green : .red)
         .frame(width: 20.0, height: 20.0)
     }
   }

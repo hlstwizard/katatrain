@@ -245,16 +245,24 @@ class Game: BaseGame {
     "new_game": newGame
   ]
   
-  var players = ["B": Player("B"), "W": Player("W")]
+  var currentPlayer: Character = "B"
+  var players: [Character: Player] = ["B": Player("B"), "W": Player("W")]
   var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
   
-  func newGame(moveTree: NodeProtocol, analyzeFast: Bool = false, sgfFilename: String? = nil) {
-    root = GameNode()
+  func newGame(moveTree: NodeProtocol? = nil, analyzeFast: Bool = false, sgfFilename: String? = nil) {
+    if let moveTree = moveTree {
+      root = moveTree as! GameNode
+    } else {
+      root = GameNode()
+    }
+    
     currentNode = root
+    currentPlayer = root.initial_player
     title = root.title
     init_state()
     
     players["W"]?.type = .ai
+    players["W"]?.strategy = .handicap
   }
   
   func start() {
@@ -263,6 +271,17 @@ class Game: BaseGame {
         return
       }
       self.engineLoop()
+    }
+  }
+  
+  func play(x: Int, y: Int) throws {
+    let move = Move(coord: (x, y), player: currentPlayer)
+    try super.play(move: move, ignore_ko: false)
+    let nextPla = move.opponent()
+    
+    if players[nextPla]!.ai {
+//      engine.requestAnalysis(analysis_node: currentNode)
+      let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
     }
   }
   

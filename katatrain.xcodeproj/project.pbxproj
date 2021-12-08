@@ -11,6 +11,11 @@
 		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
 		29B3AC4927575E28008557F5 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3AC4827575E28008557F5 /* DocumentPicker.swift */; };
 		29B8444527599CA4003E876E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8444427599CA4003E876E /* Player.swift */; };
+		29B844472759F53C003E876E /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B844462759F53C003E876E /* AI.swift */; };
+		29B8444A275ACFCD003E876E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B84449275ACFCD003E876E /* Utils.swift */; };
+		29B8444C275B0F42003E876E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8444B275B0F42003E876E /* Constants.swift */; };
+		29B8444E275C911F003E876E /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8444D275C911F003E876E /* GameNode.swift */; };
+		29B84450275DA199003E876E /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8444F275DA199003E876E /* UtilsTests.swift */; };
 		29F8D9A62757040600BF1AE0 /* capture.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 29F8D9A52757040600BF1AE0 /* capture.sgf */; };
 		29F8D9A82757057100BF1AE0 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8D9A72757057100BF1AE0 /* GameTests.swift */; };
 		800F1A8D2749E940006AD729 /* NSRegularExpression+splitn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F1A8C2749E940006AD729 /* NSRegularExpression+splitn.swift */; };
@@ -78,6 +83,11 @@
 		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
 		29B3AC4827575E28008557F5 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		29B8444427599CA4003E876E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		29B844462759F53C003E876E /* AI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
+		29B84449275ACFCD003E876E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		29B8444B275B0F42003E876E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		29B8444D275C911F003E876E /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
+		29B8444F275DA199003E876E /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		29CC38CD27575C000030F023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = katatrain/Info.plist; sourceTree = SOURCE_ROOT; };
 		29F8D9A52757040600BF1AE0 /* capture.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capture.sgf; sourceTree = "<group>"; };
 		29F8D9A72757057100BF1AE0 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
@@ -164,6 +174,7 @@
 			children = (
 				80739EC42748932100593DC7 /* Move.swift */,
 				80739EC82748A98F00593DC7 /* Node.swift */,
+				29B8444D275C911F003E876E /* GameNode.swift */,
 				80739ECA2748FCF000593DC7 /* SGF.swift */,
 			);
 			path = SGF;
@@ -226,6 +237,7 @@
 				80CC597027148E3F009A24AC /* Extensions */,
 				80CC596927147753009A24AC /* Models */,
 				80CC593F271476BF009A24AC /* KatatrainApp.swift */,
+				29B84449275ACFCD003E876E /* Utils.swift */,
 				809261DE273BF22600CE2903 /* AppDelegate.swift */,
 				80CC5943271476C1009A24AC /* Assets.xcassets */,
 				29CC38CD27575C000030F023 /* Info.plist */,
@@ -251,6 +263,7 @@
 				80CC5950271476C2009A24AC /* KatatrainTests.swift */,
 				80739EC62748A26800593DC7 /* SGFTests.swift */,
 				29F8D9A72757057100BF1AE0 /* GameTests.swift */,
+				29B8444F275DA199003E876E /* UtilsTests.swift */,
 			);
 			path = katatrainTests;
 			sourceTree = "<group>";
@@ -267,10 +280,12 @@
 		80CC596927147753009A24AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				29B844462759F53C003E876E /* AI.swift */,
+				29B8444B275B0F42003E876E /* Constants.swift */,
+				80945E50274F185E00A75F66 /* Errors.swift */,
+				8052CB0D274E558B00B875C1 /* Game.swift */,
 				80BD07CE272BC01C00A4735C /* Katago.swift */,
 				29B8444427599CA4003E876E /* Player.swift */,
-				8052CB0D274E558B00B875C1 /* Game.swift */,
-				80945E50274F185E00A75F66 /* Errors.swift */,
 				80459987272D5B8D00B40C35 /* Types.swift */,
 				809A307D272CDDDD005A0C45 /* Katagob40.plist */,
 				80CC596A27147770009A24AC /* Katagob40.mlmodel */,
@@ -489,6 +504,7 @@
 				80B36AF827377126008FFDB0 /* ControlView.swift in Sources */,
 				80CC5942271476BF009A24AC /* ContentView.swift in Sources */,
 				80CC597E2715C396009A24AC /* BoardView.swift in Sources */,
+				29B8444E275C911F003E876E /* GameNode.swift in Sources */,
 				804C6F77273D326B007C67E8 /* Triangle.swift in Sources */,
 				80B36AF127361959008FFDB0 /* LandingView.swift in Sources */,
 				80CC597427148ECB009A24AC /* NSNumber+Int.swift in Sources */,
@@ -499,6 +515,7 @@
 				80B36AF3273625B5008FFDB0 /* GameView.swift in Sources */,
 				80739ECB2748FCF000593DC7 /* SGF.swift in Sources */,
 				80739EC52748932100593DC7 /* Move.swift in Sources */,
+				29B844472759F53C003E876E /* AI.swift in Sources */,
 				29B8444527599CA4003E876E /* Player.swift in Sources */,
 				804C6F79273DEA1C007C67E8 /* NewGameView.swift in Sources */,
 				80C8031B2751DF250078CA90 /* GameProtocol.swift in Sources */,
@@ -514,9 +531,11 @@
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
+				29B8444A275ACFCD003E876E /* Utils.swift in Sources */,
 				80CC597227148E52009A24AC /* Int+NSNumber.swift in Sources */,
 				29B3AC4927575E28008557F5 /* DocumentPicker.swift in Sources */,
 				809261DD273BEF2E00CE2903 /* StatusView.swift in Sources */,
+				29B8444C275B0F42003E876E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +546,7 @@
 				80739EC72748A26800593DC7 /* SGFTests.swift in Sources */,
 				29F8D9A82757057100BF1AE0 /* GameTests.swift in Sources */,
 				80CC5951271476C2009A24AC /* KatatrainTests.swift in Sources */,
+				29B84450275DA199003E876E /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

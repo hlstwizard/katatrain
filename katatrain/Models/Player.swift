@@ -33,7 +33,6 @@ enum AIStrategy: String {
   case rank = "ai:p:rank"
   case simple_ownership = "ai:simple"
   case settle_stones = "ai:settle"
-
 }
 
 struct Player {
@@ -47,9 +46,7 @@ struct Player {
   var human: Bool { type == .human }
   
   var being_taught: Bool { type == .human && subType == .teach }
-  var strategy: AIStrategy {
-    .default
-  }
+  var strategy: AIStrategy = .default
   
   init(_ pla: String = "B") {
     self.pla = pla
