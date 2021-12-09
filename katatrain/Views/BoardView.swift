@@ -13,8 +13,9 @@ struct BoardView: View {
   @EnvironmentObject var game: Game
   @State var showTouchPoint = false
   
+  var boardSize: Int { game.boardSize.0 }
+  
   var size: CGSize
-  let boardSize = 19
   let margin = 15.0
   let boardLineWidth = 5.0
   let lineWidth = 1.0
@@ -37,9 +38,11 @@ struct BoardView: View {
       drawStars(context: context, geoSize: self.size)
       drawChains(context: context, geoSize: self.size)
       
-//      if katago.lastMove != -1 {
-//        drawCursor(context: context, geoSize: self.size, loc: katago.lastMove, pla: .P_WHITE)
-//      }
+      if let move = game.currentNode.move {
+        if let coord = move.coord {
+          drawCursor(context: context, geoSize: self.size, coord: coord)
+        }
+      }
 
       if showTouchPoint {
         drawTouchPoint(context: context, geoSize: self.size)
@@ -197,16 +200,14 @@ struct BoardView: View {
     }
   }
   
-  func drawCursor(context: GraphicsContext, geoSize: CGSize, loc: Loc, pla: PlayerColor) {
+  func drawCursor(context: GraphicsContext, geoSize: CGSize, coord: Coord) {
     let _context = context
     
-    let x = Int(loc) % (self.boardSize+1) - 1
-    let y = Int(loc) / (self.boardSize+1) - 1
     let size = clipBoardSize(size: geoSize)
     let boardArea = getBoardArea(size: size)
-    let origin = getPoint(x: x, y: y, boardArea: boardArea) -
+    let drawCoord = coord.toDrawCoord(boardSize: boardSize)
+    let origin = getPoint(x: drawCoord.0, y: drawCoord.1, boardArea: boardArea) -
         CGPoint(x: imageSize * scale / 2, y: imageSize * scale / 2)
-    print("x: \(x), y: \(y), origin: \(origin)")
     
     _context.fill(Triangle().path(in: CGRect(origin: origin, size: CGSize(width: cursorSize, height: cursorSize))), with: .color(.green))
   }

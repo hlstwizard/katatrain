@@ -12,6 +12,10 @@ struct Coord: Equatable, Hashable, Comparable {
     return lhs.x < rhs.x && lhs.y < rhs.y
   }
   
+  func toDrawCoord(boardSize: Int) -> (Int, Int) {
+    return (x, boardSize - y - 1)
+  }
+  
   var x: Int
   var y: Int
   

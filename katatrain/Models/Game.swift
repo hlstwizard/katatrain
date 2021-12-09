@@ -12,7 +12,8 @@ import UIKit
 class BaseGame: GameProtocol, ObservableObject {
   @Published var engine: Katago
   @Published var title: String
-  @Published var board: [Int]
+  
+  var board: [Int]
   
   var root: GameNode
   var currentNode: GameNode
@@ -119,6 +120,7 @@ class BaseGame: GameProtocol, ObservableObject {
     return getLoc(x: move.coord!.x, y: move.coord!.y)
   }
   
+  /// Updating should be called in the main thread.
   fileprivate func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
     let sizeX = boardSize.0
     let sizeY = boardSize.1
@@ -206,6 +208,10 @@ class BaseGame: GameProtocol, ObservableObject {
     }
     let node = currentNode.play(move: move) as! GameNode
     currentNode = node
+    
+    DispatchQueue.main.sync {
+      self.objectWillChange.send()
+    }
   }
   
   func undo(n_times: UInt = 1) {
@@ -216,6 +222,7 @@ class BaseGame: GameProtocol, ObservableObject {
       currentNode = parent as! GameNode
       try! calculateGroups()
     }
+    self.objectWillChange.send()
   }
   
   func redo(n_times: UInt = 1) {
@@ -225,11 +232,12 @@ class BaseGame: GameProtocol, ObservableObject {
         try! calculateGroups()
       }
     }
+    self.objectWillChange.send()
   }
   
   func set_current_node(node: GameNode) {
     currentNode = node
-    
+    self.objectWillChange.send()
   }
 }
 
