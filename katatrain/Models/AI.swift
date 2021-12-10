@@ -87,11 +87,13 @@ func ai_move_callback(game: Game, ai_mode: AIStrategy, _ json: [String: Any], _ 
         ai_thoughts += "It's a pass."
       } else {
         let aimove = top_cand
-        do {
-          try game.play(move: aimove, ignore_ko: false)
-          ai_thoughts += "AI played: \(aimove)"
-        } catch {
-          NSLog("\(error)")
+        DispatchQueue.main.sync {
+          do {
+            try game.play(move: aimove, ignore_ko: false)
+            ai_thoughts += "AI played: \(aimove)"
+          } catch {
+            NSLog("\(error)")
+          }
         }
       }
     }

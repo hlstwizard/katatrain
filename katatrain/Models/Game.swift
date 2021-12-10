@@ -209,9 +209,7 @@ class BaseGame: GameProtocol, ObservableObject {
     let node = currentNode.play(move: move) as! GameNode
     currentNode = node
     
-    DispatchQueue.main.sync {
-      self.objectWillChange.send()
-    }
+    self.objectWillChange.send()
   }
   
   func undo(n_times: UInt = 1) {
@@ -288,7 +286,6 @@ class Game: BaseGame {
     let nextPla = move.opponent
     
     if players[nextPla]!.ai {
-//      engine.requestAnalysis(analysis_node: currentNode)
       let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
     }
   }

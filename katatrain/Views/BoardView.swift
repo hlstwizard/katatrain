@@ -43,6 +43,8 @@ struct BoardView: View {
           drawCursor(context: context, geoSize: self.size, coord: coord)
         }
       }
+      
+      drawTerritory(cn: game.currentNode, context: context, geoSize: self.size)
 
       if showTouchPoint {
         drawTouchPoint(context: context, geoSize: self.size)
@@ -230,6 +232,22 @@ struct BoardView: View {
         let _point = getPoint(x: x, y: y, boardArea: boardArea)
         let _size = CGSize(width: starWidth, height: starWidth)
         _context.fill(Circle().path(in: CGRect(origin: _point, size: _size)), with: .color(.red))
+      }
+    }
+  }
+  
+  func drawTerritory(cn: GameNode, context: GraphicsContext, geoSize: CGSize) {
+    if let ownership = cn.analysis?.ownership {
+      let size = clipBoardSize(size: geoSize)
+      let boardArea = getBoardArea(size: size)
+      let _context = context
+      
+      for i in 0..<ownership.count {
+        let (x, y) = (i / self.boardSize, i % self.boardSize)
+        
+        let _point = getPoint(x: x, y: y, boardArea: boardArea)
+        let _size = CGSize(width: starWidth, height: starWidth)
+        _context.fill(Rectangle().path(in: CGRect(origin: _point, size: _size)), with: .color(.black))
       }
     }
   }

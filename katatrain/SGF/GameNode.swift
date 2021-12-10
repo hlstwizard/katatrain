@@ -17,6 +17,8 @@ struct Analysis {
   
   init(analysis_json: [String: Any]) {
     self.root = analysis_json["rootInfo"]! as! [String: Any]
+    self.ownership = analysis_json["ownership"] as? [Double]
+    self.policy = analysis_json["policy"] as? [Double]
   }
   
   mutating func update_move_analysis(move_analysis: [String: Any], gtp: String) {
@@ -106,8 +108,6 @@ final class GameNode: SgfNode {
       analysis?.update_move_analysis(move_analysis: move_analysis, gtp: move_analysis["move"] as! String)
     }
     
-    analysis?.ownership = analysis_json["ownership"] as? [Double]
-    analysis?.policy = analysis_json["policy"] as? [Double]
     analysis?.complete = true
   }
   
