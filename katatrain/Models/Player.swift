@@ -35,9 +35,10 @@ enum AIStrategy: String {
   case settle_stones = "ai:settle"
 }
 
-struct Player {
+class Player: ObservableObject {
+  @Published var type: PlayerType = .human
+  
   var pla: String = "B"
-  var type: PlayerType = .human
   var subType: PlayerSubType = .normal
   var name: String = ""
   var periods_used: Int = 0

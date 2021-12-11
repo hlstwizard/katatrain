@@ -27,7 +27,10 @@ struct GameView: View {
                 .padding(.leading, 10)
               ControlView()
             }
-            NewGameView()
+            VStack {
+              StatusView()
+              NewGameView()
+            }
           }
         } else {
           VStack {

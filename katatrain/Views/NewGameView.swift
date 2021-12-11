@@ -7,6 +7,32 @@
 
 import SwiftUI
 
+struct PlayerPickerView: View {
+  var player: Player
+  
+  var body: some View {
+    let playerType = Binding(get: {
+      player.type
+    }, set: {
+      player.type = $0
+    })
+    HStack {
+      if player.pla == "B" {
+        Text("Black:")
+      } else {
+        Text("White:")
+      }
+      
+      Picker(selection: playerType, content: {
+        Text("Human").tag(PlayerType.human)
+        Text("AI").tag(PlayerType.ai)
+      }, label: {
+        Text("\(player.pla)")
+      })
+    }
+  }
+}
+
 struct NewGameView: View {
   @EnvironmentObject var game: Game
   @State var handicap: Int = 0
