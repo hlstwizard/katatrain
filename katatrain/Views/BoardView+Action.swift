@@ -18,7 +18,7 @@ extension BoardView {
       return
     }
     do {
-      try game.play(x: point.x, y: boardSize - point.y - 1)
+      try game.play(x: point.x, y: goboardSize - point.y - 1)
     } catch {
       NSLog("\(error)")
     }

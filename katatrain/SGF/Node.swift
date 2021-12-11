@@ -264,4 +264,29 @@ class SgfNode: NodeProtocol {
     
     return createNewNode(move: move)
   }
+  
+  
+  /// max handicap 9
+  func place_handicap_stones(n_handicaps: Int) {
+    let (x, y) = self.board_size
+    
+    let near_x = x >= 13 ? 3 : min(2, x - 1)
+    let near_y = y >= 13 ? 3 : min(2, y - 1)
+    
+    let far_x = x - 1 - near_x
+    let far_y = y - 1 - near_y
+    
+    let middle_x: Int = x / 2
+    let middle_y: Int = y / 2
+    
+    var stones = [(far_x, far_y), (near_x, near_y), (far_x, near_y), (near_x, far_y)]
+    if n_handicaps % 2 == 1 {
+      stones.append((middle_x, middle_y))
+    }
+    stones += [(near_x, middle_y), (far_x, middle_y), (middle_x, near_y), (middle_x, far_y)]
+    
+    self.add_list_property(property: "AB",
+                           values: stones.map { Move(coord: $0, player: "B").sgf(boardSize: board_size) })
+  }
+  
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewGameView: View {
   @EnvironmentObject var game: Game
-  @State var handicap: UInt8 = 0
+  @State var handicap: Int = 0
   @State var show = false
   
   var body: some View {
@@ -19,7 +19,7 @@ struct NewGameView: View {
         
         Stepper("Handicap: \(handicap)", value: $handicap, in: 0...9)
         Button("Start") {
-          game.newGame()
+          game.newGame(handicap: handicap)
         }
         
         Button("Open") {

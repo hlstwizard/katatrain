@@ -11,11 +11,10 @@ import Logging
 @available(iOS 15.0, *)
 struct BoardView: View {
   @EnvironmentObject var game: Game
+  @State var frame: CGSize = .zero
   @State var showTouchPoint = false
   
-  var boardSize: Int { game.boardSize.0 }
-  
-  var size: CGSize
+  // MARK: - Properties
   let margin = 15.0
   let boardLineWidth = 5.0
   let lineWidth = 1.0
@@ -27,74 +26,70 @@ struct BoardView: View {
   let imageSize = 200.0
   let scale = 0.18
   
-  init(size: CGSize) {
-    self.size = size
+  // MARK: - Computed Properties
+  var goboardSize: Int { game.boardSize.0 }
+  var boardOrigin: CGPoint {
+    CGPoint(x: margin + boardLineWidth, y: margin + boardLineWidth)
+  }
+  var boardFrame: CGSize {
+    CGSize(width: self.frame.width - canvasPadding,
+                  height: self.frame.height - canvasPadding)
+  }
+  
+  var boardLineFrame: CGSize {
+    CGSize(width: self.frame.height - 2 * margin - 2 * boardLineWidth,
+                  height: self.frame.height - 2 * margin - 2 * boardLineWidth)
+  }
+  
+  var gridWidth: Double {
+    (self.boardLineFrame.height - Double(goboardSize - 2) * lineWidth) / CGFloat(goboardSize - 1)
   }
   
   var body: some View {
-    Canvas { context, _ in
-      // (CGSize) $R0 = (width = 1148, height = 744)
-      drawBoard(context: context, geoSize: self.size)
-      drawStars(context: context, geoSize: self.size)
-      drawChains(context: context, geoSize: self.size)
+    Group {
+      GeometryReader { (geometry) in
+        self.makeView(geometry)
+      }
+    }
+  }
+  
+  // MARK: - Functions
+  func makeView(_ geometry: GeometryProxy) -> some View {
+    DispatchQueue.main.async { self.frame = geometry.size }
+    
+    return Canvas { context, _ in
+      drawBoard(context: context)
+      drawStars(context: context)
+      drawChains(context: context)
       
       if let move = game.currentNode.move {
         if let coord = move.coord {
-          drawCursor(context: context, geoSize: self.size, coord: coord)
+          drawCursor(context: context, geoSize: self.frame, coord: coord)
         }
       }
       
-      drawTerritory(cn: game.currentNode, context: context, geoSize: self.size)
+      drawTerritory(cn: game.currentNode, context: context, geoSize: self.frame)
 
       if showTouchPoint {
-        drawTouchPoint(context: context, geoSize: self.size)
+        drawTouchPoint(context: context)
       }
     }.gesture(
       DragGesture(minimumDistance: 0)
         .onEnded {
           // (CGSize) $R0 = (width = 1180, height = 776)
-          logger.debug("\($0.location), \(toPoint(pos: $0.location, size: self.size))")
-          play(point: toPoint(pos: $0.location, size: self.size))
+          logger.debug("\($0.location), \(toGoboardPoint(pos: $0.location))")
+          play(point: toGoboardPoint(pos: $0.location))
         }
-    ).frame(width: self.size.width, height: self.size.height)
+    ).frame(width: self.frame.width, height: self.frame.height)
       .padding(canvasPadding)
   }
   
-  var boardOrigin: CGPoint {
-    CGPoint(x: margin + boardLineWidth, y: margin + boardLineWidth)
-  }
-  
-  func getBoardArea(size: CGSize) -> CGSize {
-    return CGSize(width: size.height - 2 * margin - 2 * boardLineWidth,
-                  height: size.height - 2 * margin - 2 * boardLineWidth)
-  }
-  
-  func getGridWidth(boardArea: CGSize) -> Double {
-    (boardArea.height - Double(boardSize - 2) * lineWidth) / CGFloat(boardSize - 1)
-  }
-  
-  /// 围棋坐标 -> 屏幕坐标
-  ///
-  ///  return CGPoint
-  func getPoint(x: Int, y: Int, boardArea: CGSize) -> CGPoint {
-    let gridWidth = getGridWidth(boardArea: boardArea)
-    
+  func toScreenPoint(x: Int, y: Int) -> CGPoint {
     return CGPoint(x: boardOrigin.x + Double(x) * gridWidth + Double(abs(x - 1)) * lineWidth,
                    y: boardOrigin.y + Double(y) * gridWidth + Double(abs(y - 1)) * lineWidth)
   }
   
-  // size: GeometryReader size
-  func clipBoardSize(size: CGSize) -> CGSize {
-    return CGSize(width: size.width - canvasPadding,
-                  height: size.height - canvasPadding)
-  }
-  
-  /// size: the GeometryReader size
-  /// 屏幕坐标 -> 围棋坐标
-  func toPoint(pos: CGPoint, size: CGSize) -> (x: Int, y: Int) {
-    let boardArea = getBoardArea(size: clipBoardSize(size: size))
-    let gridWidth = getGridWidth(boardArea: boardArea)
-    
+  func toGoboardPoint(pos: CGPoint) -> (x: Int, y: Int) {
     let x = (pos.x + lineWidth - boardOrigin.x) / (gridWidth + lineWidth)
     let y = (pos.y + lineWidth - boardOrigin.y) / (gridWidth + lineWidth)
     
@@ -121,35 +116,31 @@ struct BoardView: View {
   }
   
   // size: GeometryReader size
-  func drawBoard(context: GraphicsContext, geoSize: CGSize) {
-    let size = clipBoardSize(size: geoSize)
+  func drawBoard(context: GraphicsContext) {
     let boardContext = context
     let origin = CGPoint(x: 0, y: 0)
     let topleft = CGPoint(x: margin, y: margin)
     
-    let area = CGSize(width: size.height, height: size.height)
-    let boardArea = getBoardArea(size: size)
-    
     let image = Image("board")
     
-    boardContext.draw(image, in: CGRect(origin: origin, size: area))
+    boardContext.draw(image, in: CGRect(origin: origin, size: boardFrame))
     
     boardContext.stroke(
       Rectangle().path(
         in: CGRect(origin: CGPoint(x: topleft.x + boardLineWidth, y: topleft.y + boardLineWidth),
-                   size: boardArea)),
+                   size: boardLineFrame)),
       with: .color(white: 0),
       lineWidth: boardLineWidth)
     
     let lines = Path { path in
-      for i in 1..<boardSize - 1 {
+      for i in 1..<goboardSize - 1 {
         // 竖线
-        path.move(to: getPoint(x: i, y: 0, boardArea: boardArea))
-        path.addLine(to: getPoint(x: i, y: boardSize - 1, boardArea: boardArea))
+        path.move(to: toScreenPoint(x: i, y: 0))
+        path.addLine(to: toScreenPoint(x: i, y: goboardSize - 1))
         
         // 横线
-        path.move(to: getPoint(x: 0, y: i, boardArea: boardArea))
-        path.addLine(to: getPoint(x: boardSize - 1, y: i, boardArea: boardArea))
+        path.move(to: toScreenPoint(x: 0, y: i))
+        path.addLine(to: toScreenPoint(x: goboardSize - 1, y: i))
       }
     }
     
@@ -157,18 +148,16 @@ struct BoardView: View {
   }
   
   // size: GeometryReader size
-  func drawStars(context: GraphicsContext, geoSize: CGSize) {
-    let size = clipBoardSize(size: geoSize)
+  func drawStars(context: GraphicsContext) {
     let _context = context
     let stars = [
       (3, 3), (3, 9), (3, 15),
       (9, 3), (9, 9), (9, 15),
       (15, 3), (15, 9), (15, 15)
     ]
-    let boardArea = getBoardArea(size: size)
     
     let starPoints = stars.map { x, y in
-      getPoint(x: x, y: y, boardArea: boardArea)
+      toScreenPoint(x: x, y: y)
     }
     
     for point in starPoints {
@@ -178,37 +167,39 @@ struct BoardView: View {
     }
   }
   
-  // size: GeometryReader size
-  func drawChains(context: GraphicsContext, geoSize: CGSize) {
-    var _context = context
-    let chains = game.chains
-    
+  private func draw(move: Move, context: GraphicsContext) {
+    let _context = context
     let black = _context.resolve(Image("B_stone"))
     let white = _context.resolve(Image("W_stone"))
-    let size = clipBoardSize(size: geoSize)
-    let boardArea = getBoardArea(size: size)
+    if let coord = move.coord {
+      let screenPoint = toScreenPoint(x: coord.x, y: goboardSize - coord.y - 1) / scale
+      
+      if move.player == "B" {
+        _context.draw(black, at: screenPoint)
+      } else if move.player == "W" {
+        _context.draw(white, at: screenPoint)
+      }
+    }
+  }
+  
+  // size: GeometryReader size
+  func drawChains(context: GraphicsContext) {
+    var _context = context
+    let chains = game.chains
+
     _context.scaleBy(x: scale, y: scale)
     
     for chain in chains {
       for move in chain {
-        if let coord = move.coord {
-          if move.player == "B" {
-            _context.draw(black, at: getPoint(x: coord.x, y: boardSize - coord.y - 1, boardArea: boardArea) / scale)
-          } else if move.player == "W" {
-            _context.draw(white, at: getPoint(x: coord.x, y: boardSize - coord.y - 1, boardArea: boardArea) / scale)
-          }
-        }
+        draw(move: move, context: _context)
       }
     }
   }
   
   func drawCursor(context: GraphicsContext, geoSize: CGSize, coord: Coord) {
     let _context = context
-    
-    let size = clipBoardSize(size: geoSize)
-    let boardArea = getBoardArea(size: size)
-    let drawCoord = coord.toDrawCoord(boardSize: boardSize)
-    let origin = getPoint(x: drawCoord.0, y: drawCoord.1, boardArea: boardArea) -
+    let drawCoord = coord.toDrawCoord(boardSize: goboardSize)
+    let origin = toScreenPoint(x: drawCoord.0, y: drawCoord.1) -
         CGPoint(x: imageSize * scale / 2, y: imageSize * scale / 2)
     
     _context.fill(Triangle().path(in: CGRect(origin: origin, size: CGSize(width: cursorSize, height: cursorSize))), with: .color(.green))
@@ -216,36 +207,39 @@ struct BoardView: View {
   
   // size: GeometryReader size
   // For debugging
-  func drawTouchPoint(context: GraphicsContext, geoSize: CGSize) {
-    let size = clipBoardSize(size: geoSize)
-    let boardArea = getBoardArea(size: size)
+  func drawTouchPoint(context: GraphicsContext) {
     let _context = context
-    let step = getGridWidth(boardArea: boardArea) + lineWidth
+    let step = gridWidth + lineWidth
     
-    for i in stride(from: boardOrigin.x, to: boardArea.width, by: step) {
-      for j in stride(from: boardOrigin.y, to: boardArea.height, by: step) {
-        let (x, y) = toPoint(pos: CGPoint(x: i, y: j), size: geoSize)
+    for i in stride(from: boardOrigin.x, to: boardLineFrame.width, by: step) {
+      for j in stride(from: boardOrigin.y, to: boardLineFrame.height, by: step) {
+        let (x, y) = toGoboardPoint(pos: CGPoint(x: i, y: j))
         if x == -1 || y == -1 {
           logger.info("Not valid touch point")
           continue
         }
-        let _point = getPoint(x: x, y: y, boardArea: boardArea)
+        let _point = toScreenPoint(x: x, y: y)
         let _size = CGSize(width: starWidth, height: starWidth)
         _context.fill(Circle().path(in: CGRect(origin: _point, size: _size)), with: .color(.red))
       }
     }
   }
   
+  func drawPlacement(context: GraphicsContext, geoSize: CGSize) {
+    let placements = game.root.placements
+    for move in placements {
+      draw(move: move, context: context)
+    }
+  }
+  
   func drawTerritory(cn: GameNode, context: GraphicsContext, geoSize: CGSize) {
     if let ownership = cn.analysis?.ownership {
-      let size = clipBoardSize(size: geoSize)
-      let boardArea = getBoardArea(size: size)
       let _context = context
       
       for i in 0..<ownership.count {
-        let (x, y) = (i / self.boardSize, i % self.boardSize)
+        let (x, y) = (i / self.goboardSize, i % self.goboardSize)
         
-        let _point = getPoint(x: x, y: y, boardArea: boardArea)
+        let _point = toScreenPoint(x: x, y: y)
         let _size = CGSize(width: starWidth, height: starWidth)
         _context.fill(Rectangle().path(in: CGRect(origin: _point, size: _size)), with: .color(.black))
       }
@@ -256,7 +250,7 @@ struct BoardView: View {
 @available(iOS 15.0, *)
 struct BoardView_Previews: PreviewProvider {
   static var previews: some View {
-    BoardView(size: CGSize(width: 810, height: 1136))
+    BoardView()
       .previewInterfaceOrientation(.landscapeLeft)
   }
 }

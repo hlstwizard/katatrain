@@ -195,6 +195,10 @@ class BaseGame: GameProtocol, ObservableObject {
     }
   }
   
+  func newGame() {
+    self.objectWillChange.send()
+  }
+  
   func play(move: Move, ignore_ko: Bool) throws {
     if !move.is_pass && !(move.coord!.x >= 0 && move.coord!.y >= 0 && move.coord!.x < boardSize.0 && move.coord!.y < boardSize.1) {
       throw GameError.IllegalMoveError("Move \(move) outside of board coordinates")
@@ -255,7 +259,7 @@ class Game: BaseGame {
   var players: [Character: Player] = ["B": Player("B"), "W": Player("W")]
   var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
   
-  func newGame(moveTree: NodeProtocol? = nil, analyzeFast: Bool = false, sgfFilename: String? = nil) {
+  func newGame(moveTree: NodeProtocol? = nil, handicap: Int = 0, analyzeFast: Bool = false, sgfFilename: String? = nil) {
     if let moveTree = moveTree {
       root = moveTree as! GameNode
     } else {
@@ -269,6 +273,12 @@ class Game: BaseGame {
     
     players["W"]?.type = .ai
     players["W"]?.strategy = .handicap
+    
+    if handicap > 0 {
+      root.place_handicap_stones(n_handicaps: handicap)
+    }
+    
+    super.newGame()
   }
   
   func start() {

@@ -17,10 +17,13 @@ struct GameView: View {
   var body: some View {
     Group {
       GeometryReader { reader in
+        let minWidth = min(reader.size.width, reader.size.height)
+        let maxHeight = min(reader.size.width, reader.size.height)
+        
         if reader.size.width > reader.size.height {
           HStack {
             VStack {
-              BoardView(size: CGSize(width: reader.size.height - controlHeight, height: reader.size.height - controlHeight))
+              BoardView().frame(minWidth: minWidth)
                 .padding(.leading, 10)
               ControlView()
             }
@@ -28,8 +31,8 @@ struct GameView: View {
           }
         } else {
           VStack {
-            BoardView(size: CGSize(width: reader.size.width, height: reader.size.width))
-              .border(.black, width: 3)
+            BoardView().frame(maxHeight: maxHeight)
+              .padding(10)
             ControlView()
             StatusView()
           }
