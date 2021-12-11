@@ -196,6 +196,7 @@ class BaseGame: GameProtocol, ObservableObject {
   }
   
   func newGame() {
+    try! self.calculateGroups()
     self.objectWillChange.send()
   }
   

@@ -190,7 +190,8 @@ class SgfNode: NodeProtocol {
       n = n.parent!
       nodes.append(n)
     }
-      return nodes.reversed()
+    
+    return nodes.reversed()
   }
   
   var board_size: (Int, Int) {
@@ -286,7 +287,7 @@ class SgfNode: NodeProtocol {
     stones += [(near_x, middle_y), (far_x, middle_y), (middle_x, near_y), (middle_x, far_y)]
     
     self.add_list_property(property: "AB",
-                           values: stones.map { Move(coord: $0, player: "B").sgf(boardSize: board_size) })
+                           values: stones[0..<n_handicaps].map { Move(coord: $0, player: "B").sgf(boardSize: board_size) })
   }
   
 }
