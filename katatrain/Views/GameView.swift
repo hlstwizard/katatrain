@@ -24,11 +24,12 @@ struct GameView: View {
           HStack {
             VStack {
               BoardView().frame(minWidth: minWidth)
-                .padding(.leading, 10)
+                .kataBorder()
               ControlView()
             }
             VStack {
               StatusView()
+                .kataBorder()
               NewGameView()
             }
           }

@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-struct PlayerView: View {
-  @ObservedObject var player: Player
-  
-  var body: some View {
-    HStack {
-      if player.pla == "B" {
-        Text("Black:")
-      } else {
-        Text("White:")
-      }
-      
-      if player.type == .ai {
-        Text("AI")
-      } else {
-        Text("Human")
-      }
-    }
-  }
-}
-
 struct StatusView: View {
   @EnvironmentObject var game: Game
   

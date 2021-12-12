@@ -14,6 +14,7 @@ struct ContentView: View {
   var body: some View {
     ZStack {
       GameView()
+        .padding()
       if !game.engine.initFinished {
         LandingView()
           .transition(.asymmetric(insertion: .move(edge: .top), removal: .opacity))

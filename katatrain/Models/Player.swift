@@ -37,6 +37,7 @@ enum AIStrategy: String {
 
 class Player: ObservableObject {
   @Published var type: PlayerType = .human
+  @Published var captured: Int = 0
   
   var pla: String = "B"
   var subType: PlayerSubType = .normal

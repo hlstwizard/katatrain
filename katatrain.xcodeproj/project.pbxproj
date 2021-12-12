@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2957E1332754FDFF004178FA /* example.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 2957E1322754FDFF004178FA /* example.sgf */; };
 		299DC9AE275461F700F013D3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DC9AD275461F700F013D3 /* String+Index.swift */; };
+		29B04A7527657D070030EBB1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B04A7427657D070030EBB1 /* PlayerView.swift */; };
+		29B04A77276598160030EBB1 /* BorderViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B04A76276598160030EBB1 /* BorderViewModifier.swift */; };
 		29B3AC4927575E28008557F5 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3AC4827575E28008557F5 /* DocumentPicker.swift */; };
 		29B8444527599CA4003E876E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8444427599CA4003E876E /* Player.swift */; };
 		29B844472759F53C003E876E /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B844462759F53C003E876E /* AI.swift */; };
@@ -81,6 +83,8 @@
 /* Begin PBXFileReference section */
 		2957E1322754FDFF004178FA /* example.sgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.sgf; sourceTree = "<group>"; };
 		299DC9AD275461F700F013D3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
+		29B04A7427657D070030EBB1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		29B04A76276598160030EBB1 /* BorderViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderViewModifier.swift; sourceTree = "<group>"; };
 		29B3AC4827575E28008557F5 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		29B8444427599CA4003E876E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		29B844462759F53C003E876E /* AI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
@@ -169,6 +173,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29B04A7127657BE30030EBB1 /* StatusPanel */ = {
+			isa = PBXGroup;
+			children = (
+				80B36AF727377126008FFDB0 /* ControlView.swift */,
+				809261DC273BEF2E00CE2903 /* StatusView.swift */,
+				804C6F78273DEA1C007C67E8 /* NewGameView.swift */,
+				29B04A7427657D070030EBB1 /* PlayerView.swift */,
+			);
+			path = StatusPanel;
+			sourceTree = "<group>";
+		};
+		29B04A7227657C090030EBB1 /* BoardPanel */ = {
+			isa = PBXGroup;
+			children = (
+				80CC597D2715C396009A24AC /* BoardView.swift */,
+				80CDA1832721AF670097D485 /* BoardView+Action.swift */,
+				804C6F76273D326B007C67E8 /* Triangle.swift */,
+			);
+			path = BoardPanel;
+			sourceTree = "<group>";
+		};
+		29B04A7327657C470030EBB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29B3AC4827575E28008557F5 /* DocumentPicker.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		80739EC3274892F000593DC7 /* SGF */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				80B36AF52737680B008FFDB0 /* DeviceRotationViewModifier.swift */,
+				29B04A76276598160030EBB1 /* BorderViewModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -313,16 +347,12 @@
 			isa = PBXGroup;
 			children = (
 				80B36AF4273767F2008FFDB0 /* Modifiers */,
+				29B04A7327657C470030EBB1 /* Controller */,
+				29B04A7227657C090030EBB1 /* BoardPanel */,
+				29B04A7127657BE30030EBB1 /* StatusPanel */,
 				80CC5941271476BF009A24AC /* ContentView.swift */,
-				80B36AF727377126008FFDB0 /* ControlView.swift */,
 				80B36AF027361959008FFDB0 /* LandingView.swift */,
 				80B36AF2273625B5008FFDB0 /* GameView.swift */,
-				80CC597D2715C396009A24AC /* BoardView.swift */,
-				80CDA1832721AF670097D485 /* BoardView+Action.swift */,
-				809261DC273BEF2E00CE2903 /* StatusView.swift */,
-				804C6F76273D326B007C67E8 /* Triangle.swift */,
-				804C6F78273DEA1C007C67E8 /* NewGameView.swift */,
-				29B3AC4827575E28008557F5 /* DocumentPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -521,6 +551,7 @@
 				80C8031B2751DF250078CA90 /* GameProtocol.swift in Sources */,
 				80CDA18627221BD10097D485 /* CGPoint+divide.swift in Sources */,
 				80CC5940271476BF009A24AC /* KatatrainApp.swift in Sources */,
+				29B04A77276598160030EBB1 /* BorderViewModifier.swift in Sources */,
 				80BD07CF272BC01C00A4735C /* Katago.swift in Sources */,
 				80CC597627152807009A24AC /* MLMultiArray+subscript.swift in Sources */,
 				8052CB0E274E558B00B875C1 /* Game.swift in Sources */,
@@ -528,6 +559,7 @@
 				80B36AF62737680C008FFDB0 /* DeviceRotationViewModifier.swift in Sources */,
 				80459988272D5B8D00B40C35 /* Types.swift in Sources */,
 				80945E51274F185E00A75F66 /* Errors.swift in Sources */,
+				29B04A7527657D070030EBB1 /* PlayerView.swift in Sources */,
 				80CDA1842721AF670097D485 /* BoardView+Action.swift in Sources */,
 				80CC59782715316F009A24AC /* String+NSNumber.swift in Sources */,
 				80CC596B27147770009A24AC /* Katagob40.mlmodel in Sources */,
