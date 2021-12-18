@@ -14,6 +14,15 @@ struct GameView: View {
   
   private let controlHeight: CGFloat = 60.0
   
+  var rightPanel: some View {
+    VStack {
+      StatusView().kataBorder()
+      NewGameView().kataBorder()
+      ControlView().kataBorder()
+
+    }
+  }
+  
   var body: some View {
     Group {
       GeometryReader { reader in
@@ -22,16 +31,9 @@ struct GameView: View {
         
         if reader.size.width > reader.size.height {
           HStack {
-            VStack {
-              BoardView().frame(minWidth: minWidth)
-                .kataBorder()
-              ControlView()
-            }
-            VStack {
-              StatusView()
-                .kataBorder()
-              NewGameView()
-            }
+            BoardView().frame(minWidth: minWidth)
+              .kataBorder()
+            rightPanel
           }
         } else {
           VStack {

@@ -10,10 +10,15 @@ import SwiftUI
 struct StatusView: View {
   @EnvironmentObject var game: Game
   
+  let playerViewMaxHeight: CGFloat = 80.0
+  
   var body: some View {
-    HStack {
-      PlayerView(player: game.players["B"]!)
-      PlayerView(player: game.players["W"]!)
+    VStack {
+      HStack {
+        PlayerView(player: game.players["B"]!)
+        PlayerView(player: game.players["W"]!)
+      }.frame(maxHeight: playerViewMaxHeight)
+        .background(.gray)
     }
   }
 }

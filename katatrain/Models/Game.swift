@@ -260,6 +260,10 @@ class Game: BaseGame {
   var players: [Character: Player] = ["B": Player("B"), "W": Player("W")]
   var engineQueue = DispatchQueue(label: "engine.result", qos: .utility)
   
+  func getPrisons(player: Character) -> [Move] {
+    prisoners.filter { $0.player != player }
+  }
+  
   func newGame(moveTree: NodeProtocol? = nil, handicap: Int = 0, analyzeFast: Bool = false, sgfFilename: String? = nil) {
     if let moveTree = moveTree {
       root = moveTree as! GameNode
@@ -298,6 +302,14 @@ class Game: BaseGame {
     
     if players[nextPla]!.ai {
       let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
+    }
+  }
+  
+  override func validateMoveAndUpdateChain(move: Move, ignore_ko: Bool) throws {
+    try super.validateMoveAndUpdateChain(move: move, ignore_ko: ignore_ko)
+    
+    for c in players.keys {
+      players[c]?.captured = getPrisons(player: c).count
     }
   }
   
