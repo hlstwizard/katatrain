@@ -302,6 +302,8 @@ class Game: BaseGame {
     
     if players[nextPla]!.ai {
       let _ = generate_ai_move(game: self, ai_mode: players[nextPla]!.strategy)
+    } else {
+      currentPlayer = nextPla
     }
   }
   
